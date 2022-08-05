@@ -1,0 +1,376 @@
+package com.nebulacompanies.ibo.ecom.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class CardData {
+
+        @SerializedName("key")
+        @Expose
+        private String key;
+        @SerializedName("amount")
+        @Expose
+        private String amount;
+        @SerializedName("currency")
+        @Expose
+        private String currency;
+        @SerializedName("receiptId")
+        @Expose
+        private String receiptId;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("description")
+        @Expose
+        private String description;
+        @SerializedName("image")
+        @Expose
+        private String image;
+        @SerializedName("orderId")
+        @Expose
+        private String orderId;
+        @SerializedName("email")
+        @Expose
+        private String email;
+        @SerializedName("mobileNo")
+        @Expose
+        private String mobileNo;
+        @SerializedName("address")
+        @Expose
+        private String address;
+        @SerializedName("theme")
+        @Expose
+        private String theme;
+        @SerializedName("version")
+        @Expose
+        private Object version;
+
+        public String getKey() {
+            return key;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
+
+        public String getCurrency() {
+            return currency;
+        }
+
+        public void setCurrency(String currency) {
+            this.currency = currency;
+        }
+
+        public String getReceiptId() {
+            return receiptId;
+        }
+
+        public void setReceiptId(String receiptId) {
+            this.receiptId = receiptId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public String getOrderId() {
+            return orderId;
+        }
+
+        public void setOrderId(String orderId) {
+            this.orderId = orderId;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getMobileNo() {
+            return mobileNo;
+        }
+
+        public void setMobileNo(String mobileNo) {
+            this.mobileNo = mobileNo;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getTheme() {
+            return theme;
+        }
+
+        public void setTheme(String theme) {
+            this.theme = theme;
+        }
+
+        public Object getVersion() {
+            return version;
+        }
+
+        public void setVersion(Object version) {
+            this.version = version;
+        }
+
+    }
+    /*@SerializedName("Key")
+    @Expose
+    private String shippingKey;
+
+
+    @SerializedName("Amount")
+    @Expose
+    private String shippingAmount;
+
+    @SerializedName("Currency")
+    @Expose
+    private String shippingCurrency;
+
+    @SerializedName("Name")
+    @Expose
+    private String shippingName;
+
+    @SerializedName("Description")
+    @Expose
+    private String shippingDescription;
+
+    @SerializedName("Image")
+    @Expose
+    private String shippingImage;
+
+    @SerializedName("OrderId")
+    @Expose
+    private String shippingOrderId;
+
+    @SerializedName("Email")
+    @Expose
+    private String shippingEmail;
+
+    @SerializedName("MobileNo")
+    @Expose
+    private String shippingMobileNo;
+
+    @SerializedName("Address")
+    @Expose
+    private String shippingAddress;
+
+    @SerializedName("Theme")
+    @Expose
+    private String shippingTheme;
+
+    @SerializedName("ReceiptId")
+    @Expose
+    private String receiptId;
+
+
+
+    @SerializedName("UPIGateWay")
+    @Expose
+    private String razorpay;
+
+
+    @SerializedName("Version")
+    @Expose
+    private String version;
+
+    @SerializedName("UPIModelList")
+    @Expose
+    private List<UPIModelList> uPIModelList = null;
+
+    public String getShippingKey() {
+        return shippingKey;
+    }
+
+    public void setShippingKey(String shippingKey) {
+        this.shippingKey = shippingKey;
+    }
+
+    public String getShippingAmount() {
+        return shippingAmount;
+    }
+
+    public void setShippingAmount(String shippingAmount) {
+        this.shippingAmount = shippingAmount;
+    }
+
+    public String getShippingCurrency() {
+        return shippingCurrency;
+    }
+
+    public void setShippingCurrency(String shippingCurrency) {
+        this.shippingCurrency = shippingCurrency;
+    }
+
+    public String getShippingName() {
+        return shippingName;
+    }
+
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
+
+    public String getShippingDescription() {
+        return shippingDescription;
+    }
+
+    public void setShippingDescription(String shippingDescription) {
+        this.shippingDescription = shippingDescription;
+    }
+
+    public String getShippingImage() {
+        return shippingImage;
+    }
+
+    public void setShippingImage(String shippingImage) {
+        this.shippingImage = shippingImage;
+    }
+
+    public String getShippingOrderId() {
+        return shippingOrderId;
+    }
+
+    public void setShippingOrderId(String shippingOrderId) {
+        this.shippingOrderId = shippingOrderId;
+    }
+
+    public String getShippingEmail() {
+        return shippingEmail;
+    }
+
+    public void setShippingEmail(String shippingEmail) {
+        this.shippingEmail = shippingEmail;
+    }
+
+    public String getShippingMobileNo() {
+        return shippingMobileNo;
+    }
+
+    public void setShippingMobileNo(String shippingMobileNo) {
+        this.shippingMobileNo = shippingMobileNo;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getShippingTheme() {
+        return shippingTheme;
+    }
+
+    public void setShippingTheme(String shippingTheme) {
+        this.shippingTheme = shippingTheme;
+    }
+
+
+    public String getReceiptId() {
+        return receiptId;
+    }
+
+    public void setReceiptId(String receiptId) {
+        this.receiptId = receiptId;
+    }
+
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+
+    public String getRazorpay() {
+        return razorpay;
+    }
+
+    public void setRazorpay(String razorpay) {
+        this.razorpay = razorpay;
+    }
+    public List<UPIModelList> getUPIModelList() {
+        return uPIModelList;
+    }
+
+    public void setUPIModelList(List<UPIModelList> uPIModelList) {
+        this.uPIModelList = uPIModelList;
+    }
+    public class UPIModelList {
+
+        @SerializedName("PackageType")
+        @Expose
+        private String packageType;
+        @SerializedName("PackageName")
+        @Expose
+        private String packageName;
+
+        public String getImageFile() {
+            return imageFile;
+        }
+
+        public void setImageFile(String imageFile) {
+            this.imageFile = imageFile;
+        }
+
+        @SerializedName("ImageFile")
+        @Expose
+        private String imageFile;
+
+        public String getPackageType() {
+            return packageType;
+        }
+
+        public void setPackageType(String packageType) {
+            this.packageType = packageType;
+        }
+
+        public String getPackageName() {
+            return packageName;
+        }
+
+        public void setPackageName(String packageName) {
+            this.packageName = packageName;
+        }
+
+    }*/
+

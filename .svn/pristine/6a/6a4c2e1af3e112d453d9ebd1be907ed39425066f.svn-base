@@ -1,0 +1,119 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nebulacompanies.ibo.ecom.ViewSaleHistoryActivity;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.model.OrderHistoryModel;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class SaleHistoryAdapter extends RecyclerView.Adapter<SaleHistoryAdapter.ProductViewHolder> {
+
+    //this context we will use to inflate the layout
+    private final Context mCtx;
+    ArrayList<OrderHistoryModel.Datum> inventoryList;
+
+    public SaleHistoryAdapter(Context mCtx, ArrayList<OrderHistoryModel.Datum> inventoryList) {
+        this.mCtx = mCtx;
+        this.inventoryList = inventoryList;
+    }
+
+    @Override
+    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //inflating and returning our view holder
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View view = inflater.inflate(R.layout.sale_history_items, null);
+        return new ProductViewHolder(view);
+    }
+
+
+    @Override
+    public void onBindViewHolder(ProductViewHolder holder, int position) {
+        OrderHistoryModel.Datum data = inventoryList.get(position);
+        String iboid=data.getIboid();
+        String uname= TextUtils.isEmpty(iboid)?(data.getPhoneNumber()+" ("+data.getCustomerName()+")"):
+                (iboid+" ("+data.getIboName()+")");
+        holder.tvUsers.setText(""+uname);
+        holder.tvOrderTitle.setText(""+data.getOrderNumber());
+      //  holder.tvProductName.setText("Total products : "+data.getItemCount());
+
+        holder.tvOrderDate.setText(convertDate(data.getOrderDate()));
+
+        holder.btnViewOrder.setOnClickListener(v -> {
+            holder.btnViewOrder.setEnabled(false);
+
+            String listdata = new Gson().toJson(data, new TypeToken<OrderHistoryModel.Datum>() {
+            }.getType());
+           /* String orderlistdata = new Gson().toJson(data.getSalesDetails(),
+                    new TypeToken<ArrayList<OrderHistoryModel.SalesDetail>>() {
+                    }.getType());*/
+
+            Intent dash = new Intent(mCtx, ViewSaleHistoryActivity.class);
+            dash.putExtra("listdata", listdata);
+            //dash.putExtra("orderlistdata", orderlistdata);
+            mCtx.startActivity(dash);
+            holder.btnViewOrder.setEnabled(true);
+        });
+    }
+
+    public String convertDate(String input){
+        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        java.util.Date date = null;
+        try
+        {
+            date = form.parse(input);//"2011-03-27T09:39:01.607");
+        }
+        catch (ParseException e)
+        {
+
+            e.printStackTrace();
+        }
+        SimpleDateFormat postFormater = new SimpleDateFormat("dd-MMMM-yyyy (hh:mm aa)");
+        String newDateStr = postFormater.format(date);
+        return newDateStr;
+    }
+    @Override
+    public int getItemCount() {
+        return inventoryList.size();
+    }
+
+    class ProductViewHolder extends RecyclerView.ViewHolder {
+
+        MyTextViewEcom tvOrderDate, tvOrderStatusSuccess, tvProductName ;
+        MyBoldTextViewEcom tvOrderTitle,tvUsers;
+        MyButtonEcom btnTrackOrder, btnViewOrder;
+        CardView cvOrderItem;
+
+        public ProductViewHolder(View itemView) {
+            super(itemView);
+
+            cvOrderItem = itemView.findViewById(R.id.cv_order_item);
+            tvOrderTitle = itemView.findViewById(R.id.tv_order_title);
+            tvOrderStatusSuccess = itemView.findViewById(R.id.tv_order_status_success);
+            tvOrderDate = itemView.findViewById(R.id.tv_order_date);
+            tvProductName = itemView.findViewById(R.id.tv_product_details);
+            btnTrackOrder = itemView.findViewById(R.id.btn_track_order);
+            btnViewOrder = itemView.findViewById(R.id.btn_view_order);
+            tvUsers = itemView.findViewById(R.id.tv_product_user);
+
+        }
+    }
+}

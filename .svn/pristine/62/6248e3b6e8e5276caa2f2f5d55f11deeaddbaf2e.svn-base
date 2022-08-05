@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "270834148530",
+    "project_id": "nebula-shoppy",
+    "storage_bucket": "nebula-shoppy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270834148530:android:ba37d31bb26dbfad5255ab",
+        "android_client_info": {
+          "package_name": "com.nebulacompanies.ibo.shoppy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270834148530-4gfoncd0et0lmvb31vra77ka8eqtilfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV54LwVBRjZcN03V8lGzcYPkzWmdxjaaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270834148530-4gfoncd0et0lmvb31vra77ka8eqtilfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

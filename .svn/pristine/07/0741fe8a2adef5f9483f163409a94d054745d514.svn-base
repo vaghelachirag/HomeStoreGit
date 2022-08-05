@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.m2x:AvatarView:1.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/640681c8062409a388322bc55a0544ec/jetified-AvatarView-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/640681c8062409a388322bc55a0544ec/jetified-AvatarView-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/640681c8062409a388322bc55a0544ec/jetified-AvatarView-1.0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.m2x/AvatarView/1.0.1/d5a3e33ca8ae9f869b71cbef60fb01890d653251/AvatarView-1.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.m2x/AvatarView/1.0.1/e38391777d4c0d3cec72094bcfeacafeb8721bc2/AvatarView-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

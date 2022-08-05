@@ -1,0 +1,507 @@
+package com.nebulacompanies.ibo.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class OrderHistoryModel {
+    @SerializedName("ok")
+    @Expose
+    private int ok;
+    @SerializedName("response")
+    @Expose
+    private Response response;
+
+    public int getOk() {
+        return ok;
+    }
+
+    public void setOk(int ok) {
+        this.ok = ok;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+    public class Response {
+
+        @SerializedName("statusCode")
+        @Expose
+        private int statusCode;
+        @SerializedName("message")
+        @Expose
+        private String message;
+        @SerializedName("data")
+        @Expose
+        private List<Datum> data = null;
+
+        public int getStatusCode() {
+            return statusCode;
+        }
+
+        public void setStatusCode(int statusCode) {
+            this.statusCode = statusCode;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public List<Datum> getData() {
+            return data;
+        }
+
+        public void setData(List<Datum> data) {
+            this.data = data;
+        }
+
+    }
+
+    public class SalesDetail {
+
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("orderMasterId")
+        @Expose
+        private int orderMasterId;
+        @SerializedName("productId")
+        @Expose
+        private int productId;
+        @SerializedName("productName")
+        @Expose
+        private String productName;
+        @SerializedName("price")
+        @Expose
+        private double price;
+        @SerializedName("quantity")
+        @Expose
+        private int quantity;
+        @SerializedName("discount")
+        @Expose
+        private double discount;
+        @SerializedName("total")
+        @Expose
+        private double total;
+        @SerializedName("taxRate")
+        @Expose
+        private double taxRate;
+        @SerializedName("taxAmount")
+        @Expose
+        private double taxAmount;
+        @SerializedName("shoppyComboProductMappingId")
+        @Expose
+        private int shoppyComboProductMappingId;
+        @SerializedName("cancelledQuantity")
+        @Expose
+        private int cancelledQuantity;
+        @SerializedName("sku")
+        @Expose
+        private String sku;
+        @SerializedName("rp")
+        @Expose
+        private double rp;
+        @SerializedName("ecomProductId")
+        @Expose
+        private int ecomProductId;
+        @SerializedName("imageURL")
+        @Expose
+        private String imageURL;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getOrderMasterId() {
+            return orderMasterId;
+        }
+
+        public void setOrderMasterId(int orderMasterId) {
+            this.orderMasterId = orderMasterId;
+        }
+
+        public int getProductId() {
+            return productId;
+        }
+
+        public void setProductId(int productId) {
+            this.productId = productId;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public void setProductName(String productName) {
+            this.productName = productName;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
+        public double getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(double discount) {
+            this.discount = discount;
+        }
+
+        public double getTotal() {
+            return total;
+        }
+
+        public void setTotal(double total) {
+            this.total = total;
+        }
+
+        public double getTaxRate() {
+            return taxRate;
+        }
+
+        public void setTaxRate(double taxRate) {
+            this.taxRate = taxRate;
+        }
+
+        public double getTaxAmount() {
+            return taxAmount;
+        }
+
+        public void setTaxAmount(double taxAmount) {
+            this.taxAmount = taxAmount;
+        }
+
+        public int getShoppyComboProductMappingId() {
+            return shoppyComboProductMappingId;
+        }
+
+        public void setShoppyComboProductMappingId(int shoppyComboProductMappingId) {
+            this.shoppyComboProductMappingId = shoppyComboProductMappingId;
+        }
+
+        public int getCancelledQuantity() {
+            return cancelledQuantity;
+        }
+
+        public void setCancelledQuantity(int cancelledQuantity) {
+            this.cancelledQuantity = cancelledQuantity;
+        }
+
+        public String getSku() {
+            return sku;
+        }
+
+        public void setSku(String sku) {
+            this.sku = sku;
+        }
+
+        public double getRp() {
+            return rp;
+        }
+
+        public void setRp(double rp) {
+            this.rp = rp;
+        }
+
+        public int getEcomProductId() {
+            return ecomProductId;
+        }
+
+        public void setEcomProductId(int ecomProductId) {
+            this.ecomProductId = ecomProductId;
+        }
+
+        public String getImageURL() {
+            return imageURL;
+        }
+
+        public void setImageURL(String imageURL) {
+            this.imageURL = imageURL;
+        }
+
+    }
+
+    public class Datum {
+
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("orderNumber")
+        @Expose
+        private String orderNumber;
+        @SerializedName("customerName")
+        @Expose
+        private String customerName;
+        @SerializedName("phoneNumber")
+        @Expose
+        private String phoneNumber;
+        @SerializedName("iboid")
+        @Expose
+        private String iboid;
+        @SerializedName("type")
+        @Expose
+        private String type;
+        @SerializedName("paymentMode")
+        @Expose
+        private String paymentMode;
+        @SerializedName("orderDate")
+        @Expose
+        private String orderDate;
+        @SerializedName("shippingCharges")
+        @Expose
+        private double shippingCharges;
+        @SerializedName("totalPrice")
+        @Expose
+        private double totalPrice;
+        @SerializedName("grandTotal")
+        @Expose
+        private double grandTotal;
+        @SerializedName("totalTaxIncluded")
+        @Expose
+        private double totalTaxIncluded;
+        @SerializedName("transactionStatus")
+        @Expose
+        private String transactionStatus;
+        @SerializedName("fulfilled")
+        @Expose
+        private boolean fulfilled;
+        @SerializedName("paymentDate")
+        @Expose
+        private String paymentDate;
+        @SerializedName("status")
+        @Expose
+        private String status;
+        @SerializedName("isBackOffice")
+        @Expose
+        private boolean isBackOffice;
+        @SerializedName("invoiceSent")
+        @Expose
+        private boolean invoiceSent;
+        @SerializedName("refIboid")
+        @Expose
+        private String refIboid;
+        @SerializedName("promoCode")
+        @Expose
+        private String promoCode;
+        @SerializedName("discount")
+        @Expose
+        private double discount;
+        @SerializedName("salesDetails")
+        @Expose
+        private List<SalesDetail> salesDetails = null;
+        @SerializedName("itemCount")
+        @Expose
+        private int itemCount;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getOrderNumber() {
+            return orderNumber;
+        }
+
+        public void setOrderNumber(String orderNumber) {
+            this.orderNumber = orderNumber;
+        }
+
+        public String getCustomerName() {
+            return customerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            this.customerName = customerName;
+        }
+
+        public String getPhoneNumber() {
+            return phoneNumber;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public String getIboid() {
+            return iboid;
+        }
+
+        public void setIboid(String iboid) {
+            this.iboid = iboid;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getPaymentMode() {
+            return paymentMode;
+        }
+
+        public void setPaymentMode(String paymentMode) {
+            this.paymentMode = paymentMode;
+        }
+
+        public String getOrderDate() {
+            return orderDate;
+        }
+
+        public void setOrderDate(String orderDate) {
+            this.orderDate = orderDate;
+        }
+
+        public double getShippingCharges() {
+            return shippingCharges;
+        }
+
+        public void setShippingCharges(double shippingCharges) {
+            this.shippingCharges = shippingCharges;
+        }
+
+        public double getTotalPrice() {
+            return totalPrice;
+        }
+
+        public void setTotalPrice(double totalPrice) {
+            this.totalPrice = totalPrice;
+        }
+
+        public double getGrandTotal() {
+            return grandTotal;
+        }
+
+        public void setGrandTotal(double grandTotal) {
+            this.grandTotal = grandTotal;
+        }
+
+        public double getTotalTaxIncluded() {
+            return totalTaxIncluded;
+        }
+
+        public void setTotalTaxIncluded(double totalTaxIncluded) {
+            this.totalTaxIncluded = totalTaxIncluded;
+        }
+
+        public String getTransactionStatus() {
+            return transactionStatus;
+        }
+
+        public void setTransactionStatus(String transactionStatus) {
+            this.transactionStatus = transactionStatus;
+        }
+
+        public boolean isFulfilled() {
+            return fulfilled;
+        }
+
+        public void setFulfilled(boolean fulfilled) {
+            this.fulfilled = fulfilled;
+        }
+
+        public String getPaymentDate() {
+            return paymentDate;
+        }
+
+        public void setPaymentDate(String paymentDate) {
+            this.paymentDate = paymentDate;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public boolean isIsBackOffice() {
+            return isBackOffice;
+        }
+
+        public void setIsBackOffice(boolean isBackOffice) {
+            this.isBackOffice = isBackOffice;
+        }
+
+        public boolean isInvoiceSent() {
+            return invoiceSent;
+        }
+
+        public void setInvoiceSent(boolean invoiceSent) {
+            this.invoiceSent = invoiceSent;
+        }
+
+        public String getRefIboid() {
+            return refIboid;
+        }
+
+        public void setRefIboid(String refIboid) {
+            this.refIboid = refIboid;
+        }
+
+        public String getPromoCode() {
+            return promoCode;
+        }
+
+        public void setPromoCode(String promoCode) {
+            this.promoCode = promoCode;
+        }
+
+        public double getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(double discount) {
+            this.discount = discount;
+        }
+
+        public List<SalesDetail> getSalesDetails() {
+            return salesDetails;
+        }
+
+        public void setSalesDetails(List<SalesDetail> salesDetails) {
+            this.salesDetails = salesDetails;
+        }
+
+        public int getItemCount() {
+            return itemCount;
+        }
+
+        public void setItemCount(int itemCount) {
+            this.itemCount = itemCount;
+        }
+
+    }
+}

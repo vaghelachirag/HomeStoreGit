@@ -1,0 +1,307 @@
+package com.nebulacompanies.ibo.activities;
+
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.nebulacompanies.ibo.Interface.OnItemSelect;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.adapter.ChooseShoppyAdapter;
+import com.nebulacompanies.ibo.ecom.MainActivity;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.PrefUtils;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.ChooseShoppyModel;
+import com.nebulacompanies.ibo.model.Image;
+import com.nebulacompanies.ibo.model.MyShoppyModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ChooseShopyActivity extends AppCompatActivity implements View.OnClickListener, OnItemSelect {
+    RecyclerView rvShoppy;
+    private MyTextViewEcom textTnc;
+    MyBoldTextViewEcom txtHeader;
+    private Button btnNext;
+    Utils utils;
+    APIInterface mAPIInterface;
+    MaterialProgressBar mProgressDialog;
+
+    private LinearLayout llEmpty;
+    private ImageView imgError;
+    private MyTextView txtErrorContent, txtRetry, txtErrorTitle;
+    List<ChooseShoppyModel.Datum> mdataList = new ArrayList<>();
+    ChooseShoppyAdapter mAdapter;
+    int selPos = -1;
+    Session session;
+    ImageView logout;
+    MyTextViewEcom txtUsername;
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_choose_shopy);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+
+        findViews();
+        callAPI();
+    }
+
+    private void callAPI() {
+        callMyShoppy();
+        //   callShoppyList();
+    }
+
+    private void callShoppyList() {
+        if (Utils.isNetworkAvailable(ChooseShopyActivity.this)) {
+            mProgressDialog.setVisibility(View.VISIBLE);
+
+            Call<ChooseShoppyModel> wsCallingEvents = mAPIInterface.getShoppyList();
+            wsCallingEvents.enqueue(new Callback<ChooseShoppyModel>() {
+                @Override
+                public void onResponse(Call<ChooseShoppyModel> call, @NotNull Response<ChooseShoppyModel> response) {
+                    mdataList.clear();
+
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            ChooseShoppyModel.Response orderListModelEcom = response.body().getResponse();
+                            if (orderListModelEcom.getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                mdataList.addAll(orderListModelEcom.getData());
+                                final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ChooseShopyActivity.this);
+                                rvShoppy.setLayoutManager(mLayoutManager);
+                                rvShoppy.setItemAnimator(new DefaultItemAnimator());
+                                mAdapter = new ChooseShoppyAdapter(ChooseShopyActivity.this, mdataList, ChooseShopyActivity.this::onItemSelect);
+                                rvShoppy.setAdapter(mAdapter);
+                            }
+                            if (mdataList.size() > 0) {
+                                selPos = mdataList.get(0).getId();
+                                txtHeader.setVisibility(View.VISIBLE);
+                                rvShoppy.setVisibility(View.VISIBLE);
+                                textTnc.setVisibility(View.VISIBLE);
+                                btnNext.setVisibility(View.VISIBLE);
+                                llEmpty.setVisibility(View.GONE);
+                            } else {
+                                noRecordsFound();
+                            }
+                        } else {
+                            noRecordsFound();
+                        }
+                    } else {
+                        noRecordsFound();
+                    }
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<ChooseShoppyModel> call, Throwable t) {
+                    noRecordsFound();
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+            });
+        } else {
+            noInternetAvailable();
+        }
+    }
+
+    private void callMyShoppy() {
+        if (Utils.isNetworkAvailable(ChooseShopyActivity.this)) {
+            mProgressDialog.setVisibility(View.VISIBLE);
+
+            Call<MyShoppyModel> wsCallingEvents = mAPIInterface.getMyShoppy(session.getShoppyUserID());
+            wsCallingEvents.enqueue(new Callback<MyShoppyModel>() {
+                @Override
+                public void onResponse(Call<MyShoppyModel> call, @NotNull Response<MyShoppyModel> response) {
+                    mdataList.clear();
+
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            MyShoppyModel.Response orderListModelEcom = response.body().getResponse();
+                            if (orderListModelEcom.getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                session.setShoppyid(orderListModelEcom.getData().getShoppyPackageId());
+                                openHomeScreen();
+                            } else {
+                                callDefShoppyList();
+
+                            }
+                        } else {
+                            noRecordsFound();
+                        }
+                    } else {
+                        noRecordsFound();
+                    }
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<MyShoppyModel> call, Throwable t) {
+                    noRecordsFound();
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+            });
+        } else {
+            noInternetAvailable();
+        }
+    }
+
+    private void callDefShoppyList() {
+        callShoppyList();
+       /* int tempshoppy = session.getTempShoppyid();
+        if (tempshoppy == 0)
+            callShoppyList();
+        else {
+            Intent i = new Intent(ChooseShopyActivity.this, MainActivity.class);
+            startActivity(i);
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            finish();
+        }*/
+    }
+
+    private void openHomeScreen() {
+        int shoppy = session.getShoppyid();
+        Intent dash;
+        if (shoppy == 0) {
+            callDefShoppyList();
+        } else {
+            dash = new Intent(ChooseShopyActivity.this, ShoppyHomeScreen.class);
+            startActivity(dash);
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            finish();
+        }
+
+    }
+
+    private void findViews() {
+        utils = new Utils();
+        session = new Session(getApplicationContext());
+        mAPIInterface = APIClient.getShoppyClient(getApplicationContext()).create(APIInterface.class);
+
+        rvShoppy = findViewById(R.id.rv_shoppy);
+        textTnc = findViewById(R.id.text_tnc);
+        txtHeader = findViewById(R.id.text_chooseshoppy);
+
+        btnNext = findViewById(R.id.nextButton);
+        mProgressDialog = findViewById(R.id.progresbar);
+        llEmpty = findViewById(R.id.llEmpty);
+        imgError = findViewById(R.id.imgError);
+        txtErrorTitle = findViewById(R.id.txtErrorTitle);
+        txtErrorContent = findViewById(R.id.txtErrorSubTitle);
+        txtRetry = findViewById(R.id.txtRetry);
+        logout = findViewById(R.id.imgLogout);
+        txtUsername = findViewById(R.id.text_name);
+
+        txtHeader.setVisibility(View.GONE);
+        rvShoppy.setVisibility(View.GONE);
+        textTnc.setVisibility(View.GONE);
+        btnNext.setVisibility(View.GONE);
+        llEmpty.setVisibility(View.GONE);
+
+        textTnc.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
+        logout.setOnClickListener(this);
+        txtRetry.setOnClickListener(this);
+
+        txtUsername.setText("Hi, "+session.getUserName());
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnNext) {
+            openDashboard();
+        } else if (v == textTnc) {
+            showInfoDialog();
+        }else if(v==logout){
+            utils.getLogout(this);
+        }else if(v==txtRetry){
+            callAPI();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnNext.setEnabled(true);
+    }
+
+    private void showInfoDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_info);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        TextView txtGotit = dialog.findViewById(R.id.text_okay);
+        txtGotit.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    //Error View
+    void noRecordsFound() {
+        selPos = -1;
+        txtErrorTitle.setText("");
+        txtErrorContent.setText("No Record Found.");
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        rvShoppy.setVisibility(View.GONE);
+        textTnc.setVisibility(View.GONE);
+        txtHeader.setVisibility(View.GONE);
+        btnNext.setVisibility(View.GONE);
+    }
+
+    private void noInternetAvailable() {
+        selPos = -1;
+        rvShoppy.setVisibility(View.GONE);
+        mProgressDialog.setVisibility(View.GONE);
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        txtErrorTitle.setText(R.string.error_title);
+        txtErrorContent.setText(R.string.error_content);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        textTnc.setVisibility(View.GONE);
+        btnNext.setVisibility(View.GONE);
+        txtHeader.setVisibility(View.GONE);
+    }
+
+    private void openDashboard() {
+        if (selPos != -1) {
+            session.setTempShoppyid(selPos);
+            btnNext.setEnabled(false);
+           // Intent i = new Intent(ChooseShopyActivity.this, MainActivity.class);
+            Intent i = new Intent(ChooseShopyActivity.this, ShoppyHomeScreen.class);
+            startActivity(i);
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        }
+    }
+
+    @Override
+    public void onItemSelect(Integer parentposition) {
+        selPos = mdataList.get(parentposition).getId();
+    }
+}

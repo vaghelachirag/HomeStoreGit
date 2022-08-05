@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.nantaphop:hoverTouchView:0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da1fee3b12f3f7e8fb26c8f716d9fe7f/jetified-hoverTouchView-0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da1fee3b12f3f7e8fb26c8f716d9fe7f/jetified-hoverTouchView-0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da1fee3b12f3f7e8fb26c8f716d9fe7f/jetified-hoverTouchView-0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nantaphop/hoverTouchView/0.1/ace76cd68ad2a5566e282e9f6460fd5f4bfaa42b/hoverTouchView-0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nantaphop/hoverTouchView/0.1/2db8cccee017fbf4686d5da5eec0f2cf977aa824/hoverTouchView-0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

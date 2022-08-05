@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ApendIr:slider:1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/04c06f55508caa9d78a68b80af0154dc/jetified-slider-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/04c06f55508caa9d78a68b80af0154dc/jetified-slider-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/04c06f55508caa9d78a68b80af0154dc/jetified-slider-1.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ApendIr/slider/1.0/72c73cecba00ce11f6c451e787d5518f402c0a19/slider-1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ApendIr/slider/1.0/4211edfd7776bc65df61e16ee9abbf89c58e2038/slider-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

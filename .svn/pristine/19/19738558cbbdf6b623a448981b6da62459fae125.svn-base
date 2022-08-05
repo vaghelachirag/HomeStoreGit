@@ -1,0 +1,46 @@
+package com.nebulacompanies.ibo.activities;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+public class HomeStoreDetailsActivity extends AppCompatActivity {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+    Session session;
+    MyTextView tvPackageName,tvPackageAmt;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_store_details);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        session = new Session(this);
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        tvPackageName = findViewById(R.id.package_name);
+        tvPackageAmt = findViewById(R.id.package_amt);
+
+
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("HomeStore Details");
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+        tvPackageName.setText(session.getShoppyName());
+        tvPackageAmt.setText("Minimum Amount: ₹" + session.getShoppyamt());
+    }
+}

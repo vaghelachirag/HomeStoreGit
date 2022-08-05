@@ -1,0 +1,1910 @@
+package com.nebulacompanies.ibo.ecom;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.ecom.adapter.FreeProductsListAdapter;
+import com.nebulacompanies.ibo.ecom.adapter.RackAdapter;
+import com.nebulacompanies.ibo.ecom.model.AddToCartModel;
+import com.nebulacompanies.ibo.ecom.model.CartListModelEcom;
+import com.nebulacompanies.ibo.ecom.model.CartListModelReviewEcom;
+import com.nebulacompanies.ibo.ecom.model.CartRECKListModelEcom;
+import com.nebulacompanies.ibo.ecom.model.DeleteCartModel;
+import com.nebulacompanies.ibo.ecom.model.FreeProductListModel;
+import com.nebulacompanies.ibo.ecom.model.FreeProductsModel;
+import com.nebulacompanies.ibo.ecom.model.MyCart;
+import com.nebulacompanies.ibo.ecom.model.MyCartData;
+import com.nebulacompanies.ibo.ecom.model.MyCartReview;
+import com.nebulacompanies.ibo.ecom.utils.CartAdapterCallback;
+import com.nebulacompanies.ibo.ecom.utils.CartAdapterPayCallback;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom;
+import com.nebulacompanies.ibo.ecom.utils.PrefUtils;
+import com.nebulacompanies.ibo.ecom.utils.ProductDecsDetailsDialogFragment;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.DeleteShoppyCartModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.sweetdialogue.SweetAlertDialog;
+import com.nebulacompanies.ibo.sweetdialogue.SweetAlertDialogCart;
+import com.nebulacompanies.ibo.util.Const;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.util.UtilsVersion;
+import com.nebulacompanies.ibo.view.MyButton;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.nebulacompanies.ibo.ecom.utils.Utils.actionFail;
+import static com.nebulacompanies.ibo.ecom.utils.Utils.actionUservalid;
+import static com.nebulacompanies.ibo.util.Const.REQUEST_STATUS_CODE_ERROR;
+import static com.nebulacompanies.ibo.util.Const.REQUEST_STATUS_CODE_SUCCESS;
+import static com.nebulacompanies.ibo.util.Constants.REQUEST_STATUS_CODE_NO_RECORDS;
+import static com.nebulacompanies.ibo.util.Constants.REQUEST_STATUS_CODE_SERVICE_UNAVAILABLE;
+
+public class MyCartActivity extends AppCompatActivity implements CartAdapterCallback, CartAdapterPayCallback,
+        ProductDecsDetailsDialogFragment.ItemClickListener {
+
+    MaterialProgressBar mProgressDialog;
+    APIInterface mAPIInterface, mAPIInterfaceShoppy;
+    Typeface typeface;
+    private Handler myHandler;
+    private Runnable myRunnable;
+    Session session;
+    String addressNameSave;
+
+    Toolbar toolbar;
+    private RelativeLayout llEmpty;
+    ImageView imgBackArrow, imgFav, imgMyAccount, imgHome,
+            imgTrackOrder, imgError, imgClose, imgCloseReck;
+    Spinner spinner;
+    MyButtonEcom btnAddToCart, btnProceed, btnConfirm, btnConfirmReck;
+    ConstraintLayout constraintLayoutPlaceOrder;
+    LinearLayout lnPV, lnHome, lnAccount, lnTrackOrder, lnCartDetails, lnCartMRP, lnCartRetail, lnLocation;
+    NebulaEditTextEcom editcartqnty;
+    private MyTextViewEcom txtErrorContent, txtRetry, tvPvStatus, tvHome, tvTrackOrder, tvAccount, tvLocation;
+    MyBoldTextViewEcom txtErrorTitle;
+    CardView cardView;
+    MyTextViewEcom tvTotalAmount, tvToolbarTitle, tvMycartItemPrice, tvShipingPrice, tvGrandTotal, tvGrandTotalPV, tvGrandTotalNV, tvMRP, tvMycartRetailPrice;
+    NestedScrollView nestedScrollView;
+    RecyclerView rvFreeProducts, rvFreeProductsRec, rvCartItem;
+    AlertDialog dialogFreeProducts, dialogCart, dialogReck;
+    CheckBox cbFreeLookUp;
+
+    ArrayList<MyCart> cartModels = new ArrayList<>();
+    ArrayList<FreeProductListModel.Datum> freeProductModels = new ArrayList<>();
+    ArrayList<CartRECKListModelEcom.Datum> reckProductModels = new ArrayList<>();
+
+    ArrayList<MyCartReview> cartModelsMyCartReviews = new ArrayList<>();
+    private MyCartProductsAdapter myCartProductsAdapter;
+    private FreeProductsListAdapter freeProductsListAdapter;
+    UtilsVersion utilsVersion = new UtilsVersion();
+    Utils utils = new Utils();
+
+    SharedPreferences citySave, spGetIsAssociate, sharedPreferencesAddressType;
+    View viewMRP;
+    double subtotal, totalPV;
+    Intent cartNotification;
+
+    String deviceId, uniqueID;
+    int cityId, backID, selectCategory, promoid;
+    Integer pvResult, grandTotal;
+    boolean firsttime = true;
+    ProgressDialog mLoadProgressDialog;
+    boolean isAddressType, isServicable, isShowRetail, mrpisAssociate;
+    boolean checkAddress = false;
+    RackAdapter reckAdapter;
+    boolean selectedreck = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mycart);
+
+        session = new Session(this);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/ember.ttf");
+        mAPIInterface = APIClient.getClient(MyCartActivity.this).create(APIInterface.class);
+        mAPIInterfaceShoppy = APIClient.getShoppyClient(MyCartActivity.this).create(APIInterface.class);
+        cartNotification = getIntent();
+        if (cartNotification != null) {
+            backID = cartNotification.getIntExtra("session_back", 0);
+        }
+        initFullDialog();
+        initUI();
+        initSharedPreference();
+        initDialogFreeProducts();
+        initReckDialogFreeProducts();
+        initDialogCarrt();
+        displayTotalPrice(0);
+        initOnClick();
+        setDataUI();
+        if (session.getShoppyid() == 0) {
+            callRackFreeAPI();
+        }
+    }
+
+    public void initFullDialog() {
+        mLoadProgressDialog = new ProgressDialog(MyCartActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        mLoadProgressDialog.setCancelable(false);
+        mLoadProgressDialog.setMessage("Loading...");
+    }
+
+    public void showFullDialog() {
+        if (mLoadProgressDialog != null && !mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.show();
+    }
+
+    public void hideFullDialog() {
+        if (mLoadProgressDialog != null && mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.dismiss();
+    }
+
+    @SuppressLint("HardwareIds")
+    void initSharedPreference() {
+        deviceId = android.provider.Settings.Secure.getString(this.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        SharedPreferences deviceSharedPreferences = this.getSharedPreferences(PrefUtils.prefDeviceid, 0);
+        uniqueID = deviceSharedPreferences.getString(PrefUtils.prefDeviceid, null);
+
+        spGetIsAssociate = this.getSharedPreferences(PrefUtils.prefMrp, 0);
+        mrpisAssociate = spGetIsAssociate.getBoolean(PrefUtils.prefMrp, false);
+
+        citySave = getSharedPreferences(PrefUtils.prefCityid, 0);
+        cityId = citySave.getInt(PrefUtils.prefCityid, 0); //0 is the default value
+
+        Log.d("MDEVICEID cart uniqueID", "MDEVICEIDcart uniqueID: " + uniqueID);
+        if (deviceId == null || deviceId.equals("")) {
+            if (uniqueID == null || uniqueID.equals("")) {
+                String randomID = UUID.randomUUID().toString();
+                SharedPreferences preferences = this.getSharedPreferences(PrefUtils.prefDeviceid, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(PrefUtils.prefDeviceid, randomID);
+                editor.apply();
+                deviceId = randomID;
+            } else {
+                deviceId = uniqueID;
+            }
+        }
+        Log.d("MDEVICEID Cart", "MDEVICEID cart: " + deviceId);
+    }
+
+    void initUI() {
+        llEmpty = findViewById(R.id.llEmpty);
+        imgError = findViewById(R.id.imgError);
+        txtErrorTitle = findViewById(R.id.txtErrorTitle);
+        txtErrorContent = findViewById(R.id.txt_error_content);
+        txtRetry = findViewById(R.id.txtRetry);
+
+        //getting the toolbar
+        mProgressDialog = findViewById(R.id.progresbar);
+        toolbar = findViewById(R.id.toolbar_search);
+        imgBackArrow = findViewById(R.id.img_back);
+        imgFav = findViewById(R.id.img_my_fav);
+        btnAddToCart = findViewById(R.id.btn_add_to_cart);
+        btnProceed = findViewById(R.id.proceed);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        rvCartItem = findViewById(R.id.rv_myCartList);
+        rvCartItem.setNestedScrollingEnabled(false);
+        tvTotalAmount = findViewById(R.id.tv_payable_amount);
+        constraintLayoutPlaceOrder = findViewById(R.id.cn_place_order);
+        nestedScrollView = findViewById(R.id.nv_product_decs);
+
+        tvTotalAmount = findViewById(R.id.tv_payable_amount);
+        tvMycartItemPrice = findViewById(R.id.tv_mycart_item_price);
+        tvShipingPrice = findViewById(R.id.tv_shiping_price);
+        tvGrandTotal = findViewById(R.id.tv_grand_total_value);
+        tvGrandTotalPV = findViewById(R.id.tv_mycart_pv);
+        tvGrandTotalNV = findViewById(R.id.tv_mycart_nv);
+        cardView = findViewById(R.id.card_view);
+        lnPV = findViewById(R.id.ln_pv);
+        tvPvStatus = findViewById(R.id.tv_pv_status);
+        cbFreeLookUp = findViewById(R.id.chk_free_look_up);
+        lnCartMRP = findViewById(R.id.ln_cart_mrp);
+        lnCartRetail = findViewById(R.id.ln_cart_retail);
+        viewMRP = findViewById(R.id.view_mrp);
+        lnCartDetails = findViewById(R.id.ln_cart_price_details);
+
+        tvMRP = findViewById(R.id.tv_mycart_mrp_price);
+        tvMycartRetailPrice = findViewById(R.id.tv_mycart_retail_price);
+
+        lnHome = findViewById(R.id.ln_home);
+        lnTrackOrder = findViewById(R.id.ln_myorder);
+        lnAccount = findViewById(R.id.ln_my_account);
+
+        imgMyAccount = findViewById(R.id.img_my_account);
+        imgHome = findViewById(R.id.img_home);
+        imgTrackOrder = findViewById(R.id.img_order);
+
+        tvHome = findViewById(R.id.tv_home);
+        tvAccount = findViewById(R.id.tv_my_account);
+        tvTrackOrder = findViewById(R.id.tv_my_order);
+
+        rvCartItem.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MyCartActivity.this, LinearLayoutManager.VERTICAL, false);
+        rvCartItem.setLayoutManager(mLayoutManager);
+        rvCartItem.setItemAnimator(new DefaultItemAnimator());
+
+        tvToolbarTitle = toolbar.findViewById(R.id.toolbar_title1);
+        tvToolbarTitle.setText("My Cart");
+        lnLocation = toolbar.findViewById(R.id.ln_location);
+        tvLocation = toolbar.findViewById(R.id.tv_location);
+
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(actionUservalid);
+        filter.addAction(actionFail);
+        registerReceiver(myReceiver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
+    }
+
+    private final BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equalsIgnoreCase(actionUservalid)) {
+                openOrderSummary();
+            } else if (intent.getAction().equalsIgnoreCase(actionFail)) {
+                Toast.makeText(MyCartActivity.this, "There is an error. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+    private void showLocationAdd() {
+        ProductDecsDetailsDialogFragment addPhotoBottomDialogFragment =
+                ProductDecsDetailsDialogFragment.newInstance();
+
+        addPhotoBottomDialogFragment.show(getSupportFragmentManager(),
+                ProductDecsDetailsDialogFragment.TAG);
+    }
+
+    @SuppressLint("SetTextI18n")
+    void initOnClick() {
+        imgBackArrow.setOnClickListener(view -> {
+            onBackPressed();
+            if (myHandler != null) {
+                myHandler.removeCallbacksAndMessages(null);
+            }
+        });
+
+        imgFav.setOnClickListener(view -> {
+            Intent login = new Intent(MyCartActivity.this, MyWishListActivity.class);
+            login.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(login);
+        });
+
+        lnHome.setOnClickListener(v -> {
+            imgHome.setColorFilter(ContextCompat.getColor(MyCartActivity.this, R.color.black));
+            tvHome.setTextColor(getResources().getColor(R.color.black));
+            Intent login = new Intent(MyCartActivity.this, MainActivity.class);
+
+            login.putExtra("SELECTEDINNERHOME", 7);
+            login.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(login);
+
+        });
+
+        lnAccount.setOnClickListener(v -> {
+            imgMyAccount.setColorFilter(ContextCompat.getColor(MyCartActivity.this, R.color.black));
+            tvAccount.setTextColor(getResources().getColor(R.color.black));
+            Intent login = new Intent(MyCartActivity.this, MainActivity.class);
+            login.putExtra("SELECTEDINNERACCOUNT", 8);
+            login.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(login);
+
+        });
+
+        lnTrackOrder.setOnClickListener(v -> {
+            imgTrackOrder.setColorFilter(ContextCompat.getColor(MyCartActivity.this, R.color.black));
+            tvTrackOrder.setTextColor(getResources().getColor(R.color.black));
+            Intent login = new Intent(MyCartActivity.this, MainActivity.class);
+            login.putExtra("SELECTEDINNERTRACKORDER", 9);
+            login.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(login);
+
+        });
+        txtRetry.setOnClickListener(v -> {
+            getMyCartList(true, false, false);
+        });
+        tvLocation.setOnClickListener(view -> {
+            checkAddress = false;
+            showLocationAdd();
+        });
+        btnProceed.setOnClickListener(view -> {
+            btnProceed.setEnabled(false);
+            if (session.getLogin()) {
+                int minAmt = session.getShoppyamt();
+                if (grandtotal >= minAmt) {
+                    checkAddress = true;
+                    showLocationAdd();
+                    hideprogress();
+                } else {
+                    btnProceed.setEnabled(true);
+                    // dialog here
+                    SweetAlertDialog loading = new SweetAlertDialog(MyCartActivity.this, SweetAlertDialog.WARNING_TYPE);
+                    loading.setCancelable(true);
+                    loading.setConfirmText("OK");
+                    loading.setOnShowListener(dialog -> {
+                        SweetAlertDialog alertDialog = (SweetAlertDialog) dialog;
+                        MyTextView textTitle = (MyTextView) alertDialog.findViewById(R.id.title_text);
+                        MyTextView textContent = (MyTextView) alertDialog.findViewById(R.id.content_text);
+                        MyButton btnConfirm = (MyButton) alertDialog.findViewById(R.id.confirm_button);
+                        textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                        textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+                        // btnConfirm.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+                        textContent.setTypeface(typeface);
+                        textTitle.setTypeface(typeface);
+                        btnConfirm.setTypeface(typeface);
+                        alertDialog.setCancelable(false);
+                        //textTitle.setText(response.body().getMessage());
+                        //int remain = minAmt - grandtotal;
+                        textTitle.setText("Insufficient cart value");
+                        String msg = "Please fulfil your minimum purchase for this order.\nYour minimum purchase amount for this order is  Rs " + minAmt + ".";
+                        textContent.setText(msg);
+                        btnConfirm.setText("OK");
+                        // textContent.setText("Pin you have entered is Invalid.");
+                        textContent.setGravity(Gravity.NO_GRAVITY);
+                        btnConfirm.setOnClickListener(v -> loading.dismiss());
+                    });
+
+                    loading.show();
+                }
+                    /*String mesg="Please fulfil your minimum purchase for this order. Your minimum purchase amount for this order is <Rs "+minAmt+">";
+                    Toast.makeText(this, mesg, Toast.LENGTH_SHORT).show();*/
+
+            } else {
+                hideprogress();
+                utils.openLoginDialog(MyCartActivity.this, utils.gotoMyCart);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        utilsVersion.checkVersion(this);
+        getMyCartList(true, false, false);
+        utils.checkExpireUser(mAPIInterface, this, session);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == utils.gotoMyCart) {
+            if (resultCode == RESULT_OK) {
+                //   getMyCartList(true, false);
+                //set broadcast here for product list/banner screen
+                setDataUI();
+                Intent mIntent = new Intent(Utils.actionLogin);
+                sendBroadcast(mIntent);
+            }
+        }
+    }
+
+    private void setDataUI() {
+        if (session.getLogin()) { //!showLocation &&
+
+            lnLocation.setVisibility(View.VISIBLE);
+            sharedPreferencesAddressType = getSharedPreferences(PrefUtils.prefAddresstype, 0);
+            isAddressType = sharedPreferencesAddressType.getBoolean(PrefUtils.prefAddresstype, false);
+
+            SharedPreferences SharedPreferencesLocationName = getSharedPreferences(PrefUtils.prefLocation, 0);
+            addressNameSave = SharedPreferencesLocationName.getString(PrefUtils.prefLocation, null);
+
+            if (addressNameSave == null || addressNameSave.equals("")) {
+                Log.d("Location Fill", "Location Fill " + addressNameSave);
+
+            } else {
+                Log.d("Location Empty", "Location Empty " + addressNameSave);
+                if (isAddressType) {
+                    tvLocation.setText("Pickup from " + addressNameSave);
+                } else {
+                    tvLocation.setText("Deliver to " + addressNameSave);
+                }
+                Log.d("Update Value", "Update Value" + isAddressType);
+            }
+        }
+        //   lnPV.setVisibility(session.getLogin() ? View.VISIBLE : View.GONE);
+        //   btnProceed.setText(session.getLogin() ? "Checkout" : "Sign in");
+    }
+
+
+    CartListModelEcom responseData;
+
+    private void getMyCartList(boolean calculate, boolean compare, boolean callReview) {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+            showFullDialog();
+            showprogress();
+
+            Call<CartListModelEcom> wsCallingEvents;
+            if (session.getLogin())
+                wsCallingEvents = mAPIInterfaceShoppy.getMyCartListEcom(deviceId, session.getShoppyUserID(), cityId, session.getTempShoppyid());
+            else
+                wsCallingEvents = mAPIInterface.getMyCartListEcomWoLogin(deviceId, 0);
+            wsCallingEvents.enqueue(new Callback<CartListModelEcom>() {
+                @Override
+                public void onResponse(Call<CartListModelEcom> call, Response<CartListModelEcom> response) {
+                    Log.d("CartResponse", "CartResponse11: " + response.body());
+                    hideprogress();
+                    cartModels.clear();
+
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            Log.d("CartAPI", "CartAPI: " + response);
+                            Log.d("CartResponse", "CartResponse200: " + response.body());
+                            if (compare) {
+                                CartListModelEcom responseDataNew = response.body();
+                                String mydataNew = new Gson().toJson(responseDataNew, new TypeToken<CartListModelEcom>() {
+                                }.getType());
+                                String mydataOld = new Gson().toJson(responseData, new TypeToken<CartListModelEcom>() {
+                                }.getType());
+                                if (mydataNew.equals(mydataOld)) {
+                                    checkAddress = true;
+                                    showLocationAdd();
+                                    hideprogress();
+                                } else {
+                                    Toast.makeText(MyCartActivity.this, "Cart has been updated. Kindly place your order again.", Toast.LENGTH_SHORT).show();
+                                    setDataCart(response.body(), calculate);
+                                    hideFullDialog();
+                                }
+                                responseData = response.body();
+                            } else {
+                                responseData = response.body();
+                                setDataCart(response.body(), calculate);
+                                hideFullDialog();
+                            }
+                        } else {
+                            hideFullDialog();
+                            setErrorDataCart();
+                        }
+
+                    } else {
+                        hideFullDialog();
+                        setErrorDataCart();
+                    }
+                    if (callReview) {
+                        getMyCartListReview(String.valueOf(cityId));
+                    } else
+                        hideFullDialog();
+                }
+
+                @Override
+                public void onFailure(Call<CartListModelEcom> call, Throwable t) {
+                    hideFullDialog();
+                    hideprogress();
+                    setErrorDataCart();
+                }
+            });
+        } else {
+            hideFullDialog();
+            noInternetAvailable();
+        }
+    }
+
+    public void hideprogress() {
+        if (mProgressDialog != null)
+            mProgressDialog.setVisibility(View.GONE);
+        btnProceed.setEnabled(true);
+    }
+
+    public void showprogress() {
+        if (mProgressDialog != null)
+            mProgressDialog.setVisibility(View.VISIBLE);
+        btnProceed.setEnabled(false);
+    }
+
+    private void setErrorDataCart() {
+        Log.d("Error11", "setErrorDataCart");
+        if (snackbar != null && snackbar.isShown())
+            snackbar.dismiss();
+        cardView.setVisibility(View.GONE);
+        lnPV.setVisibility(View.GONE);
+        cbFreeLookUp.setVisibility(View.GONE);
+        constraintLayoutPlaceOrder.setVisibility(View.GONE);
+        noRecordsFound();
+    }
+
+    boolean callFree = true;
+    String pvslab = "", totalslab = "";
+    int grandtotal = 0;
+    ArrayList<Integer> mycartProductId = new ArrayList<>();
+
+    @SuppressLint("SetTextI18n")
+    private void setDataCart(CartListModelEcom body, boolean calculateFree) {
+        MyCartData data = null;
+
+        if (body.getResponse().getStatusCode() == REQUEST_STATUS_CODE_NO_RECORDS) {
+            noRecordsFound();
+            cbFreeLookUp.setVisibility(View.GONE);
+            constraintLayoutPlaceOrder.setVisibility(View.GONE);
+        } else if (body.getResponse().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+            data = body.getResponse().getData();
+            body.getResponse().getData();
+            cartModels.addAll(data.getCart());
+            if (session.getShoppyid() == 0) {
+                mycartProductId.clear();
+                for (int i = 0; i < cartModels.size(); i++) {
+                    mycartProductId.add(cartModels.get(i).getProductId());
+                }
+            }
+            Log.d("CartAPIIn", "CartAPIIn: " + data.getCart().size());
+
+            final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MyCartActivity.this);
+            rvCartItem.setLayoutManager(mLayoutManager);
+            rvCartItem.setItemAnimator(new DefaultItemAnimator());
+            myCartProductsAdapter = new MyCartProductsAdapter(MyCartActivity.this, cartModels, MyCartActivity.this, MyCartActivity.this);
+            rvCartItem.setAdapter(myCartProductsAdapter);
+            lnCartDetails.setVisibility(View.VISIBLE);
+
+            grandtotal = data.getGrandTotal();
+            tvTotalAmount.setText("₹ " + grandtotal);
+            tvMycartItemPrice.setText("" + data.getSubTotal());
+            tvShipingPrice.setText("" + data.getShippingCharge());
+            tvGrandTotal.setText("" + grandtotal);
+            tvGrandTotalPV.setText("" + data.getTotalPV());
+            tvGrandTotalNV.setText("" + data.getTotalNV());
+            tvMRP.setText("" + data.getCalculatedMRP());
+            tvMRP.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            tvMycartRetailPrice.setText("" + data.getRetailProfit());
+
+            pvResult = data.getTotalPV();
+            grandTotal = data.getGrandTotal();
+            subtotal = data.getSubTotal();
+            totalPV = data.getTotalPV();
+
+            String pvslabnew = data.getPvSlab();
+            String totalslabnew = data.getPriceSlab();
+            String prodid = "0";
+            if (calculateFree) {
+                boolean isfreeproduct = false;
+                callFree = true;
+                if (firsttime) {
+                    firsttime = false;
+                    for (int i = 0; i < cartModels.size(); i++) {
+                        boolean ispromo = cartModels.get(i).isIsPromo();
+                        boolean issilver = cartModels.get(i).isIsRankRewardSilver();
+                        boolean isbronze = cartModels.get(i).isIsRankRewardBronze();
+                        if (ispromo && (!issilver && !isbronze)) {
+                            callFree = false;
+                            prodid = String.valueOf(cartModels.get(i).getProductId());
+                            isfreeproduct = cartModels.get(i).isIsFree();
+                        }
+                    }
+                    if (!callFree) {
+                        pvslab = pvslabnew;
+                        totalslab = totalslabnew;
+                        if (!isfreeproduct)
+                            getMyFreeProductList(Integer.parseInt(prodid));
+                    } else {
+                        Log.d("FIRST SLAB++", pvslab + " : " + pvslabnew + " , " + totalslab + " : " + totalslabnew);
+                        if (!(pvslab.equals(pvslabnew)) || !(totalslab.equals(totalslabnew))) {
+                            pvslab = pvslabnew;
+                            totalslab = totalslabnew;
+                            getMyFreeProductList(-1);
+                        }
+                    }
+                } else {
+                    // check slab
+                    Log.d("SLAB++", pvslab + " : " + pvslabnew + " , " + totalslab + " : " + totalslabnew);
+                    if (!(pvslab.equals(pvslabnew)) || !(totalslab.equals(totalslabnew))) {
+                        pvslab = pvslabnew;
+                        totalslab = totalslabnew;
+                        getMyFreeProductList(-1);
+                    }
+                }
+            }
+            Log.d("totalCartAmountGET", "totalCartAmountGET " + grandTotal);
+            Log.d("SKU Cart ", "SKU Cart: " + cartModels.toString());
+            isShowRetail = body.getResponse().getData().isShowRetail();
+
+            if (!isShowRetail) {
+                lnCartMRP.setVisibility(View.GONE);
+                lnCartRetail.setVisibility(View.GONE);
+                viewMRP.setVisibility(View.GONE);
+            } else {
+                lnCartMRP.setVisibility(View.VISIBLE);
+                lnCartRetail.setVisibility(View.VISIBLE);
+                viewMRP.setVisibility(View.VISIBLE);
+            }
+            if (pvResult < Const.PVValue && mrpisAssociate) {
+                tvPvStatus.setVisibility(View.VISIBLE);
+                tvPvStatus.setText("PV value in your cart: " + pvResult + ". Add items worth " + Const.PVValue + " PV to buy the items at discounted Nebula IBO Price.");
+
+            } else if (pvResult == 0) {
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) nestedScrollView
+                        .getLayoutParams();
+
+                layoutParams.setMargins(0, 0, 0, 100);
+                nestedScrollView.setLayoutParams(layoutParams);
+                tvPvStatus.setVisibility(View.GONE);
+            } else {
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) nestedScrollView
+                        .getLayoutParams();
+
+                layoutParams.setMargins(0, 0, 0, 100);
+                nestedScrollView.setLayoutParams(layoutParams);
+                tvPvStatus.setVisibility(View.GONE);
+            }
+
+            myHandler = new Handler();
+            myRunnable = () -> {
+                // if (pvResult != null) {
+                if (pvResult < Const.PVValue && mrpisAssociate) {
+                    alertLessOne();
+                    // paymentFail();
+                } else if (pvResult > Const.PVValue && pvResult < Const.PVValueMax && mrpisAssociate) {
+                    alertLessTwo();
+                    // paymentFail();
+                } else if (pvResult >= Const.PVValueMax && mrpisAssociate) {
+                    alertLessThree();
+                    // paymentFail();
+                }
+                //}
+            };
+            myHandler.postDelayed(myRunnable, 1500);
+
+            Log.d("pvResult", "pvResult: " + pvResult);
+            Log.e("CartListAPI", "CartListAPI: " + new Gson().toJson(body));
+
+        } else {
+            setErrorDataCart();
+        }
+        if (cartModels.size() > 0) {
+            llEmpty.setVisibility(View.GONE);
+            rvCartItem.setVisibility(View.VISIBLE);
+            cardView.setVisibility(View.VISIBLE);
+
+            lnLocation.setVisibility(View.VISIBLE);
+
+            constraintLayoutPlaceOrder.setVisibility(View.VISIBLE);
+        } else {
+            setErrorDataCart();
+        }
+        setSnackBar(data);
+        checkForReck();
+    }
+
+    private void checkForReck() {
+        if (session.getShoppyid() == 0) {
+
+            if (reckProductModels.size() > 0 && !selectedreck && session.getShoppyid() == 0) {
+                if (mycartProductId.size() > 0) {
+                    // check is it in list?
+                    boolean contains = false;
+                    for (int i = 0; i < reckidList.size(); i++) {
+                        if (mycartProductId.contains(reckidList.get(i))) {
+                            contains = true;
+                        }
+                    }
+                    if (!contains && !dialogReck.isShowing()) {
+                        btnConfirmReck.setEnabled(true);
+                        dialogReck.show();
+                    }
+                }/*else{
+                    showReckDialogMessage();
+                }*/
+            }
+        }
+    }
+
+    private void showReckDialogMessage() {
+        Toast.makeText(this, "Please add reck.", Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void callRackFreeAPI() {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+            reckProductModels.clear();
+            Call<CartRECKListModelEcom> wsCallingEvents = mAPIInterfaceShoppy.getMyRackCartListEcom();
+            wsCallingEvents.enqueue(new Callback<CartRECKListModelEcom>() {
+                @Override
+                public void onResponse(Call<CartRECKListModelEcom> call, Response<CartRECKListModelEcom> response) {
+                    if (mLoadProgressDialog != null && mLoadProgressDialog.isShowing()) {
+                        hideFullDialog();
+                    }
+                    if (response.isSuccessful()) {
+                        if (response.body().getResponse().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                            //initReckDialogFreeProducts();
+                            reckProductModels.addAll(response.body().getResponse().getData());
+                            if (reckProductModels.size() > 0) {
+                                for (int i = 0; i < reckProductModels.size(); i++) {
+                                    reckidList.add(reckProductModels.get(i).getProductId());
+                                }
+                                reckProductModels.get(0).setIsselected(true);
+                                reckAdapter = new RackAdapter(MyCartActivity.this, reckProductModels);
+                                rvFreeProductsRec.setAdapter(reckAdapter);
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<CartRECKListModelEcom> call, Throwable t) {
+
+                }
+            });
+        } else {
+            noInternetAvailable();
+        }
+    }
+
+    Snackbar snackbar = null;
+
+    private void setSnackBar(MyCartData data) {
+
+        if (data != null && data.isShowOfferMessage()) {
+            snackbar = Snackbar.make(findViewById(android.R.id.content), "", Snackbar.LENGTH_INDEFINITE);
+            Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
+            View snackView = getLayoutInflater().inflate(R.layout.snack_offer, null);
+            MyTextViewEcom textEcom = snackView.findViewById(R.id.snack_message2);
+            MyBoldTextViewEcom textEcomMain = snackView.findViewById(R.id.snack_message);
+            MyBoldTextViewEcom textAdd = snackView.findViewById(R.id.textadditems);
+            ImageView imageCancel = snackView.findViewById(R.id.imgcancel);
+
+            imageCancel.setOnClickListener(v -> snackbar.dismiss());
+            textEcomMain.setText(data.getMainOfferMessage());
+            textEcom.setText(data.getSecondaryOfferMessage());
+            textAdd.setOnClickListener(v -> callOffer());
+            textEcom.setOnClickListener(v -> callOffer());
+            textEcomMain.setOnClickListener(v -> callOffer());
+            layout.setPadding(0, 0, 0, 0);
+            layout.addView(snackView, 0);
+            snackbar.show();
+        } else {
+            if (snackbar != null && snackbar.isShown())
+                snackbar.dismiss();
+        }
+    }
+
+    private void callOffer() {
+        Intent intent = new Intent(MyCartActivity.this, MyCategoryActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+    @Override
+    public void onMethodCallbackMain() {
+        Log.d("onMethodCallbackMain", "cartModels: " + cartModels.size());
+        if (cartModels.size() > 0) {
+            //  cbFreeLookUp.setVisibility( View.VISIBLE );
+            constraintLayoutPlaceOrder.setVisibility(View.VISIBLE);
+        } else {
+            cbFreeLookUp.setVisibility(View.GONE);
+            constraintLayoutPlaceOrder.setVisibility(View.GONE);
+            noRecordsFound();
+        }
+        // getMyCartListCallBack(true);
+        getMyCartList(true, false, false);
+    }
+
+    private void displayTotalPrice(double price) {
+        tvTotalAmount.setText("₹ " + price);
+        Log.d("Total Delete Price", "Total Delete Price: " + price);
+
+    }
+
+    @Override
+    public void onMethodPayCallbackMain(double d) {
+    }
+
+    void noRecordsFound() {
+        txtErrorTitle.setText("Cart is Empty");
+        txtErrorContent.setText("Looks like you have no items in your shopping cart.");
+        imgError.setImageResource(R.drawable.ic_shopping_cart);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.GONE);
+        rvCartItem.setVisibility(View.GONE);
+        lnLocation.setVisibility(View.GONE);
+    }
+
+
+    private void getMyFreeProductList(int selId) {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+            Call<FreeProductListModel> wsCallingEvents = mAPIInterface.getMyFreeProduct(session.getIboKeyId(), subtotal, totalPV);
+            wsCallingEvents.enqueue(new Callback<FreeProductListModel>() {
+                @Override
+                public void onResponse(Call<FreeProductListModel> call, Response<FreeProductListModel> response) {
+                    Log.d("CartResponse", "CartResponse11: " + response.body());
+
+                    freeProductModels.clear();
+
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+
+                            if (response.body().getStatusCode() == REQUEST_STATUS_CODE_NO_RECORDS) {
+                                //noRecordsFound();
+                                // Toast.makeText(MyCartActivity.this, "No Free Product!", Toast.LENGTH_SHORT).show();
+
+                            } else if (response.body().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                freeProductModels.addAll(response.body().getData());
+                                freeProductsListAdapter = new FreeProductsListAdapter(MyCartActivity.this, freeProductModels);
+                                rvFreeProducts.setAdapter(freeProductsListAdapter);
+                                promoid = selId;
+                                freeProductModels.get(0).setSelected(true);
+                                if (selId != -1) {
+                                    boolean selExist = false;
+                                    for (int i = 0; i < freeProductModels.size(); i++) {
+                                        int prod = freeProductModels.get(i).getProductId();
+                                        if (prod == selId) {
+                                            selExist = true;
+                                            promoid = freeProductModels.get(i).getPromoId();
+                                            freeProductModels.get(i).setSelected(true);
+                                            Log.d("Promo==", selId + " : " + prod + " : " + promoid + " : " + i);
+                                        }
+                                    }
+
+                                    if (freeProductModels.size() == 1 && selExist) {
+                                    } else {
+                                        promoid = -1;
+                                        dialogFreeProducts.show();
+                                    }
+                                } else
+                                    dialogFreeProducts.show();
+                            } else if (response.body().getStatusCode() == REQUEST_STATUS_CODE_ERROR
+                                    || response.body().getStatusCode() == REQUEST_STATUS_CODE_SERVICE_UNAVAILABLE) {
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<FreeProductListModel> call, Throwable t) {
+                }
+            });
+        } else {
+            // noInternetConnectionMessage();
+            utils.dialogueNoInternet(this);
+        }
+    }
+
+    private void submitFreeProducts() {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+
+            showFullDialog();
+            Call<FreeProductsModel> wsCallingEvents = mAPIInterface.submitProducts(session.getIboKeyId(), deviceId, promoid);
+            wsCallingEvents.enqueue(new Callback<FreeProductsModel>() {
+                @Override
+                public void onResponse(Call<FreeProductsModel> call, Response<FreeProductsModel> response) {
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            FreeProductsModel mData = response.body();
+                            int statuscode = mData.getStatusCode();
+
+                            if (statuscode == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                Toast.makeText(MyCartActivity.this, "Free product added successfully", Toast.LENGTH_SHORT).show();
+                                getMyCartList(false, false, false);
+                            } else
+                                hideFullDialog();
+                        } else
+                            hideFullDialog();
+                    } else
+                        hideFullDialog();
+
+                }
+
+                @Override
+                public void onFailure(Call<FreeProductsModel> call, Throwable t) {
+                    hideFullDialog();
+                }
+            });
+        } else {
+            hideFullDialog();
+            //  noInternetConnectionMessage();
+            utils.dialogueNoInternet(this);
+        }
+    }
+
+
+    private void alertLessOne() {
+        SweetAlertDialogCart loading = new SweetAlertDialogCart(MyCartActivity.this, SweetAlertDialogCart.WARNING_TYPE);
+        loading.setCancelable(true);
+        loading.setConfirmText("OK");
+        loading.setCancelText("Cancel");
+        loading.setOnShowListener(dialog -> {
+            SweetAlertDialogCart alertDialog = (SweetAlertDialogCart) dialog;
+            TextView textTitle = (TextView) alertDialog.findViewById(R.id.title_text);
+            TextView textContent = (TextView) alertDialog.findViewById(R.id.content_text);
+            Button btnConfirm = (Button) alertDialog.findViewById(R.id.confirm_button);
+            Button btnCancel = (Button) alertDialog.findViewById(R.id.cancel_button);
+            textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            //textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            // btnConfirm.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+            textContent.setTypeface(typeface);
+            textTitle.setTypeface(typeface);
+            btnConfirm.setTypeface(typeface);
+            btnCancel.setTypeface(typeface);
+            textTitle.setText("PV: " + pvResult);
+            btnConfirm.setBackgroundResource(R.drawable.blue_button_background);
+            btnConfirm.setText("Shop More");
+            btnCancel.setText("Ignore");
+            textContent.setText("Your total PV for this order is " + pvResult + ". No NV is generated on this order. Add products worth total " + Const.PVValue + " PV on this order to avail guaranteed 100 NV and you will also get these product at a discounted Nebula IBO Price.");
+            textContent.setGravity(Gravity.NO_GRAVITY);
+            btnConfirm.setOnClickListener(v -> {
+
+                Intent i = new Intent(MyCartActivity.this, MainActivity.class);
+                startActivity(i);
+
+
+                loading.dismiss();
+
+            });
+            btnCancel.setOnClickListener(view -> dialog.dismiss());
+        });
+    }
+
+
+    private void alertLessTwo() {
+        SweetAlertDialogCart loading = new SweetAlertDialogCart(MyCartActivity.this, SweetAlertDialogCart.WARNING_TYPE);
+        loading.setCancelable(true);
+        loading.setConfirmText("Shop More");
+        loading.setCancelText("Ignore");
+        loading.setOnShowListener(dialog -> {
+            SweetAlertDialogCart alertDialog = (SweetAlertDialogCart) dialog;
+            TextView textTitle = (TextView) alertDialog.findViewById(R.id.title_text);
+            TextView textContent = (TextView) alertDialog.findViewById(R.id.content_text);
+            Button btnConfirm = (Button) alertDialog.findViewById(R.id.confirm_button);
+            Button btnCancel = (Button) alertDialog.findViewById(R.id.cancel_button);
+            textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            //textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            // btnConfirm.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+            textContent.setTypeface(typeface);
+            textTitle.setTypeface(typeface);
+            btnConfirm.setTypeface(typeface);
+            btnCancel.setTypeface(typeface);
+            textTitle.setText("PV: " + pvResult);
+            btnConfirm.setBackgroundResource(R.drawable.blue_button_background);
+            btnConfirm.setText("Shop More");
+            btnCancel.setText("Ignore");
+            textContent.setText("Your total PV for this order is " + pvResult + ". Purchase products worth " + Const.PVValueMax + " PV to earn upto 1Lakh Community Growth Income every week.");
+            textContent.setGravity(Gravity.NO_GRAVITY);
+            btnConfirm.setOnClickListener(v -> {
+                Intent i = new Intent(MyCartActivity.this, MainActivity.class);
+                startActivity(i);
+
+                loading.dismiss();
+
+            });
+            btnCancel.setOnClickListener(view -> dialog.dismiss());
+        });
+        try {
+            loading.show();
+        } catch (Exception e) {
+            // WindowManager$BadTokenException will be caught and the app would not display
+            // the 'Force Close' message
+        }
+    }
+
+
+    private void alertLessThree() {
+        SweetAlertDialogCart loading = new SweetAlertDialogCart(MyCartActivity.this, SweetAlertDialogCart.SUCCESS_TYPE);
+        loading.setCancelable(true);
+        loading.setConfirmText("Shop More");
+        loading.setCancelText("Ignore");
+        loading.setOnShowListener(dialog -> {
+            SweetAlertDialogCart alertDialog = (SweetAlertDialogCart) dialog;
+            TextView textTitle = (TextView) alertDialog.findViewById(R.id.title_text);
+            TextView textContent = (TextView) alertDialog.findViewById(R.id.content_text);
+            Button btnConfirm = (Button) alertDialog.findViewById(R.id.confirm_button);
+            Button btnCancel = (Button) alertDialog.findViewById(R.id.cancel_button);
+            textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            //textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            // btnConfirm.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+            textContent.setTypeface(typeface);
+            textTitle.setTypeface(typeface);
+            btnConfirm.setTypeface(typeface);
+            btnCancel.setTypeface(typeface);
+            btnCancel.setVisibility(View.GONE);
+            textTitle.setText("PV: " + pvResult);
+            btnConfirm.setBackgroundResource(R.drawable.blue_button_background);
+            btnConfirm.setText("OK");
+            btnCancel.setText("Ignore");
+            textContent.setText("Congratulation, you can now earn upto 1 Lakh Community Growth Income weekly.\n Kindly checkout and complete your payment.");
+            textContent.setGravity(Gravity.NO_GRAVITY);
+            btnConfirm.setOnClickListener(v -> loading.dismiss());
+            btnCancel.setOnClickListener(view -> dialog.dismiss());
+        });
+        loading.show();
+    }
+
+
+    public void initDialogFreeProducts() {
+
+        // Create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.dialog_free_products, null);
+        builder.setView(customLayout);
+
+        imgClose = customLayout.findViewById(R.id.img_close);
+        rvFreeProducts = customLayout.findViewById(R.id.rv_myFreeProductList);
+        btnConfirm = customLayout.findViewById(R.id.btnConfirm);
+
+        rvFreeProducts.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(MyCartActivity.this, LinearLayoutManager.VERTICAL, false);
+        rvFreeProducts.setLayoutManager(mLayoutManager1);
+        rvFreeProducts.setItemAnimator(new DefaultItemAnimator());
+
+        dialogFreeProducts = builder.create();
+
+        dialogFreeProducts.setCancelable(false);
+        btnConfirm.setOnClickListener(v -> {
+
+            for (int i = 0; i < freeProductModels.size(); i++) {
+                FreeProductListModel.Datum datum = freeProductModels.get(i);
+                if (datum.getSelected() != null) {
+                    if (datum.getSelected())
+                        promoid = datum.getPromoId();
+                }
+            }
+            Log.d("promoid", "promoid" + promoid);
+            if (promoid != -1) {
+                dialogFreeProducts.dismiss();
+                submitFreeProducts();
+            } else {
+                Toast.makeText(MyCartActivity.this, "Please select free product.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imgClose.setOnClickListener(v -> {
+            if (promoid != -1) {
+                dialogFreeProducts.dismiss();
+            } else {
+                Toast.makeText(MyCartActivity.this, "Please confirm your free product.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    int reckID = -1;
+    ArrayList<Integer> reckidList = new ArrayList<>();
+
+    public void initReckDialogFreeProducts() {
+
+        // Create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.dialog_free_products, null);
+        builder.setView(customLayout);
+
+        imgCloseReck = customLayout.findViewById(R.id.img_close);
+        rvFreeProductsRec = customLayout.findViewById(R.id.rv_myFreeProductList);
+        btnConfirmReck = customLayout.findViewById(R.id.btnConfirm);
+        MyTextViewEcom txt = customLayout.findViewById(R.id.textid);
+        txt.setText("Choose Product for Home Store");
+
+        rvFreeProductsRec.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(MyCartActivity.this, LinearLayoutManager.VERTICAL, false);
+        rvFreeProductsRec.setLayoutManager(mLayoutManager1);
+        rvFreeProductsRec.setItemAnimator(new DefaultItemAnimator());
+        imgCloseReck.setVisibility(View.GONE);
+        dialogReck = builder.create();
+
+        dialogReck.setCancelable(false);
+        btnConfirmReck.setOnClickListener(v -> {
+            btnConfirmReck.setEnabled(false);
+            for (int i = 0; i < reckProductModels.size(); i++) {
+                CartRECKListModelEcom.Datum datum = reckProductModels.get(i);
+                if (datum.isIsselected())
+                    reckID = datum.getProductId();
+
+            }
+            Log.d("promoid", "promoid" + promoid);
+            if (reckID != -1) {
+                addToCartReck();
+            } else {
+                btnConfirmReck.setEnabled(true);
+                Toast.makeText(MyCartActivity.this, "Please select product.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    String[] cartqnty = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+
+
+    public void initDialogCarrt() {
+
+        // Create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.dialog_cart_quantity, null);
+        builder.setView(customLayout);
+
+
+        imgClose = customLayout.findViewById(R.id.img_close);
+        spinner = customLayout.findViewById(R.id.spinner);
+        editcartqnty = customLayout.findViewById(R.id.edt_cart);
+        btnConfirm = customLayout.findViewById(R.id.btnConfirm);
+        ArrayAdapter dataAdapter = new ArrayAdapter(this, R.layout.spinner_ticket_item_ecom, cartqnty);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_ticket_item_ecom);
+        spinner.setAdapter(dataAdapter);
+
+        if (spinner.getSelectedItem() == null) {
+            spinner.performClick();
+        }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editcartqnty.setText(spinner.getSelectedItem().toString()); //this is taking the first value of the spinner by default.
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        dialogCart = builder.create();
+
+        dialogCart.setCancelable(true);
+        btnConfirm.setOnClickListener(v -> {
+
+
+        });
+
+        imgClose.setOnClickListener(v -> {
+            dialogCart.dismiss();
+        });
+    }
+
+
+    public void setSelectedLocation(String addressType, Integer allCityID, String address, boolean isAddressType, String cityFacility, boolean isPincodeServicable) {
+
+        if (isAddressType) {
+            isServicable = true;
+            tvLocation.setText("Pickup from " + address);
+            Log.d("Update Value", "Update Value" + isAddressType);
+
+        } else {
+            tvLocation.setText("Deliver to " + address);
+            isServicable = isPincodeServicable;
+            Log.d("picode", "" + isPincodeServicable);
+            Log.d("Update Value", "Update Value" + isAddressType + "" + isPincodeServicable);
+
+        }
+
+        addressNameSave = address;
+
+        allCityID = allCityID;
+        addressType = addressType;
+        cityFacility = cityFacility;
+        SharedPreferences preferences = getSharedPreferences(PrefUtils.prefLocation, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PrefUtils.prefLocation, addressNameSave);
+        editor.apply();
+        Log.d("Location Empty SAVE", "Location Empty SAVE" + addressNameSave);
+
+        SharedPreferences preferencesAddressType = getSharedPreferences(PrefUtils.prefAddresstype, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorpreferencesAddressType = preferencesAddressType.edit();
+        editorpreferencesAddressType.putBoolean(PrefUtils.prefAddresstype, isAddressType);
+        editorpreferencesAddressType.apply();
+
+        SharedPreferences preferencesAddressCityID = getSharedPreferences(PrefUtils.prefPrefcityid, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorpreferencesAddressCityID = preferencesAddressCityID.edit();
+        editorpreferencesAddressCityID.putInt(PrefUtils.prefPrefcityid, allCityID);
+        editorpreferencesAddressCityID.apply();
+
+        Log.d("Location ID", "Location ID" + allCityID);
+
+        SharedPreferences sharedPreferencesAddressType = getSharedPreferences(PrefUtils.prefAddresstypevalue, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorAddressType = sharedPreferencesAddressType.edit();
+        editorAddressType.putString(PrefUtils.prefAddresstypevalue, addressType);
+        editorAddressType.apply();
+        Log.d("Location Type", "Location Type" + addressType);
+
+
+        SharedPreferences sharedPreferencesFacility = getSharedPreferences(PrefUtils.prefFacility, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorFacility = sharedPreferencesFacility.edit();
+        editorFacility.putString(PrefUtils.prefFacility, cityFacility);
+        editorFacility.apply();
+        Log.d("Facility", "Facility: " + cityFacility);
+        // checkAddress = true;
+        citySave = getSharedPreferences(PrefUtils.prefCityid, 0);
+        cityId = citySave.getInt(PrefUtils.prefCityid, 0);
+        Log.d("cityId", "cityId: " + cityId);
+
+
+        getMyCartList(false, false, true);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("Location Empty SAVE", "Location Empty SAVE Back" + addressNameSave);
+
+        hideprogress();
+        if (selectCategory == 10) {
+           /* Intent cartReview = new Intent(MyCartActivity.this, MyCategoryActivity.class);
+            cartReview.putExtra("SELECTEDVALUECATEGORYBACK", 11);
+            startActivity(cartReview);*/
+            Intent intent = new Intent();
+            setResult(utils.productShare, intent);
+            finish();
+
+        } else if (backID == 1) {
+            Intent cartReview = new Intent(MyCartActivity.this, MainActivity.class);
+            startActivity(cartReview);
+
+        } else {
+            // super.onBackPressed();
+            Intent intent = new Intent();
+            setResult(utils.productShare, intent);
+            finish();
+        }
+        if (myHandler != null) {
+            myHandler.removeCallbacksAndMessages(null);
+        }
+
+        SharedPreferences FirstRunPV = getSharedPreferences(PrefUtils.prefIsfirstpv, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = FirstRunPV.edit();
+        edit.clear();
+        edit.apply();
+    }
+
+    @Override
+    public void onItemClick(String item) {
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+    }
+
+
+    public class MyCartProductsAdapter extends RecyclerView.Adapter<MyCartProductsAdapter.MyViewHolder> {
+
+        private Context context;
+        ArrayList<MyCart> myCartsModel;
+        private APIInterface mAPIInterface, mAPIInterfaceShoppy;
+        String m_deviceId;
+        String uniqueID;
+        int addvalue;
+        int productQuantity;
+        private CartAdapterCallback mAdapterCallback;
+        Session session;
+        double pvResultAdapter;
+        boolean mrpisAssociate, mrpisJoin;
+        SharedPreferences spGetIsAssociate, spGetIsJoin;
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+            @BindView(R.id.tv_mycart_name)
+            MyTextViewEcom tvMyCartName;
+
+            @BindView(R.id.tv_mycart_item_price)
+            MyTextViewEcom tvMyCartItemPrice;
+
+            @BindView(R.id.product_count)
+            MyTextViewEcom tvProductCount;
+
+            @BindView(R.id.tv_mycart_tablet)
+            MyTextViewEcom tvMyCartTablet;
+
+            @BindView(R.id.thumbnail)
+            ImageView thumbnail;
+
+            @BindView(R.id.img_my_cart_delete)
+            ImageView imgDelete;
+
+            @BindView(R.id.btn_remove_item)
+            MyButtonEcom btnRemoveItem;
+
+            @BindView(R.id.btn_add_item)
+            MyButtonEcom btnAddItem;
+
+            @BindView(R.id.card_view)
+            CardView cardView;
+
+            @BindView(R.id.tv_pv_value)
+            MyTextViewEcom tvCartPV;
+
+            @BindView(R.id.tv_nv_value)
+            MyTextViewEcom tvCartNV;
+
+            @BindView(R.id.tv_bv_value)
+            MyTextViewEcom tvCartBV;
+
+            @BindView(R.id.tv_original_price_value)
+            MyTextViewEcom tvMRPPrice;
+
+            @BindView(R.id.txtreward)
+            MyTextViewEcom txtReward;
+
+            @BindView(R.id.tv_price_discount)
+            MyTextViewEcom tvMRP;
+
+            @BindView(R.id.lv_free)
+            LinearLayout layfree;
+
+            public MyViewHolder(View view) {
+                super(view);
+                ButterKnife.bind(this, view);
+            }
+        }
+
+        @SuppressLint("HardwareIds")
+        public MyCartProductsAdapter(Context context, ArrayList<MyCart> myCartsModel, CartAdapterCallback callback,
+                                     CartAdapterPayCallback cartAdapterPayCallback) {
+            // public MyCartProductsAdapter(Context context, ArrayList<MyCart> myCartsModel) {
+            this.context = context;
+            this.myCartsModel = myCartsModel;
+            // this.listener = listener;
+            this.mAdapterCallback = callback;
+            // this.cartAdapterPayCallback = cartAdapterPayCallback;
+            mAPIInterface = APIClient.getClient(context).create(APIInterface.class);
+            mAPIInterfaceShoppy = APIClient.getShoppyClient(context).create(APIInterface.class);
+        /*TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(TELEPHONY_SERVICE);
+        m_deviceId = TelephonyMgr.getDeviceId();*/
+
+            m_deviceId = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+            session = new Session(context);
+            SharedPreferences deviceSharedPreferences = context.getSharedPreferences(PrefUtils.prefDeviceid, 0);
+            uniqueID = deviceSharedPreferences.getString(PrefUtils.prefDeviceid, null);
+
+            Log.d("MDEVICEID uniqueIDADP", "MDEVICEID uniqueIDADP: " + uniqueID);
+            if (m_deviceId == null || m_deviceId.equals("")) {
+                if (uniqueID == null || uniqueID.equals("")) {
+                    String randomID = UUID.randomUUID().toString();
+                    SharedPreferences preferences = context.getSharedPreferences(PrefUtils.prefDeviceid, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString(PrefUtils.prefDeviceid, randomID);
+                    editor.apply();
+                    m_deviceId = randomID;
+                } else {
+                    m_deviceId = uniqueID;
+                }
+            }
+            Log.d("MDEVICEIDMYCARTADAP", "MDEVICEIDMYCARTADAP: " + m_deviceId);
+        }
+
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.my_cart_list_item, parent, false);
+
+            return new MyViewHolder(itemView);
+        }
+
+
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, int position) {
+            //getting the product of the specified position
+            MyCart myCart = myCartsModel.get(position);
+            //binding the data with the viewholder views
+
+            holder.tvMyCartName.setText(myCart.getProductName());
+            holder.tvProductCount.setText(String.valueOf(myCart.getCartQuantity()));
+            holder.tvMyCartTablet.setText(String.valueOf(myCart.getVolWt()));
+
+            holder.tvCartPV.setText("" + myCart.getPv());
+            holder.tvCartBV.setText("" + myCart.getBv() + "%");
+            holder.tvCartNV.setText("" + myCart.getNv());
+
+            spGetIsAssociate = context.getSharedPreferences(PrefUtils.prefMrp, 0);
+            mrpisAssociate = spGetIsAssociate.getBoolean(PrefUtils.prefMrp, false);
+
+            spGetIsJoin = context.getSharedPreferences(PrefUtils.prefJoindays, 0);
+            mrpisJoin = spGetIsJoin.getBoolean(PrefUtils.prefJoindays, false);
+
+            pvResultAdapter = (double) myCart.getPv();
+            holder.tvMyCartItemPrice.setText(String.valueOf(myCart.getHomeStorePrice()));
+            holder.tvMRP.setText(String.valueOf(myCart.getMrpPrice()));
+            holder.tvMRPPrice.setText(String.valueOf(myCart.getDistributorPrice()));
+            holder.tvMRPPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvMRP.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+           /* if (!session.getLogin()) {
+                holder.tvMRPPrice.setVisibility(View.GONE);
+                holder.tvMyCartItemPrice.setText(String.valueOf(myCart.getMrpPrice()));
+            } else if (pvResult >= Const.PVValue && !mrpisJoin) {
+                holder.tvMyCartItemPrice.setText(String.valueOf(myCart.getPricePerPiece()));
+                holder.tvMRPPrice.setText(String.valueOf(myCart.getMrpPrice()));
+                holder.tvMRPPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            } else if (!mrpisAssociate) {
+                holder.tvMyCartItemPrice.setText(String.valueOf(myCart.getPricePerPiece()));
+                holder.tvMRPPrice.setText(String.valueOf(myCart.getMrpPrice()));
+                holder.tvMRPPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            } else {
+                holder.tvMRPPrice.setVisibility(View.GONE);
+                holder.tvMyCartItemPrice.setText(String.valueOf(myCart.getMrpPrice()));
+            }*/
+
+            Glide.with(context)
+                    .load(myCart.getMainImage()).fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(getRandomDrawbleColor())
+                    .into(holder.thumbnail);
+
+            if (myCart.isIsPromo()) {
+                //holder.imgDelete.setImageResource(myCart.getFree() ? R.drawable.ic_delete_black : R.drawable.ic_baseline_edit_24);
+                holder.btnAddItem.setVisibility(View.GONE);
+                holder.btnRemoveItem.setVisibility(View.GONE);
+                holder.imgDelete.setVisibility(View.GONE);
+                holder.layfree.setVisibility(View.VISIBLE);
+
+                if (myCart.isIsRankRewardBronze() || myCart.isIsRankRewardSilver()) {
+                    holder.txtReward.setVisibility(View.VISIBLE);
+                    if (myCart.isIsRankRewardBronze())
+                        holder.txtReward.setText(myCart.getRankRewardBronzeText());
+                    if (myCart.isIsRankRewardSilver())
+                        holder.txtReward.setText(myCart.getRankRewardSilverText());
+
+                } else
+                    holder.txtReward.setVisibility(View.GONE);
+            } else if (myCart.isMandatory()) {
+                holder.btnAddItem.setVisibility(View.GONE);
+                holder.btnRemoveItem.setVisibility(View.GONE);
+                holder.imgDelete.setVisibility(View.GONE);
+                holder.layfree.setVisibility(View.GONE);
+                holder.txtReward.setVisibility(View.VISIBLE);
+                holder.txtReward.setText("Auto added for Home Store");
+                boolean showEdit = isItEditable(myCart.getProductId());
+                holder.imgDelete.setImageResource(R.drawable.ic_baseline_edit_24);
+                holder.imgDelete.setVisibility(showEdit ? View.VISIBLE : View.GONE);
+            } else {
+                holder.btnAddItem.setVisibility(View.VISIBLE);
+                holder.btnRemoveItem.setVisibility(View.VISIBLE);
+                holder.imgDelete.setImageResource(R.drawable.ic_delete_black);
+                holder.layfree.setVisibility(View.GONE);
+                holder.txtReward.setVisibility(View.GONE);
+            }
+
+            holder.btnAddItem.setOnClickListener(v -> {
+                productQuantity = myCart.getStockQuantity();
+                addvalue = Integer.parseInt(holder.tvProductCount.getText().toString());
+                int maxQuantity = productQuantity;
+                if (addvalue < maxQuantity) {
+                    addvalue++;
+                    //  holder.tvProductCount.setText(Integer.toString(addvalue));
+                    //Log.d(TAG, "product Id and quantity: " + myCart.getProductId() + "quantity " + addvalue);
+                    //addToCart(m_deviceId, session.getIboKeyId(), Integer.valueOf(myCart.getProductId()), addvalue);
+                    addToCart(m_deviceId, session.getShoppyUserID(), Integer.valueOf(myCart.getProductId()), 1, "plus");
+
+                } else {
+                    Toast.makeText(context, "Sorry you have reached max quantity.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            holder.btnRemoveItem.setOnClickListener(v -> {
+                int curval = Integer.parseInt(holder.tvProductCount.getText().toString());
+                Log.d("curval", "curval " + curval);
+                if (curval > 1) {
+                    curval--;
+                    addToCart(m_deviceId, session.getShoppyUserID(), Integer.valueOf(myCart.getProductId()), 1, "minus");
+                }
+            });
+
+
+            holder.imgDelete.setOnClickListener(v -> {
+                boolean showEdit = isItEditable(myCart.getProductId());
+                if (showEdit) {
+                    deleteReckFromCart(m_deviceId, myCart.getProductId());
+                } else {
+                    if (myCart.isIsPromo()) {
+                        if (myCart.isIsFree()) {
+                            deleteFromCart(m_deviceId, session.getIboKeyId(), myCart.getProductId(), myCart.getId(), true);
+                        } else {
+                            if (freeProductModels.size() == 0)
+                                getMyFreeProductList(myCart.getProductId());
+                            else
+                                dialogFreeProducts.show();
+                        }
+                    } else
+                        deleteFromCart(m_deviceId, session.getIboKeyId(), myCart.getProductId(), myCart.getId(), false);
+                }
+            });
+        }
+
+        private boolean isItEditable(int productId) {
+            boolean editable = false;
+            if (session.getShoppyid() == 0) {
+                if (reckidList.size() > 0)
+                    editable = reckidList.contains(productId);
+              /*  ArrayList<Integer> mycartProductId = new ArrayList<>();
+                for (int i = 0; i < cartModels.size(); i++) {
+                    mycartProductId.add(cartModels.get(i).getProductId());
+                }
+                if (reckProductModels.size() > 0  && mycartProductId.size() > 0) {
+                    // check is it in list?
+                    for (int i = 0; i < reckidList.size(); i++) {
+                        if (mycartProductId.contains(reckidList.get(i))) {
+                            editable = true;
+                        }
+                    }
+                }*/
+            }
+            return editable;
+        }
+
+        @Override
+        public int getItemCount() {
+            Log.d("myCartsModel.size()", "myCartsModel.size():" + myCartsModel.size());
+            return myCartsModel.size();
+        }
+
+
+        private void addToCart(String deviceId, String userId, Integer productId, Integer quantity, String CartFlag) {
+            if (Utils.isNetworkAvailable(getApplicationContext())) {
+                showFullDialog();
+                Call<AddToCartModel> wsCallingRegistation;
+                if (session.getLogin())
+                    wsCallingRegistation = mAPIInterfaceShoppy.getAddToCartModelCall(deviceId, userId, productId, quantity, CartFlag, false);
+                else
+                    wsCallingRegistation = mAPIInterface.getAddToCartModelCallNOLogin(deviceId, productId, quantity, CartFlag);
+
+                Log.d("quantityOUT: ", "quantityOUT: " + quantity);
+                wsCallingRegistation.enqueue(new Callback<AddToCartModel>() {
+                    @Override
+                    public void onResponse(Call<AddToCartModel> call, Response<AddToCartModel> response) {
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getResponse().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                                Log.d("quantityINBEfore: ", "quantityINBEfore: " + quantity);
+                                mAdapterCallback.onMethodCallbackMain();
+
+                                Log.d("quantityINAFTER: ", "quantityINAFTER: " + quantity);
+                            }
+                        }
+                        hideFullDialog();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AddToCartModel> call, Throwable t) {
+                        hideFullDialog();
+                    }
+                });
+            } else {
+                hideFullDialog();
+                // noInternetConnectionMessage();
+                utils.dialogueNoInternet((Activity) context);
+            }
+        }
+
+        private void deleteReckFromCart(String deviceId,
+                                        Integer productId) {
+
+            if (Utils.isNetworkAvailable(getApplicationContext())) {
+                showFullDialog();
+
+                Call<DeleteShoppyCartModel> wsCallDelete;
+
+                wsCallDelete = mAPIInterfaceShoppy.getDeleteRecFromCartModelCall(deviceId, session.getShoppyUserID(), productId);
+                wsCallDelete.enqueue(new Callback<DeleteShoppyCartModel>() {
+                    @Override
+                    public void onResponse(Call<DeleteShoppyCartModel> call, Response<DeleteShoppyCartModel> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body().getResponse().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                                if (!dialogReck.isShowing()) {
+                                    btnConfirmReck.setEnabled(true);
+                                    dialogReck.show();
+                                }
+                            }
+                        }
+                        hideFullDialog();
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteShoppyCartModel> call, Throwable t) {
+                        hideFullDialog();
+                    }
+                });
+            } else {
+                hideFullDialog();
+                utils.dialogueNoInternet((Activity) context);
+            }
+
+        }
+
+        private void deleteFromCart(String deviceId, String userId,
+                                    Integer productId, Integer id,
+                                    boolean isFreeproduct) {
+            if (Utils.isNetworkAvailable(getApplicationContext())) {
+                showFullDialog();
+
+                Call<DeleteCartModel> wsCallingRegistation;
+                Call<DeleteShoppyCartModel> wsCallDelete;
+                // if (session.getLogin()) {
+                  /*  if (isFreeproduct) {
+                        wsCallingRegistation = mAPIInterface.getDeleteFromCartModelCallV2(deviceId, userId, productId, id);
+                        callDelete(wsCallingRegistation);
+                    } else {*/
+                wsCallDelete = mAPIInterfaceShoppy.getDeleteFromCartModelCall(deviceId, session.getShoppyUserID(), productId);
+                wsCallDelete.enqueue(new Callback<DeleteShoppyCartModel>() {
+                    @Override
+                    public void onResponse(Call<DeleteShoppyCartModel> call, Response<DeleteShoppyCartModel> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body().getResponse().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                                //   Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                mAdapterCallback.onMethodCallbackMain();
+                            }
+                        }
+                        hideFullDialog();
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteShoppyCartModel> call, Throwable t) {
+                        hideFullDialog();
+                    }
+                });
+                //   }
+              /*  } else {
+                    wsCallingRegistation = mAPIInterface.getDeleteFromCartModelCallNologin(deviceId, productId);
+                    callDelete(wsCallingRegistation);
+                }*/
+
+            } else {
+                hideFullDialog();
+                utils.dialogueNoInternet((Activity) context);
+            }
+        }
+
+
+        private ColorDrawable[] vibrantLightColorList =
+                {
+                        new ColorDrawable(Color.parseColor("#9ACCCD")), new ColorDrawable(Color.parseColor("#8FD8A0")),
+                        new ColorDrawable(Color.parseColor("#CBD890")), new ColorDrawable(Color.parseColor("#DACC8F")),
+                        new ColorDrawable(Color.parseColor("#D9A790")), new ColorDrawable(Color.parseColor("#D18FD9")),
+                        new ColorDrawable(Color.parseColor("#FF6772")), new ColorDrawable(Color.parseColor("#DDFB5C"))
+                };
+
+
+        public ColorDrawable getRandomDrawbleColor() {
+            int idx = new Random().nextInt(vibrantLightColorList.length);
+            return vibrantLightColorList[idx];
+        }
+
+        private void callDelete(Call<DeleteCartModel> wsCallingRegistation) {
+            wsCallingRegistation.enqueue(new Callback<DeleteCartModel>() {
+                @Override
+                public void onResponse(Call<DeleteCartModel> call, Response<DeleteCartModel> response) {
+                    if (mLoadProgressDialog != null && mLoadProgressDialog.isShowing()) {
+                        hideFullDialog();
+                    }
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                            //Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            mAdapterCallback.onMethodCallbackMain();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DeleteCartModel> call, Throwable t) {
+                    hideFullDialog();
+                }
+            });
+        }
+    }
+
+
+    private void getMyCartListReview(String cityID) {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+            showprogress();
+            showFullDialog();
+            APIInterface mAPIInterfaceShoppy = APIClient.getShoppyClient(MyCartActivity.this).create(APIInterface.class);
+            Call<CartListModelReviewEcom> wsCallingEvents;
+            //  if (showLocation)
+            wsCallingEvents = mAPIInterfaceShoppy.getMyCartListReviewEcom(session.getShoppyUserID(), cityID);
+            //  else
+            //     wsCallingEvents = mAPIInterfaceCartReview.getMyCartListReviewEcom("0");
+            wsCallingEvents.enqueue(new Callback<CartListModelReviewEcom>() {
+                @Override
+                public void onResponse(Call<CartListModelReviewEcom> call, Response<CartListModelReviewEcom> response) {
+                    cartModelsMyCartReviews.clear();
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+
+                            if (response.body().getResponse().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                cartModelsMyCartReviews.addAll(response.body().getResponse().getData().getOutOfStockProducts());
+                                if (response.body().getResponse().getData().getCartCount() == 0) {
+                                    if (checkAddress) {
+                                        if (isServicable) {
+                                            utils.getExpireUser(mAPIInterface, MyCartActivity.this, session);
+                                        } else {
+                                            hideFullDialog();
+                                            Log.d("isPincode1", "" + isServicable);
+                                            pincodenotAvailable();
+                                        }
+                                    } else
+                                        hideFullDialog();
+                                } else {
+                                    hideFullDialog();
+                                    Intent cartReview = new Intent(MyCartActivity.this, ProductAvaibilityActivity.class);
+                                    startActivity(cartReview);
+                                }
+                            } else
+                                hideFullDialog();
+                        } else
+                            hideFullDialog();
+                    } else {
+                        hideFullDialog();
+                        utils.showErrorDialog(MyCartActivity.this, true, "Session Timeout", "Your Session has been expired. Please Login again.", true, session);
+                    }
+                    hideprogress();
+
+                }
+
+                @Override
+                public void onFailure(Call<CartListModelReviewEcom> call, Throwable t) {
+                    hideprogress();
+                    hideFullDialog();
+                    Log.d("CartAPIReview5", "CartAPIReview5 " + t);
+                }
+            });
+        } else {
+            hideprogress();
+            hideFullDialog();
+            utils.dialogueNoInternet(this);
+            // noInternetConnectionMessage();
+        }
+    }
+
+    public void openOrderSummary() {
+
+        Intent addressListIntent = new Intent(MyCartActivity.this, OrderSummaryActivity.class);
+        addressListIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(addressListIntent);
+        // hideFullDialog();
+    }
+
+    private void pincodenotAvailable() {
+        SweetAlertDialogCart loading = new SweetAlertDialogCart(MyCartActivity.this, SweetAlertDialogCart.WARNING_TYPE);
+        loading.setCancelable(true);
+        loading.setConfirmText("OK");
+        loading.setOnShowListener(dialog -> {
+            SweetAlertDialogCart alertDialog = (SweetAlertDialogCart) dialog;
+            // ImageView imgCustom = (ImageView) alertDialog.findViewById( R.id.custom_image );
+            MyTextView textTitle = (MyTextView) alertDialog.findViewById(R.id.title_text);
+            MyTextView textContent = (MyTextView) alertDialog.findViewById(R.id.content_text);
+            MyButton btnConfirm = (MyButton) alertDialog.findViewById(R.id.confirm_button);
+            textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            textContent.setTypeface(typeface);
+            textTitle.setTypeface(typeface);
+            btnConfirm.setTypeface(typeface);
+            alertDialog.setCancelable(false);
+            //textTitle.setText(response.body().getMessage());
+           /* imgCustom.setVisibility( View.VISIBLE );
+            imgCustom.setImageResource(R.drawable.success_pay);*/
+            textTitle.setText("This pincode is not serviceable");
+            textContent.setText("Please select another address.");
+            btnConfirm.setText("OK");
+            // textContent.setText("Pin you have entered is Invalid.");
+            textContent.setGravity(Gravity.NO_GRAVITY);
+            btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loading.dismiss();
+                    btnProceed.performClick();
+                }
+            });
+        });
+        loading.show();
+    }
+
+
+    private void noInternetAvailable() {
+        if (snackbar != null && snackbar.isShown())
+            snackbar.dismiss();
+        cardView.setVisibility(View.GONE);
+        lnPV.setVisibility(View.GONE);
+        cbFreeLookUp.setVisibility(View.GONE);
+        constraintLayoutPlaceOrder.setVisibility(View.GONE);
+        txtErrorTitle.setText(R.string.error_title);
+        txtErrorContent.setText(R.string.error_content);
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        //imgError.setVisibility(View.VISIBLE);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        rvCartItem.setVisibility(View.GONE);
+        lnLocation.setVisibility(View.VISIBLE);
+    }
+
+    private void addToCartReck() {
+        if (Utils.isNetworkAvailable(getApplicationContext())) {
+            showFullDialog();
+            Call<AddToCartModel> wsCallingRegistation;
+            wsCallingRegistation = mAPIInterfaceShoppy.getAddToCartModelCall(deviceId, session.getShoppyUserID(),
+                    reckID, 1, "plus", true);
+
+            wsCallingRegistation.enqueue(new Callback<AddToCartModel>() {
+                @Override
+                public void onResponse(Call<AddToCartModel> call, Response<AddToCartModel> response) {
+                    hideFullDialog();
+
+                    if (response.isSuccessful()) {
+                        if (response.body().getResponse().getStatusCode() == REQUEST_STATUS_CODE_SUCCESS) {
+                            dialogReck.dismiss();
+                            selectedreck = true;
+                            onMethodCallbackMain();
+                        } else {
+                            hideFullDialog();
+                            btnConfirmReck.setEnabled(true);
+                        }
+                    } else {
+                        hideFullDialog();
+                        btnConfirmReck.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AddToCartModel> call, Throwable t) {
+                    hideFullDialog();
+                    btnConfirmReck.setEnabled(true);
+                }
+            });
+        } else {
+            btnConfirmReck.setEnabled(true);
+            hideFullDialog();
+            // noInternetConnectionMessage();
+            utils.dialogueNoInternet((Activity) this);
+        }
+    }
+}

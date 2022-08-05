@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hannesdorfmann.smoothprogressbar:library:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c679372ab8d043ea3e30b44551d9937/jetified-library-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c679372ab8d043ea3e30b44551d9937/jetified-library-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c679372ab8d043ea3e30b44551d9937/jetified-library-1.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hannesdorfmann.smoothprogressbar/library/1.0.0/ad2ebc5a9d1b65908ae1e1f6140e5fb59b8508b5/library-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hannesdorfmann.smoothprogressbar/library/1.0.0/b2edaf1accac1d98ab3e142110b9de792b4ea562/library-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

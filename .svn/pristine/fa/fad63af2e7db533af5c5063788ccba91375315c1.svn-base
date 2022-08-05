@@ -1,0 +1,210 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.ecom.MyViewOrderActivity;
+import com.nebulacompanies.ibo.ecom.OnItemClickTrack;
+import com.nebulacompanies.ibo.ecom.model.CancelOrderModel;
+import com.nebulacompanies.ibo.ecom.model.OrderListModel;
+import com.nebulacompanies.ibo.ecom.model.OrderListModelEcom;
+import com.nebulacompanies.ibo.ecom.model.Product;
+import com.nebulacompanies.ibo.ecom.model.TrackListModel;
+import com.nebulacompanies.ibo.ecom.model.unicommerce.OrderStatusModel;
+import com.nebulacompanies.ibo.ecom.model.unicommerce.OrderStatusRequestModel;
+import com.nebulacompanies.ibo.ecom.model.unicommerce.ShippingPackagesModel;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom;
+import com.nebulacompanies.ibo.ecom.utils.OrderListCallback;
+import com.nebulacompanies.ibo.ecom.utils.PrefUtils;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.sweetdialogue.SweetAlertDialogCart;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.view.MyButton;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.nebulacompanies.ibo.util.Const.REQUEST_STATUS_CODE_ERROR;
+import static com.nebulacompanies.ibo.util.Const.REQUEST_STATUS_CODE_SUCCESS;
+import static com.nebulacompanies.ibo.util.Constants.REQUEST_STATUS_CODE_NO_RECORDS;
+import static com.nebulacompanies.ibo.util.Constants.REQUEST_STATUS_CODE_SERVICE_UNAVAILABLE;
+import static cyanogenmod.power.PerformanceManager.TAG;
+
+public class ViewSaleHistoryAdapter extends RecyclerView.Adapter<ViewSaleHistoryAdapter.MyViewHolder> {
+
+    private Context context;
+    // private RealmResults<Product> products;
+    private ProductsAdapterListener listener;
+    // private RealmResults<CartItem> cartItems;
+    ArrayList<OrderListModel.OrderDetailsListModel> orderDetailsListModels = new ArrayList<>();
+    ArrayList<ShippingPackagesModel> shippingPackagesModels = new ArrayList<>();
+    private static int countItem = 0;
+    int addvalue, productQuantity;
+    private APIInterface mAPIInterface;
+    String orderId, cancelReason, cancelRemarks, cancelquantity, totalCount;
+    APIInterface mAPIInterfaceTrackOrder;
+    ArrayList<OrderListModel> orderListModel = new ArrayList<>();
+    Typeface typeface;
+    private OrderListCallback mAdapterCallback;
+    String orderStatusString, orderNumber, cityFacility, status, statusDate;
+    SharedPreferences sharedPreferencesFacility;
+    private ArrayList<TrackListModel> trackListModels = new ArrayList<>();
+    String trackUrl,userId;
+    Session session;
+    private OnItemClickTrack mCallback;
+    Utils utils = new Utils();
+    boolean isTrack;
+
+    public ViewSaleHistoryAdapter(Context context) {
+
+        this.context = context;
+
+
+    }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        MyTextViewEcom name;
+
+        @BindView(R.id.tv_offer_price_value)
+        MyTextViewEcom tvPrice;
+
+        /*@BindView(R.id.tv_order_quantity)
+        MyTextView tvCount;*/
+
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.btn_remove_item)
+        MyButtonEcom btnRemoveItem;
+
+        @BindView(R.id.btn_add_item)
+        MyButtonEcom btnAddItem;
+
+
+        @BindView(R.id.btn_cancel)
+        MyButtonEcom btnOrderCancel;
+
+        @BindView(R.id.tv_cancel)
+        MyTextViewEcom tvCancel;
+
+        @Nullable
+        @BindView(R.id.tv_confirm_date)
+        MyTextViewEcom tvConfirmDate;
+
+
+        public MyViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/ember.ttf");
+
+        }
+    }
+
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_sale_order_list_item, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        //getOrderStatus(position);
+        //getting the product of the specified position
+
+
+
+    }
+
+
+    @Override
+    public int getItemCount() {
+        //return products.size();
+        return 1;
+    }
+
+
+    public interface ProductsAdapterListener {
+        void onProductAddedCart(int index, Product product);
+
+        void onProductRemovedFromCart(int index, Product product);
+    }
+
+    private void thisWasClicked(int position) {
+
+        if (position == 0) {
+            countItem++;
+        }
+
+    }
+
+    private ColorDrawable[] vibrantLightColorList =
+            {
+                    new ColorDrawable(Color.parseColor("#9ACCCD")), new ColorDrawable(Color.parseColor("#8FD8A0")),
+                    new ColorDrawable(Color.parseColor("#CBD890")), new ColorDrawable(Color.parseColor("#DACC8F")),
+                    new ColorDrawable(Color.parseColor("#D9A790")), new ColorDrawable(Color.parseColor("#D18FD9")),
+                    new ColorDrawable(Color.parseColor("#FF6772")), new ColorDrawable(Color.parseColor("#DDFB5C"))
+            };
+
+
+    public ColorDrawable getRandomDrawbleColor() {
+        int idx = new Random().nextInt(vibrantLightColorList.length);
+        return vibrantLightColorList[idx];
+    }
+
+
+
+
+
+}

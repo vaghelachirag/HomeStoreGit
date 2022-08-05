@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorNotification">
+
+        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dimen_eight_dp"
+            android:text="Add Info"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_fourteen_dp" />
+
+
+        <ImageView
+            android:id="@+id/img_ticket_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dimen_five_dp"
+            android:background="@drawable/nebula_effect"
+            android:contentDescription="@null"
+            android:padding="@dimen/dimen_five_dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_close_new_white" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:elevation="3dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_four_dp"
+                android:clickable="true"
+                android:elevation="3dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:visibility="visible"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+                            android:id="@+id/text_iboid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@color/theme_color"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="IBO ID "
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_fourteen_sp" />
+
+                        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+                            android:id="@+id/text_customer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="Customer "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_fourteen_sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_iboid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_margin="@dimen/dimen_four_dp"
+                        android:orientation="vertical">
+                        <com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom
+                            android:id="@+id/ibo_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/drawable_item_count"
+                            android:gravity="start"
+                            android:hint="@string/enter_ibo_id"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="ABC XYZ"
+
+                            android:textColor="@color/selected_product_count"
+                            android:textColorHint="@color/text_color"
+                            android:textSize="@dimen/dimen_twelve_sp" />
+
+                        <com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_four_dp"
+                            android:background="@drawable/drawable_item_count"
+                            android:gravity="start"
+                            android:hint="@string/enter_customer_number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:visibility="invisible"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="1234567890"
+                            android:textColor="@color/selected_product_count"
+                            android:textColorHint="@color/text_color"
+                            android:textSize="@dimen/dimen_twelve_sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_customer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_four_dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom
+                            android:id="@+id/cust_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/drawable_item_count"
+                            android:gravity="start"
+                            android:hint="@string/enter_customer_name"
+                            android:inputType="text"
+                            android:maxLength="30"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="ABC XYZ"
+
+                            android:textColor="@color/selected_product_count"
+                            android:textColorHint="@color/text_color"
+                            android:textSize="@dimen/dimen_twelve_sp" />
+
+                        <com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom
+                            android:id="@+id/cust_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_four_dp"
+                            android:background="@drawable/drawable_item_count"
+                            android:gravity="start"
+                            android:hint="@string/enter_customer_number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="@dimen/dimen_ten_dp"
+                            android:text="1234567890"
+                            android:textColor="@color/selected_product_count"
+                            android:textColorHint="@color/text_color"
+                            android:textSize="@dimen/dimen_twelve_sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.nebulacompanies.ibo.ecom.utils.MyButtonEcom
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_button_dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen_eight_dp"
+        android:background="@drawable/nebula_button_login_eftct_login_ecom"
+        android:padding="8dp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="@dimen/dimen_four_dp"
+        android:layout_marginTop="@dimen/dimen_four_dp"
+        android:textSize="@dimen/dimen_sixteen_sp"
+        android:textStyle="bold" />
+</LinearLayout>

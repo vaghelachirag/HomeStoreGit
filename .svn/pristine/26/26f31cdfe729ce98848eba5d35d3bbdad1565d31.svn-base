@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OkHttp: --&gt;" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="LOGCAT_FORMAT_STRING" value="%4$c/%5$s: %6$s" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="34c16d66-949c-4933-9df3-6a576d1a341b" name="Default Changelist" comment="changes">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/dwarkaPackage/DwarkaDashBoardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/dwarkaPackage/DwarkaDashBoardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@036758657d2c]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AndroidNebulaPro" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="EXPORT_PRIVATE_KEY" value="false" />
+    <option name="KEY_STORE_PATH" value="E:\Bhoomika\JKS file\Nebula Pro IBO\nebpro.jks" />
+    <option name="KEY_ALIAS" value="nebprokey" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
+  <component name="ProjectId" id="1uLB1rmVZiMhLb2kGDLbbtgzzzx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ApkExportedModule" value="AndroidNebulaPro.app" />
+    <property name="BundleExportedModule" value="AndroidNebulaPro.app" />
+    <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_6a-036758657d2c" />
+    <property name="DEBUGGABLE_PROCESS" value="com.nebulacompanies.ibo" />
+    <property name="DEBUGGER_ID" value="Auto" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@036758657d2c" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-09-09T07:46:30.624408800Z" />
+    <property name="ExportApk.ApkPath" value="E:\Bhoomika\NebulaPro2021\AndroidNebulaPro\app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="ScreenshotViewer.SavePath" value="$PROJECT_DIR$/../.." />
+    <property name="android-custom-viewC:/Users/Bhoomika/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/customBanner/CirclePageIndicator.java_SELECTED" value="CirclePageIndicator" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/customBanner/InfiniteViewPager.java_SELECTED" value="InfiniteViewPager" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/ecom/customBanner/InfiniteViewPager.java_SELECTED" value="InfiniteViewPager" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/AspectRatioImageView.java_SELECTED" value="AspectRatioImageView" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/DiagonalLineView.java_SELECTED" value="DiagonalLineView" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/MyTextViewEcom.java_SELECTED" value="MyTextViewEcom" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/ObliqueStrikeTextView.java_SELECTED" value="ObliqueStrikeTextView" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/view/MyTextViewDesign.java_SELECTED" value="MyTextViewDesign" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/view/MyTextViewDesignBold.java_SELECTED" value="MyTextViewDesignBold" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaPro2021/AndroidNebulaPro/app/src/main/java/com/nebulacompanies/ibo/view/WrappingViewPager.java_SELECTED" value="WrappingViewPager" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaShoppy/AndroidNebulaPro_2309/AndroidNebulaProShoppy/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/ImagePopup.java_SELECTED" value="ImagePopup" />
+    <property name="android-custom-viewE:/Bhoomika/NebulaShoppy/AndroidNebulaPro_2309/AndroidNebulaProShoppy/app/src/main/java/com/nebulacompanies/ibo/ecom/utils/MyTextViewEcom.java_SELECTED" value="MyTextViewEcom" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/activities" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recommended.upgrade.last.time.stamp" value="1624439664133" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="two.files.diff.last.used.file" value="X:/build.gradle" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.-1904175408">
+      <recent name="com.nebulacompanies.ibo.activities" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Bhoomika\NebulaShoppy\AndroidNebulaPro_2309\AndroidNebulaProShoppy\app\src\main\java\com\nebulacompanies\ibo\activities" />
+      <recent name="E:\Bhoomika\NebulaShoppy\AndroidNebulaPro_2309\AndroidNebulaProShoppy\app\src\main\java\com\nebulacompanies\ibo\ecom\fragment" />
+      <recent name="E:\Bhoomika\NebulaShoppy\AndroidNebulaPro_2309\AndroidNebulaProShoppy\app\src\main\res\drawable" />
+      <recent name="E:\Bhoomika\NebulaShoppy\AndroidNebulaPro_2309\AndroidNebulaProShoppy\app\src\main\res\layout" />
+      <recent name="E:\Bhoomika\NebulaPro2021\AndroidNebulaPro\app\src\main\res\drawable" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="AndroidNebulaProShoppy.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Bhoomika\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34c16d66-949c-4933-9df3-6a576d1a341b" name="Default Changelist" comment="" />
+      <created>1624434776627</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624434776627</updated>
+    </task>
+    <task id="LOCAL-00110" summary="changes">
+      <created>1629811930999</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1629811930999</updated>
+    </task>
+    <task id="LOCAL-00111" summary="changes">
+      <created>1629870384744</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1629870384745</updated>
+    </task>
+    <task id="LOCAL-00112" summary="changes">
+      <created>1629871865707</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1629871865707</updated>
+    </task>
+    <task id="LOCAL-00113" summary="changes">
+      <created>1629875323994</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1629875323994</updated>
+    </task>
+    <task id="LOCAL-00114" summary="changes">
+      <created>1629893574212</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1629893574212</updated>
+    </task>
+    <task id="LOCAL-00115" summary="changes">
+      <created>1629893613812</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1629893613812</updated>
+    </task>
+    <task id="LOCAL-00116" summary="changes">
+      <created>1629898756611</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1629898756611</updated>
+    </task>
+    <task id="LOCAL-00117" summary="changes">
+      <created>1630415534229</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1630415534229</updated>
+    </task>
+    <task id="LOCAL-00118" summary="changes">
+      <created>1630496234432</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1630496234432</updated>
+    </task>
+    <task id="LOCAL-00119" summary="changes">
+      <created>1630496554000</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1630496554000</updated>
+    </task>
+    <task id="LOCAL-00120" summary="changes">
+      <created>1630568965419</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1630568965419</updated>
+    </task>
+    <task id="LOCAL-00121" summary="changes">
+      <created>1630589027413</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1630589027414</updated>
+    </task>
+    <task id="LOCAL-00122" summary="changes">
+      <created>1630674706163</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1630674706164</updated>
+    </task>
+    <task id="LOCAL-00123" summary="v57">
+      <created>1630675614010</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1630675614010</updated>
+    </task>
+    <task id="LOCAL-00124" summary="changes">
+      <created>1631107795473</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1631107795473</updated>
+    </task>
+    <task id="LOCAL-00125" summary="changes">
+      <created>1631173879004</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1631173879005</updated>
+    </task>
+    <task id="LOCAL-00126" summary="changes">
+      <created>1631174044805</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1631174044805</updated>
+    </task>
+    <task id="LOCAL-00127" summary="changes">
+      <created>1631190463439</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1631190463439</updated>
+    </task>
+    <task id="LOCAL-00128" summary="changes">
+      <created>1631268947672</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1631268947672</updated>
+    </task>
+    <task id="LOCAL-00129" summary="changes">
+      <created>1631280366787</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1631280366787</updated>
+    </task>
+    <task id="LOCAL-00130" summary="changes">
+      <created>1631518942852</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1631518942852</updated>
+    </task>
+    <task id="LOCAL-00131" summary="changes">
+      <created>1631528836340</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1631528836340</updated>
+    </task>
+    <task id="LOCAL-00132" summary="changes">
+      <created>1631603694210</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1631603694211</updated>
+    </task>
+    <task id="LOCAL-00133" summary="changes">
+      <created>1631625992722</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1631625992722</updated>
+    </task>
+    <task id="LOCAL-00134" summary="changes">
+      <created>1631684064652</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1631684064653</updated>
+    </task>
+    <task id="LOCAL-00135" summary="changes">
+      <created>1631686056092</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1631686056092</updated>
+    </task>
+    <task id="LOCAL-00136" summary="changes">
+      <created>1631689426578</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1631689426578</updated>
+    </task>
+    <task id="LOCAL-00137" summary="changes">
+      <created>1631698798305</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1631698798305</updated>
+    </task>
+    <task id="LOCAL-00138" summary="changes">
+      <created>1631704191761</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1631704191761</updated>
+    </task>
+    <task id="LOCAL-00139" summary="changes">
+      <created>1631707827465</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1631707827465</updated>
+    </task>
+    <task id="LOCAL-00140" summary="changes">
+      <created>1631711772332</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1631711772332</updated>
+    </task>
+    <task id="LOCAL-00141" summary="changes">
+      <created>1631771436592</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1631771436593</updated>
+    </task>
+    <task id="LOCAL-00142" summary="changes v58">
+      <created>1631787452063</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1631787452063</updated>
+    </task>
+    <task id="LOCAL-00143" summary="changes">
+      <created>1631788608861</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1631788608861</updated>
+    </task>
+    <task id="LOCAL-00144" summary="changes">
+      <created>1631796207231</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1631796207231</updated>
+    </task>
+    <task id="LOCAL-00145" summary="changes">
+      <created>1631798420092</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1631798420092</updated>
+    </task>
+    <task id="LOCAL-00146" summary="changes">
+      <created>1631855207489</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1631855207489</updated>
+    </task>
+    <task id="LOCAL-00147" summary="changes">
+      <created>1631857611740</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1631857611740</updated>
+    </task>
+    <task id="LOCAL-00148" summary="changes of FLAG - important">
+      <created>1631863397557</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1631863397557</updated>
+    </task>
+    <task id="LOCAL-00149" summary="changes">
+      <created>1631885072633</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1631885072634</updated>
+    </task>
+    <task id="LOCAL-00150" summary="changes">
+      <created>1632129887418</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1632129887419</updated>
+    </task>
+    <task id="LOCAL-00151" summary="changes">
+      <created>1632130447245</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1632130447246</updated>
+    </task>
+    <task id="LOCAL-00152" summary="changes">
+      <created>1632130876674</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1632130876674</updated>
+    </task>
+    <task id="LOCAL-00153" summary="changes">
+      <created>1632136260876</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1632136260876</updated>
+    </task>
+    <task id="LOCAL-00154" summary="changes">
+      <created>1632137063845</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1632137063845</updated>
+    </task>
+    <task id="LOCAL-00155" summary="changes">
+      <created>1632143651286</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1632143651286</updated>
+    </task>
+    <task id="LOCAL-00156" summary="changes">
+      <created>1632202913324</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1632202913325</updated>
+    </task>
+    <task id="LOCAL-00157" summary="changes">
+      <created>1632203135875</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1632203135875</updated>
+    </task>
+    <task id="LOCAL-00158" summary="changes">
+      <created>1632226948582</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1632226948582</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Reviews and wallet changes" />
+    <MESSAGE value="Changes in ewallet" />
+    <MESSAGE value="v53" />
+    <MESSAGE value="Changes" />
+    <MESSAGE value="v54" />
+    <MESSAGE value="Without login changes" />
+    <MESSAGE value="changes of library" />
+    <MESSAGE value="changes update cart" />
+    <MESSAGE value="changes in local save ewallet" />
+    <MESSAGE value="v55" />
+    <MESSAGE value="changes without login flow" />
+    <MESSAGE value="changes v56" />
+    <MESSAGE value="v57" />
+    <MESSAGE value="changes v58" />
+    <MESSAGE value="changes of FLAG - important" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="200" y="110" key="#PSD" timestamp="1624444803821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="200" y="110" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1624444803821" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1632477084277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1632477084277" />
+    <state x="378" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1624441556789">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="378" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1624441556789" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1632482884647">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1632482884647" />
+    <state x="438" y="67" key="#xdebugger.evaluate" timestamp="1629871382525">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="438" y="67" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1629871382525" />
+    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1626354120956">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1626354120956" />
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog" timestamp="1631533218501">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1631533218501" />
+    <state x="478" y="154" key="AndroidCreateXmlResourceDialog" timestamp="1632401327486">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="478" y="154" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1632401327486" />
+    <state x="475" y="110" key="AndroidProcessChooserDialog" timestamp="1632130161457">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="475" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1632130161457" />
+    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1632226943506">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1632226943506" />
+    <state width="886" height="466" key="DebuggerActiveHint" timestamp="1632130204121">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="886" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1632130204121" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1630674702205">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1630674702205" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1632399239672">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1632399239672" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1632745210323">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1632745210323" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1632745210323">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1632745210323" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1632745210322">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1632745210322" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1632745210323">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1632745210323" />
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1626182886972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1626182886972" />
+    <state width="1323" height="179" key="GridCell.Tab.1.center" timestamp="1626182886972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1626182886972" />
+    <state width="1323" height="179" key="GridCell.Tab.1.left" timestamp="1626182886972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1626182886972" />
+    <state width="1323" height="179" key="GridCell.Tab.1.right" timestamp="1626182886972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1626182886972" />
+    <state x="263" y="107" key="IDE.errors.dialog" timestamp="1632397837336">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="107" key="IDE.errors.dialog/0.0.1366.728@0.0.1366.728" timestamp="1632397837336" />
+    <state x="129" y="55" key="MergeDialog" timestamp="1632140556975">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1632140556975" />
+    <state x="321" y="125" key="MultipleFileMergeDialog" timestamp="1632140556979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="321" y="125" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1632140556979" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1632397754917">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1632397754917" />
+    <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1629376946221">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="691" height="372" key="XDebugger.FullValuePopup/0.0.1366.728@0.0.1366.728" timestamp="1629376946221" />
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1625229789812">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1625229789812" />
+    <state x="515" y="210" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1632226870001">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="515" y="210" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1632226870001" />
+    <state x="123" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1629871271663">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="123" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1629871271663" />
+    <state x="231" y="76" width="989" height="592" key="find.popup" timestamp="1632740075323">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="231" y="76" width="989" height="592" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1632740075323" />
+    <state x="265" y="47" key="new project wizard" timestamp="1626431941848">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="265" y="47" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1626431941848" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1629357274793">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1629357274793" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1632402438144">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1632402438144" />
+    <state x="405" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1632738049404">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="405" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.728@0.0.1366.728" timestamp="1632738049404" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/ProductDescription.java</url>
+          <line>1604</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>435</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>437</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>440</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>444</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>446</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/MyCartActivity.java</url>
+          <line>448</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>531</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>547</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>487</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>498</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>496</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>476</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>479</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>481</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>484</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>493</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>502</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>512</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>514</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>516</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>457</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>451</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/SearchActivity.java</url>
+          <line>524</line>
+          <properties class="com.nebulacompanies.ibo.ecom.SearchActivity" method="showFailData" />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-field">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nebulacompanies/ibo/ecom/OrderSummaryActivity.java</url>
+          <line>108</line>
+          <properties field="toolbar" class="com.nebulacompanies.ibo.ecom.OrderSummaryActivity" />
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

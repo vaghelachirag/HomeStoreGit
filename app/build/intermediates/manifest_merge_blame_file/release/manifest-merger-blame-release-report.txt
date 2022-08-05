@@ -1,0 +1,1204 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.nebulacompanies.ibo.shoppy"
+4    android:versionCode="19"
+5    android:versionName="1.0.18" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+11-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:6:5-79
+11-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:6:22-76
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:7:5-67
+12-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:7:22-64
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:8:5-79
+13-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:8:22-76
+14    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+14-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:9:5-11:47
+14-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:10:9-64
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:12:5-80
+15-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:12:22-77
+16    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+16-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:13:5-80
+16-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:13:22-77
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:14:5-81
+17-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:14:22-78
+18    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+18-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:15:5-81
+18-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:15:22-78
+19    <uses-permission android:name="android.permission.ACCESS_ALL_DOWNLOADS" />
+19-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:16:5-79
+19-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:16:22-76
+20    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+20-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:17:5-81
+20-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:17:22-78
+21    <uses-permission android:name="android.permission.CALL_PHONE" />
+21-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:18:5-69
+21-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:18:22-66
+22    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+22-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:19:5-75
+22-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:19:22-72
+23    <uses-permission android:name="android.permission.READ_PROFILE" />
+23-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:20:5-71
+23-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:20:22-68
+24    <uses-permission android:name="android.permission.CAMERA" />
+24-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:21:5-65
+24-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:21:22-62
+25    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+25-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:22:5-79
+25-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:22:22-76
+26
+27    <uses-feature
+27-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:24:5-26:35
+28        android:name="android.hardware.camera"
+28-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:25:9-47
+29        android:required="true" />
+29-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:26:9-32
+30    <uses-feature
+30-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:27:5-29:36
+31        android:name="android.hardware.camera.autofocus"
+31-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:28:9-57
+32        android:required="false" />
+32-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:29:9-33
+33
+34    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+34-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:31:5-81
+34-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:31:22-78
+35    <uses-permission android:name="android.permission.WAKE_LOCK" />
+35-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:32:5-68
+35-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:32:22-65
+36
+37    <queries>
+37-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:9:5-20:15
+38
+39        <!-- Specific apps you interact with, eg: -->
+40        <package android:name="com.paytm.pgsdk.TransactionManager.PAYTM_APP_PACKAGE" />
+40-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:12:9-88
+40-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:12:18-85
+41        <!--
+42             Specific intents you query for,
+43             eg: for a custom share UI
+44        -->
+45        <intent>
+45-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:17:9-19:18
+46            <action android:name="android.intent.action.MAIN" />
+46-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:17-69
+46-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:25-66
+47        </intent>
+48
+49        <package android:name="in.amazon.mShop.android.shopping" />
+49-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:15:9-68
+49-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:15:18-65
+50        <package android:name="com.upi.axispay" />
+50-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:16:9-51
+50-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:16:18-48
+51        <package android:name="com.axis.mobile" />
+51-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:17:9-51
+51-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:17:18-48
+52        <package android:name="com.fisglobal.bandhanupi.app" />
+52-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:18:9-64
+52-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:18:18-61
+53        <package android:name="com.bankofbaroda.upi" />
+53-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:19:9-56
+53-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:19:18-53
+54        <package android:name="in.org.npci.upiapp" />
+54-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:20:9-54
+54-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:20:18-51
+55        <package android:name="com.canarabank.mobility" />
+55-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:21:9-59
+55-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:21:18-56
+56        <package android:name="com.citiuat" />
+56-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:22:9-47
+56-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:22:18-44
+57        <package android:name="com.dbs.in.digitalbank" />
+57-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:23:9-58
+57-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:23:18-55
+58        <package android:name="com.olive.dcb.upi" />
+58-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:24:9-53
+58-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:24:18-50
+59        <package android:name="com.finopaytech.bpayfino" />
+59-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:25:9-60
+59-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:25:18-57
+60        <package android:name="com.freecharge.android" />
+60-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:26:9-58
+60-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:26:18-55
+61        <package android:name="com.google.android.apps.nbu.paisa.user" />
+61-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:27:9-74
+61-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:27:18-71
+62        <package android:name="com.snapwork.hdfc" />
+62-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:28:9-53
+62-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:28:18-50
+63        <package android:name="com.mgs.hsbcupi" />
+63-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:29:9-51
+63-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:29:18-48
+64        <package android:name="com.csam.icici.bank.imobile" />
+64-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:30:9-63
+64-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:30:18-60
+65        <package android:name="com.icicibank.pockets" />
+65-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:31:9-57
+65-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:31:18-54
+66        <package android:name="com.euronet.iobupi" />
+66-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:32:9-54
+66-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:32:18-51
+67        <package android:name="com.mgs.induspsp" />
+67-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:33:9-52
+67-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:33:18-49
+68        <package android:name="com.fss.jnkpsp" />
+68-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:34:9-50
+68-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:34:18-47
+69        <package android:name="com.jio.myjio" />
+69-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:35:9-49
+69-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:35:18-46
+70        <package android:name="com.mycompany.kvb" />
+70-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:36:9-53
+70-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:36:18-50
+71        <package android:name="com.kvb.mobilebanking" />
+71-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:37:9-57
+71-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:37:18-54
+72        <package android:name="com.lcode.smartz" />
+72-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:38:9-52
+72-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:38:18-49
+73        <package android:name="com.msf.kbank.mobile" />
+73-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:39:9-56
+73-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:39:18-53
+74        <package android:name="com.upi.federalbank.org.lotza" />
+74-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:40:9-65
+74-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:40:18-62
+75        <package android:name="com.infrasofttech.mahaupi" />
+75-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:41:9-61
+75-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:41:18-58
+76        <package android:name="com.mipay.in.wallet" />
+76-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:42:9-55
+76-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:42:18-52
+77        <package android:name="com.myairtelapp" />
+77-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:43:9-51
+77-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:43:18-48
+78        <package android:name="com.mobikwik_new" />
+78-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:44:9-52
+78-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:44:18-49
+79        <package android:name="com.onymy.paybee.prod" />
+79-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:45:9-57
+79-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:45:18-54
+80        <package android:name="net.one97.paytm" />
+80-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:46:9-51
+80-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:46:18-48
+81        <package android:name="com.phonepe.app" />
+81-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:47:9-51
+81-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:47:18-48
+82        <package android:name="com.Version1" />
+82-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:48:9-48
+82-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:48:18-45
+83        <package android:name="com.samsung.android.spay" />
+83-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:49:9-60
+83-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:49:18-57
+84        <package android:name="com.sbi.upi" />
+84-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:50:9-47
+84-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:50:18-44
+85        <package android:name="com.SIBMobile" />
+85-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:51:9-49
+85-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:51:18-46
+86        <package android:name="com.truecaller" />
+86-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:52:9-50
+86-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:52:18-47
+87        <package android:name="com.infrasoft.uboi" />
+87-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:53:9-54
+87-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:53:18-51
+88        <package android:name="com.lcode.ucoupi" />
+88-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:54:9-52
+88-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:54:18-49
+89        <package android:name="com.YesBank" />
+89-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:55:9-47
+89-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:55:18-44
+90        <package android:name="com.dreamplug.androidapp" />
+90-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:56:9-60
+90-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:56:18-57
+91        <package android:name="money.bullet" /> <!-- Needs to be explicitly declared on Android R+ -->
+91-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:57:9-48
+91-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:57:18-45
+92        <package android:name="com.google.android.apps.maps" />
+92-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\e1b6a2d9e2c375591f92b1d9c81644cf\jetified-play-services-maps-17.0.1\AndroidManifest.xml:33:9-64
+92-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\e1b6a2d9e2c375591f92b1d9c81644cf\jetified-play-services-maps-17.0.1\AndroidManifest.xml:33:18-61
+93
+94        <intent>
+94-->[androidx.media:media:1.4.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d349b1bf8aa52c7f3c78ce390c98217b\media-1.4.1\AndroidManifest.xml:25:9-27:18
+95            <action android:name="android.media.browse.MediaBrowserService" />
+95-->[androidx.media:media:1.4.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d349b1bf8aa52c7f3c78ce390c98217b\media-1.4.1\AndroidManifest.xml:26:13-79
+95-->[androidx.media:media:1.4.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d349b1bf8aa52c7f3c78ce390c98217b\media-1.4.1\AndroidManifest.xml:26:21-76
+96        </intent>
+97    </queries>
+98
+99    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required by older versions of Google Play services to create GCM registration tokens -->
+99-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:13:5-76
+99-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:13:22-73
+100    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+100-->[com.google.android.gms:play-services-gcm:17.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\530943ff786ed6b2b995f0bc70d78e1d\jetified-play-services-gcm-17.0.0\AndroidManifest.xml:23:5-82
+100-->[com.google.android.gms:play-services-gcm:17.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\530943ff786ed6b2b995f0bc70d78e1d\jetified-play-services-gcm-17.0.0\AndroidManifest.xml:23:22-79
+101
+102    <uses-feature
+102-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\e1b6a2d9e2c375591f92b1d9c81644cf\jetified-play-services-maps-17.0.1\AndroidManifest.xml:26:5-28:35
+103        android:glEsVersion="0x00020000"
+103-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\e1b6a2d9e2c375591f92b1d9c81644cf\jetified-play-services-maps-17.0.1\AndroidManifest.xml:27:9-41
+104        android:required="true" />
+104-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\e1b6a2d9e2c375591f92b1d9c81644cf\jetified-play-services-maps-17.0.1\AndroidManifest.xml:28:9-32
+105
+106    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Permission will be merged into the manifest of the hosting app. -->
+106-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:26:5-110
+106-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:26:22-107
+107    <!-- Is required to launch foreground extraction service for targetSdkVersion 28+. -->
+108    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+108-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:13:5-77
+108-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:13:22-74
+109
+110    <application
+110-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:34:5-349:19
+111        android:name="com.nebulacompanies.ibo.IBOBackOffice"
+111-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:35:9-61
+112        android:allowBackup="false"
+112-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:36:9-36
+113        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+113-->[androidx.core:core:1.6.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\61ac8ce0d85f7086f7a168526c804e05\core-1.6.0\AndroidManifest.xml:24:18-86
+114        android:debuggable="false"
+114-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:37:9-35
+115        android:hardwareAccelerated="true"
+115-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:38:9-43
+116        android:icon="@drawable/app_logo"
+116-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:39:9-42
+117        android:label="@string/app_name"
+117-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:40:9-41
+118        android:largeHeap="true"
+118-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:41:9-33
+119        android:requestLegacyExternalStorage="true"
+119-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:42:9-52
+120        android:supportsRtl="true"
+120-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:43:9-35
+121        android:theme="@style/AppTheme"
+121-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:44:9-40
+122        android:usesCleartextTraffic="true" >
+122-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:45:9-44
+123
+124        <!--
+125             The API key for Google Maps-based APIs is defined as a string resource.
+126             (See the file "res/values/google_maps_api.xml").
+127             Note that the API key is linked to the encryption key used to sign the APK.
+128             You need a different API key for each encryption key, including the release key that is used to
+129             sign the APK for publishing.
+130             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+131        -->
+132        <meta-data
+132-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:57:9-59:55
+133            android:name="com.google.android.geo.API_KEY"
+133-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:58:13-58
+134            android:value="@string/google_maps_key" />
+134-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:59:13-52
+135
+136        <provider
+137            android:name="androidx.core.content.FileProvider"
+137-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:62:13-62
+138            android:authorities="com.nebulacompanies.ibo.shoppy.fileprovider"
+138-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:63:13-78
+139            android:exported="false"
+139-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:64:13-37
+140            android:grantUriPermissions="true" >
+140-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:65:13-47
+141            <meta-data
+141-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:67:13-70:52
+142                android:name="android.support.FILE_PROVIDER_PATHS"
+142-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:68:17-67
+143                android:resource="@xml/file_paths" />
+143-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:69:17-51
+144        </provider>
+145
+146        <receiver
+146-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:73:9-81:20
+147            android:name="com.nebulacompanies.ibo.util.NetworkChangeReceiver"
+147-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:74:13-78
+148            android:label="NetworkChangeReceiver" >
+148-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:75:13-50
+149            <intent-filter>
+149-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:76:13-80:29
+150                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
+150-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:77:17-85
+150-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:77:25-82
+151                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+151-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:78:17-79
+151-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:78:25-76
+152                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+152-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:79:17-78
+152-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:79:25-75
+153            </intent-filter>
+154        </receiver>
+155        <receiver
+155-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:82:9-88:20
+156            android:name="com.nebulacompanies.ibo.sms.SmsBroadcastReceiver"
+156-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:83:13-76
+157            android:exported="true" >
+157-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:84:13-36
+158            <intent-filter>
+158-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:85:13-87:29
+159                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVE" />
+159-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:86:17-93
+159-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:86:25-90
+160            </intent-filter>
+161        </receiver>
+162        <!--
+163               <activity
+164                android:name="com.nebulacompanies.ibo.activities.PdfUploader"
+165                android:configChanges="keyboard|keyboardHidden|screenSize"
+166                android:windowSoftInputMode="stateUnchanged|adjustResize|stateHidden|stateAlwaysHidden">
+167                <intent-filter>
+168                    <action android:name="android.intent.action.MAIN" />
+169                    <action android:name="android.intent.action.VIEW" />
+170
+171                    <category android:name="android.intent.category.LAUNCHER" />
+172                </intent-filter>
+173            </activity>
+174        -->
+175        <activity
+175-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:100:9-111:20
+176            android:name="com.nebulacompanies.ibo.activities.StartUp"
+176-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:101:13-70
+177            android:configChanges="keyboard|keyboardHidden|screenSize"
+177-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:102:13-71
+178            android:noHistory="true"
+178-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:103:13-37
+179            android:windowSoftInputMode="stateUnchanged|adjustResize|stateHidden|stateAlwaysHidden" >
+179-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:104:13-100
+180            <intent-filter>
+180-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:105:13-110:29
+181                <action android:name="android.intent.action.MAIN" />
+181-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:17-69
+181-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:25-66
+182                <action android:name="android.intent.action.VIEW" />
+182-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:107:17-69
+182-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:107:25-66
+183
+184                <category android:name="android.intent.category.LAUNCHER" />
+184-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:109:17-77
+184-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:109:27-74
+185            </intent-filter>
+186        </activity>
+187        <!--
+188           <activity
+189               android:name="com.nebulacompanies.ibo.activities.TempActivity"
+190               android:configChanges="keyboard|keyboardHidden|screenSize"
+191               android:windowSoftInputMode="stateUnchanged|adjustResize|stateHidden|stateAlwaysHidden">
+192               <intent-filter>
+193                   <action android:name="android.intent.action.MAIN" />
+194                   <action android:name="android.intent.action.VIEW" />
+195
+196                   <category android:name="android.intent.category.LAUNCHER" />
+197               </intent-filter>
+198           </activity>
+199        -->
+200        <uses-library
+200-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:123:9-125:40
+201            android:name="org.apache.http.legacy"
+201-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:124:13-50
+202            android:required="false" />
+202-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:125:13-37
+203
+204        <activity
+204-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:127:9-130:52
+205            android:name="com.nebulacompanies.ibo.ecom.ShowFullScreenAttachment"
+205-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:128:13-81
+206            android:configChanges="keyboard|keyboardHidden|screenSize"
+206-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:129:13-71
+207            android:screenOrientation="portrait" />
+207-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:130:13-49
+208        <activity
+208-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:131:9-135:57
+209            android:name="com.nebulacompanies.ibo.activities.ShoppyHomeScreen"
+209-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:132:13-79
+210            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+210-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:133:13-83
+211            android:screenOrientation="portrait"
+211-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:134:13-49
+212            android:windowSoftInputMode="stateHidden" />
+212-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:135:13-54
+213        <activity
+213-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:136:9-140:57
+214            android:name="com.nebulacompanies.ibo.activities.SalesHistoryActivity"
+214-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:137:13-83
+215            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+215-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:138:13-83
+216            android:screenOrientation="portrait"
+216-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:139:13-49
+217            android:windowSoftInputMode="stateHidden" />
+217-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:140:13-54
+218        <activity
+218-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:141:9-147:57
+219            android:name="com.nebulacompanies.ibo.ecom.ViewSaleHistoryActivity"
+219-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:142:13-80
+220            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+220-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:143:13-83
+221            android:screenOrientation="portrait"
+221-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:144:13-49
+222            android:theme="@style/StartUp"
+222-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:145:13-43
+223            android:windowSoftInputMode="stateHidden" />
+223-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:147:13-54
+224        <activity
+224-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:148:9-152:57
+225            android:name="com.nebulacompanies.ibo.activities.SellProductsActivity"
+225-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:149:13-83
+226            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+226-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:150:13-83
+227            android:screenOrientation="portrait"
+227-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:151:13-49
+228            android:windowSoftInputMode="stateHidden" />
+228-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:152:13-54
+229        <activity
+229-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:153:9-157:57
+230            android:name="com.nebulacompanies.ibo.activities.ConfirmSellActivity"
+230-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:154:13-82
+231            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+231-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:155:13-83
+232            android:screenOrientation="portrait"
+232-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:156:13-49
+233            android:windowSoftInputMode="stateHidden" />
+233-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:157:13-54
+234        <activity
+234-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:158:9-162:57
+235            android:name="com.nebulacompanies.ibo.activities.OrderListActivity"
+235-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:159:13-80
+236            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+236-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:160:13-83
+237            android:screenOrientation="portrait"
+237-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:161:13-49
+238            android:windowSoftInputMode="stateHidden" />
+238-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:162:13-54
+239        <activity
+239-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:163:9-168:57
+240            android:name="com.nebulacompanies.ibo.activities.MyInventoryActivity"
+240-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:164:13-82
+241            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+241-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:165:13-83
+242            android:screenOrientation="portrait"
+242-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:166:13-49
+243            android:theme="@style/StartUp"
+243-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:167:13-43
+244            android:windowSoftInputMode="stateHidden" />
+244-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:168:13-54
+245        <activity
+245-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:169:9-173:57
+246            android:name="com.nebulacompanies.ibo.activities.RegistrationActivityWebview"
+246-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:170:13-90
+247            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+247-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:171:13-83
+248            android:screenOrientation="portrait"
+248-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:172:13-49
+249            android:windowSoftInputMode="stateHidden" />
+249-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:173:13-54
+250        <activity
+250-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:174:9-178:57
+251            android:name="com.nebulacompanies.ibo.activities.HomeStoreDetailsActivity"
+251-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:175:13-87
+252            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+252-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:176:13-83
+253            android:screenOrientation="portrait"
+253-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:177:13-49
+254            android:windowSoftInputMode="stateHidden" />
+254-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:178:13-54
+255        <activity
+255-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:179:9-183:57
+256            android:name="com.nebulacompanies.ibo.activities.ChooseShopyActivity"
+256-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:180:13-82
+257            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+257-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:181:13-83
+258            android:screenOrientation="portrait"
+258-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:182:13-49
+259            android:windowSoftInputMode="stateHidden" />
+259-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:183:13-54
+260        <!--
+261 Set custom default icon. This is used when no icon is set for incoming notification messages.
+262             See README(https://goo.gl/l4GJaQ) for more.
+263        -->
+264        <meta-data
+264-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:188:9-190:53
+265            android:name="com.google.firebase.messaging.default_notification_icon"
+265-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:189:13-83
+266            android:resource="@drawable/app_logo" />
+266-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:190:13-50
+267        <!--
+268 Set color used with incoming notification messages. This is used when no color is set for the incoming
+269             notification message. See README(https://goo.gl/6BKBk7) for more.
+270        -->
+271        <meta-data
+271-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:195:9-197:53
+272            android:name="com.google.firebase.messaging.default_notification_color"
+272-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:196:13-84
+273            android:resource="@color/colorAccent" />
+273-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:197:13-50
+274
+275        <service
+275-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:199:9-206:19
+276            android:name="com.nebulacompanies.ibo.firebase.MyFirebaseMessagingService"
+276-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:200:13-87
+277            android:exported="false"
+277-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:201:13-37
+278            android:resource="@drawable/app_logo" >
+278-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:202:13-50
+279            <intent-filter>
+279-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:203:13-205:29
+280                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+280-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:204:17-78
+280-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:204:25-75
+281            </intent-filter>
+282        </service>
+283
+284        <activity
+284-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:208:9-211:58
+285            android:name="com.nebulacompanies.ibo.activities.LoginActivity"
+285-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:209:13-76
+286            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+286-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:210:13-83
+287            android:windowSoftInputMode="adjustResize" />
+287-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:211:13-55
+288        <activity
+288-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:212:9-216:58
+289            android:name="com.nebulacompanies.ibo.activities.SessionOverDialog"
+289-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:213:13-80
+290            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+290-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:214:13-83
+291            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
+291-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:215:13-70
+292            android:windowSoftInputMode="adjustResize" />
+292-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:216:13-55
+293        <activity
+293-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:217:9-219:86
+294            android:name="com.nebulacompanies.ibo.activities.PrivacyPolicyActivity"
+294-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:218:13-84
+295            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+295-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:219:13-83
+296
+297        <meta-data
+297-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:221:9-223:35
+298            android:name="com.google.android.gms.vision.DEPENDENCIES"
+298-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:222:13-70
+299            android:value="ocr" />
+299-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:223:13-32
+300
+301        <provider
+302            android:name="androidx.core.content.FileProvider"
+302-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:62:13-62
+303            android:authorities="com.nebulacompanies.ibo.shoppy.provider"
+303-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:63:13-78
+304            android:exported="false"
+304-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:64:13-37
+305            android:grantUriPermissions="true" >
+305-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:65:13-47
+306            <meta-data
+306-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:67:13-70:52
+307                android:name="android.support.FILE_PROVIDER_PATHS"
+307-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:68:17-67
+308                android:resource="@xml/provider_paths" />
+308-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:69:17-51
+309        </provider> <!-- ECOM -->
+310        <activity
+310-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:234:9-236:57
+311            android:name="com.nebulacompanies.ibo.ecom.MainActivity"
+311-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:235:13-69
+312            android:windowSoftInputMode="stateHidden" />
+312-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:236:13-54
+313        <activity
+313-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:237:9-240:57
+314            android:name="com.nebulacompanies.ibo.ecom.ProductDescription"
+314-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:238:13-75
+315            android:screenOrientation="portrait"
+315-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:239:13-49
+316            android:windowSoftInputMode="stateHidden" />
+316-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:240:13-54
+317        <activity
+317-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:241:9-244:57
+318            android:name="com.nebulacompanies.ibo.ecom.TrackOrderActivity"
+318-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:242:13-75
+319            android:screenOrientation="portrait"
+319-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:243:13-49
+320            android:windowSoftInputMode="stateHidden" />
+320-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:244:13-54
+321        <activity
+321-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:245:9-248:59
+322            android:name="com.nebulacompanies.ibo.ecom.MyCartActivity"
+322-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:246:13-71
+323            android:screenOrientation="portrait"
+323-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:247:13-49
+324            android:windowSoftInputMode="adjustNothing" />
+324-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:248:13-56
+325        <activity
+325-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:249:9-252:57
+326            android:name="com.nebulacompanies.ibo.ecom.ProductAvaibilityActivity"
+326-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:250:13-82
+327            android:screenOrientation="portrait"
+327-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:251:13-49
+328            android:windowSoftInputMode="stateHidden" />
+328-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:252:13-54
+329        <activity
+329-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:253:9-256:57
+330            android:name="com.nebulacompanies.ibo.activities.ReadMoreActivity"
+330-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:254:13-79
+331            android:screenOrientation="portrait"
+331-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:255:13-49
+332            android:windowSoftInputMode="stateHidden" />
+332-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:256:13-54
+333        <activity
+333-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:257:9-261:57
+334            android:name="com.nebulacompanies.ibo.ecom.MyCategoryActivity"
+334-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:258:13-75
+335            android:launchMode="singleTop"
+335-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:259:13-43
+336            android:screenOrientation="portrait"
+336-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:260:13-49
+337            android:windowSoftInputMode="stateHidden" />
+337-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:261:13-54
+338        <activity
+338-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:262:9-265:57
+339            android:name="com.nebulacompanies.ibo.ecom.MyOrderDetailsActivity"
+339-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:263:13-79
+340            android:screenOrientation="portrait"
+340-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:264:13-49
+341            android:windowSoftInputMode="stateHidden" />
+341-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:265:13-54
+342        <activity
+342-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:266:9-271:57
+343            android:name="com.nebulacompanies.ibo.ecom.MyViewOrderActivity"
+343-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:267:13-76
+344            android:screenOrientation="portrait"
+344-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:268:13-49
+345            android:theme="@style/StartUp"
+345-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:269:13-43
+346            android:windowSoftInputMode="stateHidden" />
+346-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:271:13-54
+347        <activity
+347-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:272:9-275:57
+348            android:name="com.nebulacompanies.ibo.ecom.MyWishListActivity"
+348-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:273:13-75
+349            android:screenOrientation="portrait"
+349-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:274:13-49
+350            android:windowSoftInputMode="stateHidden" />
+350-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:275:13-54
+351        <activity
+351-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:276:9-279:57
+352            android:name="com.nebulacompanies.ibo.ecom.MyAddressActivity"
+352-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:277:13-74
+353            android:screenOrientation="portrait"
+353-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:278:13-49
+354            android:windowSoftInputMode="stateHidden" />
+354-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:279:13-54
+355        <activity
+355-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:280:9-283:57
+356            android:name="com.nebulacompanies.ibo.ecom.CustomerSupport"
+356-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:281:13-72
+357            android:screenOrientation="portrait"
+357-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:282:13-49
+358            android:windowSoftInputMode="stateHidden" />
+358-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:283:13-54
+359        <activity
+359-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:284:9-287:57
+360            android:name="com.nebulacompanies.ibo.ecom.CustomerSupportList"
+360-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:285:13-76
+361            android:screenOrientation="portrait"
+361-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:286:13-49
+362            android:windowSoftInputMode="stateHidden" />
+362-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:287:13-54
+363        <activity
+363-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:288:9-291:58
+364            android:name="com.nebulacompanies.ibo.ecom.SearchActivity"
+364-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:289:13-71
+365            android:screenOrientation="portrait"
+365-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:290:13-49
+366            android:windowSoftInputMode="stateVisible" />
+366-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:291:13-55
+367        <activity
+367-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:292:9-295:57
+368            android:name="com.nebulacompanies.ibo.ecom.MyAddressAccountActivity"
+368-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:293:13-81
+369            android:screenOrientation="portrait"
+369-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:294:13-49
+370            android:windowSoftInputMode="stateHidden" />
+370-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:295:13-54
+371        <activity
+371-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:296:9-299:57
+372            android:name="com.nebulacompanies.ibo.ecom.AddAddressAcountActivity"
+372-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:297:13-81
+373            android:screenOrientation="portrait"
+373-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:298:13-49
+374            android:windowSoftInputMode="stateHidden" />
+374-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:299:13-54
+375        <activity
+375-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:300:9-303:57
+376            android:name="com.nebulacompanies.ibo.ecom.AddAddressAcountBottomActivity"
+376-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:301:13-87
+377            android:screenOrientation="portrait"
+377-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:302:13-49
+378            android:windowSoftInputMode="stateHidden" />
+378-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:303:13-54
+379        <activity
+379-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:304:9-307:57
+380            android:name="com.nebulacompanies.ibo.ecom.AddAddressAcountNewActivity"
+380-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:305:13-84
+381            android:screenOrientation="portrait"
+381-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:306:13-49
+382            android:windowSoftInputMode="stateHidden" />
+382-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:307:13-54
+383        <activity
+383-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:308:9-311:57
+384            android:name="com.nebulacompanies.ibo.ecom.EditAddressActivity"
+384-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:309:13-76
+385            android:screenOrientation="portrait"
+385-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:310:13-49
+386            android:windowSoftInputMode="stateHidden" />
+386-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:311:13-54
+387        <activity
+387-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:312:9-315:57
+388            android:name="com.nebulacompanies.ibo.ecom.EditAddressAccountActivity"
+388-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:313:13-83
+389            android:screenOrientation="portrait"
+389-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:314:13-49
+390            android:windowSoftInputMode="stateHidden" />
+390-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:315:13-54
+391        <activity
+391-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:316:9-319:57
+392            android:name="com.nebulacompanies.ibo.ecom.OrderSummaryActivity"
+392-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:317:13-77
+393            android:screenOrientation="portrait"
+393-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:318:13-49
+394            android:windowSoftInputMode="stateHidden" />
+394-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:319:13-54
+395        <activity
+395-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:320:9-323:57
+396            android:name="com.nebulacompanies.ibo.ecom.MyWalletActivity"
+396-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:321:13-73
+397            android:screenOrientation="portrait"
+397-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:322:13-49
+398            android:windowSoftInputMode="stateHidden" />
+398-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:323:13-54
+399        <activity
+399-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:324:9-327:57
+400            android:name="com.nebulacompanies.ibo.ecom.PaymentActivity"
+400-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:325:13-72
+401            android:screenOrientation="portrait"
+401-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:326:13-49
+402            android:windowSoftInputMode="stateHidden" />
+402-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:327:13-54
+403        <activity
+403-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:328:9-331:57
+404            android:name="com.nebulacompanies.ibo.ecom.LoginActivityEcom"
+404-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:329:13-74
+405            android:screenOrientation="portrait"
+405-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:330:13-49
+406            android:windowSoftInputMode="stateHidden" />
+406-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:331:13-54
+407        <activity
+407-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:332:9-335:57
+408            android:name="com.nebulacompanies.ibo.ecom.BillingAddressActivity"
+408-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:333:13-79
+409            android:screenOrientation="portrait"
+409-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:334:13-49
+410            android:windowSoftInputMode="stateHidden" />
+410-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:335:13-54
+411        <activity
+411-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:336:9-339:57
+412            android:name="com.nebulacompanies.ibo.ecom.EnlargeItem"
+412-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:337:13-68
+413            android:screenOrientation="portrait"
+413-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:338:13-49
+414            android:windowSoftInputMode="stateHidden" />
+414-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:339:13-54
+415        <!--
+416            <activity
+417            android:name="com.paytm.pgsdk.PaytmPGActivity"
+418            android:screenOrientation="portrait"
+419            android:windowSoftInputMode="stateHidden"/>
+420        -->
+421        <meta-data
+421-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:344:9-346:55
+422            android:name="com.razorpay.ApiKey"
+422-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:345:13-47
+423            android:value="rzp_live_svNGowQC2rWbql" />
+423-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:346:13-52
+424        <!--
+425        old   rzp_live_aYUKDgMuh4S9Mn
+426        new rzp_live_svNGowQC2rWbql
+427        -->
+428        <activity
+428-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:23:9-26:66
+429            android:name="com.paytm.pgsdk.PaytmPGActivity"
+429-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:24:13-59
+430            android:screenOrientation="portrait"
+430-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:25:13-49
+431            android:theme="@style/Theme.AppCompat.NoActionBar" />
+431-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:26:13-63
+432        <activity
+432-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:27:9-29:63
+433            android:name="com.paytm.pgsdk.AioMatchUserActivity"
+433-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:28:13-64
+434            android:theme="@style/TransparentActivityTheme" />
+434-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:29:13-60
+435
+436        <service
+436-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:31:9-33:40
+437            android:name="com.paytm.pgsdk.IntentServicePostNotification"
+437-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:32:13-73
+438            android:exported="false" />
+438-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:33:13-37
+439        <service
+439-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:34:9-36:40
+440            android:name="com.paytm.pgsdk.IntentServicePreNotification"
+440-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:35:13-72
+441            android:exported="false" />
+441-->[com.paytm.appinvokesdk:appinvokesdk:1.6.5] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\129743e6371e74a29464b60cfa6cb3b6\jetified-appinvokesdk-1.6.5\AndroidManifest.xml:36:13-37
+442        <service
+442-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:14:9-17:72
+443            android:name="easypay.appinvoke.utils.EasyPayConfigDownloader"
+443-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:15:13-75
+444            android:exported="false"
+444-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:16:13-37
+445            android:permission="android.permission.BIND_JOB_SERVICE" />
+445-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:17:13-69
+446        <service
+446-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:18:9-22:72
+447            android:name="easypay.appinvoke.utils.AnalyticsService"
+447-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:19:13-68
+448            android:enabled="true"
+448-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:20:13-35
+449            android:exported="false"
+449-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:21:13-37
+450            android:permission="android.permission.BIND_JOB_SERVICE" />
+450-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:22:13-69
+451
+452        <activity android:name="easypay.appinvoke.AnalyticsManagerInfoDisplayActivity" />
+452-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:24:9-90
+452-->[com.paytm.easypay:easypay-appinvoke:1.7.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d09d2e6f484ca2a8d6c084e7271008df\jetified-easypay-appinvoke-1.7.3\AndroidManifest.xml:24:19-87
+453        <activity
+453-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:18:9-21:63
+454            android:name="com.payu.custombrowser.CBActivity"
+454-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:19:13-61
+455            android:screenOrientation="portrait"
+455-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:20:13-49
+456            android:windowSoftInputMode="stateAlwaysHidden" />
+456-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:21:13-60
+457
+458        <service android:name="com.payu.custombrowser.services.SnoozeService" />
+458-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:23:9-81
+458-->[in.payu:payu-custom-browser:7.10.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\8a5df4c7d954218b1e34c2b108b2c726\jetified-payu-custom-browser-7.10.1\AndroidManifest.xml:23:18-78
+459
+460        <activity
+460-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:18:9-20:52
+461            android:name="com.payu.ui.view.activities.CheckoutActivity"
+461-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:19:13-72
+462            android:screenOrientation="portrait" />
+462-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:20:13-49
+463
+464        <meta-data
+464-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:22:9-24:57
+465            android:name="preloaded_fonts"
+465-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:23:13-43
+466            android:resource="@array/preloaded_fonts" />
+466-->[in.payu:payu-checkout-pro-ui:1.8.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\07c7579c6090b9ecd7ae68c542d78282\jetified-payu-checkout-pro-ui-1.8.1\AndroidManifest.xml:24:13-54
+467
+468        <service
+468-->[net.gotev:uploadservice:2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\2ebe34e83a9c4fdee7a4e74a2b2207c4\jetified-uploadservice-2.0\AndroidManifest.xml:18:9-22:19
+469            android:name="net.gotev.uploadservice.UploadService"
+469-->[net.gotev:uploadservice:2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\2ebe34e83a9c4fdee7a4e74a2b2207c4\jetified-uploadservice-2.0\AndroidManifest.xml:19:13-65
+470            android:enabled="true"
+470-->[net.gotev:uploadservice:2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\2ebe34e83a9c4fdee7a4e74a2b2207c4\jetified-uploadservice-2.0\AndroidManifest.xml:20:13-35
+471            android:exported="true" >
+471-->[net.gotev:uploadservice:2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\2ebe34e83a9c4fdee7a4e74a2b2207c4\jetified-uploadservice-2.0\AndroidManifest.xml:21:13-36
+472        </service>
+473
+474        <activity
+474-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:63:9-66:63
+475            android:name="com.payu.upisdk.upiintent.PaymentResponseUpiSdkActivity"
+475-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:64:13-83
+476            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+476-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:65:13-75
+477            android:windowSoftInputMode="stateAlwaysHidden" />
+477-->[in.payu:upisdk:1.5.3] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\59bada86014766d87f5e001c37ebcc01\jetified-upisdk-1.5.3\AndroidManifest.xml:66:13-60
+478
+479        <receiver
+479-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:28:9-35:20
+480            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+480-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:29:13-78
+481            android:exported="true"
+481-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:30:13-36
+482            android:permission="com.google.android.c2dm.permission.SEND" >
+482-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:31:13-73
+483            <intent-filter>
+483-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:32:13-34:29
+484                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+484-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:33:17-81
+484-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:33:25-78
+485            </intent-filter>
+486        </receiver>
+487        <!--
+488             FirebaseMessagingService performs security checks at runtime,
+489             but set to not exported to explicitly avoid allowing another app to call it.
+490        -->
+491        <service
+491-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:41:9-48:19
+492            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+492-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:42:13-82
+493            android:directBootAware="true"
+493-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:43:13-43
+494            android:exported="false" >
+494-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:44:13-37
+495            <intent-filter android:priority="-500" >
+495-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:203:13-205:29
+496                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+496-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:204:17-78
+496-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:204:25-75
+497            </intent-filter>
+498        </service>
+499        <service
+499-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:49:9-55:19
+500            android:name="com.google.firebase.components.ComponentDiscoveryService"
+500-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:50:13-84
+501            android:directBootAware="true"
+501-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+502            android:exported="false" >
+502-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:51:13-37
+503            <meta-data
+503-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:52:13-54:85
+504                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+504-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:53:17-119
+505                android:value="com.google.firebase.components.ComponentRegistrar" />
+505-->[com.google.firebase:firebase-messaging:22.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\9a2cbf9b36de23e8268fc021e5ab2f89\jetified-firebase-messaging-22.0.0\AndroidManifest.xml:54:17-82
+506            <meta-data
+506-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\61028e2f811b6c5a1177ad3957133bf0\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:28:13-30:85
+507                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+507-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\61028e2f811b6c5a1177ad3957133bf0\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:29:17-115
+508                android:value="com.google.firebase.components.ComponentRegistrar" />
+508-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\61028e2f811b6c5a1177ad3957133bf0\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:30:17-82
+509            <meta-data
+509-->[com.google.android.gms:play-services-measurement-api:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6d3f6d2be3bd77a38b95afbacc854bc5\jetified-play-services-measurement-api-19.0.1\AndroidManifest.xml:30:13-32:85
+510                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+510-->[com.google.android.gms:play-services-measurement-api:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6d3f6d2be3bd77a38b95afbacc854bc5\jetified-play-services-measurement-api-19.0.1\AndroidManifest.xml:31:17-139
+511                android:value="com.google.firebase.components.ComponentRegistrar" />
+511-->[com.google.android.gms:play-services-measurement-api:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6d3f6d2be3bd77a38b95afbacc854bc5\jetified-play-services-measurement-api-19.0.1\AndroidManifest.xml:32:17-82
+512            <meta-data
+512-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\671f71e6564719876c3b07476c716f74\jetified-firebase-installations-17.0.0\AndroidManifest.xml:18:13-20:85
+513                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+513-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\671f71e6564719876c3b07476c716f74\jetified-firebase-installations-17.0.0\AndroidManifest.xml:19:17-127
+514                android:value="com.google.firebase.components.ComponentRegistrar" />
+514-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\671f71e6564719876c3b07476c716f74\jetified-firebase-installations-17.0.0\AndroidManifest.xml:20:17-82
+515        </service>
+516
+517        <activity
+517-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:23:9-27:75
+518            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+518-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:24:13-93
+519            android:excludeFromRecents="true"
+519-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:25:13-46
+520            android:exported="false"
+520-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:26:13-37
+521            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+521-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:27:13-72
+522        <!--
+523            Service handling Google Sign-In user revocation. For apps that do not integrate with
+524            Google Sign-In, this service will never be started.
+525        -->
+526        <service
+526-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:33:9-37:51
+527            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+527-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:34:13-89
+528            android:exported="true"
+528-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:35:13-36
+529            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+529-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:36:13-107
+530            android:visibleToInstantApps="true" />
+530-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\ad4f48d1d0908df4db8e86c6119bbb44\jetified-play-services-auth-19.2.0\AndroidManifest.xml:37:13-48
+531
+532        <activity
+532-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\509fe8ed31a3e36bde03bbdc6e90e865\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+533            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+533-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\509fe8ed31a3e36bde03bbdc6e90e865\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+534            android:exported="false"
+534-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\509fe8ed31a3e36bde03bbdc6e90e865\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+535            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+535-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\509fe8ed31a3e36bde03bbdc6e90e865\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+536
+537        <receiver
+537-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:29:9-33:20
+538            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+538-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:30:13-85
+539            android:enabled="true"
+539-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:31:13-35
+540            android:exported="false" >
+540-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:32:13-37
+541        </receiver>
+542
+543        <service
+543-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:35:9-38:40
+544            android:name="com.google.android.gms.measurement.AppMeasurementService"
+544-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:36:13-84
+545            android:enabled="true"
+545-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:37:13-35
+546            android:exported="false" />
+546-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:38:13-37
+547        <service
+547-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:39:9-43:72
+548            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+548-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:40:13-87
+549            android:enabled="true"
+549-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:41:13-35
+550            android:exported="false"
+550-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:42:13-37
+551            android:permission="android.permission.BIND_JOB_SERVICE" />
+551-->[com.google.android.gms:play-services-measurement:19.0.1] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\42be1e846ad1f75d1cfa3718538fcc8d\jetified-play-services-measurement-19.0.1\AndroidManifest.xml:43:13-69
+552
+553        <provider
+553-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+554            android:name="com.google.firebase.provider.FirebaseInitProvider"
+554-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+555            android:authorities="com.nebulacompanies.ibo.shoppy.firebaseinitprovider"
+555-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+556            android:directBootAware="true"
+556-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+557            android:exported="false"
+557-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+558            android:initOrder="100" />
+558-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\1e257a44abe0cae5bc5273a9ef13b768\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+559
+560        <meta-data
+560-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\85a3b6132831069a6edf4b3494039451\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
+561            android:name="com.google.android.gms.version"
+561-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\85a3b6132831069a6edf4b3494039451\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
+562            android:value="@integer/google_play_services_version" />
+562-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\85a3b6132831069a6edf4b3494039451\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
+563
+564        <provider
+564-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:16:9-24:20
+565            android:name="androidx.startup.InitializationProvider"
+565-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:17:13-67
+566            android:authorities="com.nebulacompanies.ibo.shoppy.androidx-startup"
+566-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:18:13-68
+567            android:exported="false" >
+567-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:19:13-37
+568            <meta-data
+568-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:21:13-23:52
+569                android:name="com.payu.crashlogger.CrashProviderInitializer"
+569-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:22:17-77
+570                android:value="androidx.startup" />
+570-->[in.payu:payu-crash-logger:1.0.4] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\55511c19ab0668c47e37c632ec8da2b9\jetified-payu-crash-logger-1.0.4\AndroidManifest.xml:23:17-49
+571        </provider>
+572
+573        <receiver android:name="com.razorpay.RzpTokenReceiver" >
+573-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:12:9-16:20
+573-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:12:19-63
+574            <intent-filter>
+574-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:13:13-15:29
+575                <action android:name="rzp.device_token.share" />
+575-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:14:17-65
+575-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:14:25-62
+576            </intent-filter>
+577        </receiver>
+578
+579        <activity
+579-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:18:9-29:20
+580            android:name="com.razorpay.CheckoutActivity"
+580-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:19:13-57
+581            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+581-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:20:13-83
+582            android:theme="@style/CheckoutTheme" >
+582-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:21:13-49
+583            <intent-filter>
+583-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:22:13-28:29
+584                <action android:name="android.intent.action.MAIN" />
+584-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:17-69
+584-->E:\Bhoomika\NebulaShoppy\app\src\main\AndroidManifest.xml:106:25-66
+585
+586                <data
+586-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:25:17-27:47
+587                    android:host="rzp.io"
+587-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:26:21-42
+588                    android:scheme="io.rzp" />
+588-->[com.razorpay:checkout:1.5.8] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\d668d90dfd9b15a485621b1e4223576d\jetified-checkout-1.5.8\AndroidManifest.xml:27:21-44
+589            </intent-filter>
+590        </activity> <!-- The activities will be merged into the manifest of the hosting app. -->
+591        <activity
+591-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:18:9-24:45
+592            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+592-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:19:13-100
+593            android:enabled="false"
+593-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:20:13-36
+594            android:exported="false"
+594-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:21:13-37
+595            android:launchMode="singleInstance"
+595-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:22:13-48
+596            android:process=":playcore_missing_splits_activity"
+596-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:23:13-64
+597            android:stateNotNeeded="true" />
+597-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:24:13-42
+598        <activity
+598-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:25:9-29:65
+599            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+599-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:26:13-93
+600            android:exported="false"
+600-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:27:13-37
+601            android:stateNotNeeded="true"
+601-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:28:13-42
+602            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The services will be merged into the manifest of the hosting app. -->
+602-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:29:13-62
+603        <service
+603-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:32:9-39:19
+604            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+604-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:33:13-94
+605            android:enabled="false"
+605-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:34:13-36
+606            android:exported="true" >
+606-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:35:13-36
+607            <meta-data
+607-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:36:13-38:41
+608                android:name="com.google.android.play.core.assetpacks.versionCode"
+608-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:37:17-83
+609                android:value="11002" />
+609-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:38:17-38
+610        </service>
+611        <service
+611-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:40:9-43:40
+612            android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"
+612-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:41:13-95
+613            android:enabled="false"
+613-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:42:13-36
+614            android:exported="false" />
+614-->[com.google.android.play:core:1.10.2] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\6bb31bb92ed750b92e426535ef58fc93\jetified-core-1.10.2\AndroidManifest.xml:43:13-37
+615        <service
+615-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:29:9-35:19
+616            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+616-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:30:13-103
+617            android:exported="false" >
+617-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:31:13-37
+618            <meta-data
+618-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:32:13-34:39
+619                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+619-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:33:17-94
+620                android:value="cct" />
+620-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\31ce04eefb1e2572ca53b4c1f891497c\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:34:17-36
+621        </service>
+622        <service
+622-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:26:9-30:19
+623            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+623-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:27:13-117
+624            android:exported="false"
+624-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:28:13-37
+625            android:permission="android.permission.BIND_JOB_SERVICE" >
+625-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:29:13-69
+626        </service>
+627
+628        <receiver
+628-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:32:9-34:40
+629            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+629-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:33:13-132
+630            android:exported="false" />
+630-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\Chirag Vaghela\.gradle\caches\transforms-2\files-2.1\36024f0e0093d5d234de60067d43e9bf\jetified-transport-runtime-3.0.0\AndroidManifest.xml:34:13-37
+631    </application>
+632
+633</manifest>

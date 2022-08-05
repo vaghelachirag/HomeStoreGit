@@ -1,0 +1,504 @@
+package com.nebulacompanies.ibo.activities;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nebulacompanies.ibo.Interface.OnProductAdded;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.adapter.SellInventoryAdapter;
+import com.nebulacompanies.ibo.ecom.MyCartActivity;
+import com.nebulacompanies.ibo.ecom.model.OrderInventoryModel;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.NebulaEditTextEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.IboModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+
+import java.util.ArrayList;
+
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class SellProductsActivity extends AppCompatActivity implements OnProductAdded {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+
+    private RelativeLayout llEmpty;
+    private ImageView imgError;
+    private MyTextViewEcom txtErrorContent, txtRetry;
+    MyBoldTextViewEcom txtErrorTitle;
+    RecyclerView recList;
+    MaterialProgressBar mProgressDialog;
+    Session session;
+    String userId, iboId;
+    LinearLayout layData;
+    private final ArrayList<OrderInventoryModel.Datum> inventoryList = new ArrayList<>();
+    private final ArrayList<OrderInventoryModel.Datum> sellList = new ArrayList<>();
+    private SellInventoryAdapter sellInventoryAdapter;
+    APIInterface mAPIInterface, mAPIInterfaceSpade;
+    MyButtonEcom btnConfirmInfo;
+    MyTextViewEcom textIboid, textCustomer, textInfo;
+    NebulaEditTextEcom editIboID, editCusName, editCusNumber;
+    LinearLayout layCustomer, layIBO;
+    int showUser = 0;
+    String iboid, custName, custNumber;
+    CardView cardData;
+    AlertDialog dialogDetails;
+    AlertDialog.Builder builder;
+    ImageView imgClose, imgEdit;
+    ProgressDialog mLoadProgressDialog;
+    NebulaEditTextEcom editSearch;
+    MyTextViewEcom txtBadge;
+    RelativeLayout relSearch;
+    ImageView btnProceed;
+    LinearLayout viewIBO, viewCustomer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sell_products);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        mAPIInterface = APIClient.getShoppyClient(getApplicationContext()).create(APIInterface.class);
+        mAPIInterfaceSpade = APIClient.getClient(getApplicationContext()).create(APIInterface.class);
+        initFullDialog();
+        initUI();
+        alertBoxTicketDetail();
+        getSellProductsList();
+    }
+
+    public void initFullDialog() {
+        mLoadProgressDialog = new ProgressDialog(SellProductsActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        mLoadProgressDialog.setCancelable(false);
+        mLoadProgressDialog.setMessage("Loading...");
+    }
+
+    public void showFullDialog() {
+        if (mLoadProgressDialog != null && !mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.show();
+    }
+
+    public void hideFullDialog() {
+        if (mLoadProgressDialog != null && mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.dismiss();
+    }
+
+    public void alertBoxTicketDetail() {
+
+        builder = new AlertDialog.Builder(this);
+
+        // set the custom layout
+        final View customLayout = LayoutInflater.from(this).inflate(R.layout.dialog_add_customer, null);
+        builder.setView(customLayout);
+        imgClose = customLayout.findViewById(R.id.img_ticket_close);
+        layCustomer = customLayout.findViewById(R.id.lay_customer);
+        layIBO = customLayout.findViewById(R.id.lay_iboid);
+        editIboID = customLayout.findViewById(R.id.ibo_id);
+        editCusName = customLayout.findViewById(R.id.cust_name);
+        editCusNumber = customLayout.findViewById(R.id.cust_number);
+        textIboid = customLayout.findViewById(R.id.text_iboid);
+        textCustomer = customLayout.findViewById(R.id.text_customer);
+        btnConfirmInfo = customLayout.findViewById(R.id.confirm);
+
+        viewIBO = customLayout.findViewById(R.id.view1);
+        viewCustomer = customLayout.findViewById(R.id.view2);
+
+        dialogDetails = builder.create();
+        dialogDetails.setCancelable(true);
+
+        textIboid.setOnClickListener(v -> showIBOID());
+        textCustomer.setOnClickListener(v -> showCustomer());
+
+        imgClose.setVisibility(View.VISIBLE);
+        imgClose.setOnClickListener(v -> {
+
+            dialogDetails.dismiss();
+        });
+
+        btnConfirmInfo.setOnClickListener(v -> {
+            int showUserTemp = layCustomer.getVisibility() == View.GONE ? 1 : 2;
+            //showUser = 0;
+            switch (showUserTemp) {
+
+                case 1:
+                    iboid = editIboID.getText().toString();
+                    if (TextUtils.isEmpty(iboid)) {
+                        Toast.makeText(this, "Please enter IBO ID", Toast.LENGTH_SHORT).show();
+                    } else {
+                        getIBOname();
+                    }
+                    break;
+                case 2:
+                    custName = editCusName.getText().toString();
+                    custNumber = editCusNumber.getText().toString();
+                    if (TextUtils.isEmpty(custName) || TextUtils.isEmpty(custNumber)) {
+                        Toast.makeText(this, "Please enter customer details", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (custNumber.length() != 10) {
+                            Toast.makeText(this, "Please enter proper customer number", Toast.LENGTH_SHORT).show();
+                        } else {
+                            showUser = 2;
+                            iboid = "";
+                            iboname = "";
+                            textInfo.setText("Customer: " + custName + " (" + custNumber + ")");
+                            dialogDetails.dismiss();
+                        }
+                    }
+                    break;
+            }
+        });
+    }
+
+    private void showIBOID() {
+        //showUser = 1;
+    /*    textIboid.setTextColor(Color.WHITE);
+        textIboid.setBackgroundColor(getResources().getColor(R.color.theme_color));*/
+        textIboid.setTextColor(getResources().getColor(R.color.theme_color));
+        layIBO.setVisibility(View.VISIBLE);
+        editIboID.setText(iboid);
+        editIboID.requestFocus();
+
+
+        textCustomer.setTextColor(Color.BLACK);
+        textCustomer.setBackgroundColor(getResources().getColor(R.color.white));
+        layCustomer.setVisibility(View.GONE);
+
+        viewIBO.setVisibility(View.VISIBLE);
+        viewCustomer.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void showCustomer() {
+        // showUser = 2;
+        textCustomer.setTextColor(getResources().getColor(R.color.theme_color));
+        //  textCustomer.setBackgroundColor(getResources().getColor(R.color.theme_color));
+        layCustomer.setVisibility(View.VISIBLE);
+        editCusName.setText(custName);
+        editCusNumber.setText(custNumber);
+        editCusName.requestFocus();
+
+
+        textIboid.setTextColor(Color.BLACK);
+        // textIboid.setBackgroundColor(getResources().getColor(R.color.white));
+        layIBO.setVisibility(View.GONE);
+
+
+        viewIBO.setVisibility(View.INVISIBLE);
+        viewCustomer.setVisibility(View.VISIBLE);
+    }
+
+    private void initUI() {
+        session = new Session(this);
+        userId = session.getShoppyUserID();
+        iboId = session.getIboKeyId();
+        //laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_main_back);
+        recList = findViewById(R.id.recycler_view);
+        editSearch = findViewById(R.id.editMobileNo);
+        txtBadge = findViewById(R.id.cart_badge);
+        relSearch = findViewById(R.id.rl_search_view_main);
+
+
+        // laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("Sell my products");
+        txtBadge.setText("0");
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+        // Error View
+        llEmpty = findViewById(R.id.llEmpty);
+        imgError = findViewById(R.id.imgError);
+        txtErrorTitle = findViewById(R.id.txtErrorTitle);
+        txtErrorContent = findViewById(R.id.txt_error_content);
+        txtRetry = findViewById(R.id.txtRetry);
+        btnProceed = findViewById(R.id.img_my_cart);
+        cardData = findViewById(R.id.card_view);
+        textInfo = findViewById(R.id.text_info);
+        imgEdit = findViewById(R.id.id_edit);
+
+
+        mProgressDialog = findViewById(R.id.progresbar);
+        layData = findViewById(R.id.laydata);
+        txtRetry.setOnClickListener(v -> getSellProductsList());
+
+        recList = findViewById(R.id.recycler_view);
+        btnProceed.setOnClickListener(v -> {
+            btnProceed.setEnabled(false);
+            switch (showUser) {
+                case 1:
+                    //  iboid = editIboID.getText().toString();
+                    if (TextUtils.isEmpty(iboname)) {
+                        Toast.makeText(this, "Please enter IBO ID", Toast.LENGTH_SHORT).show();
+                        showIBOID();
+                        dialogDetails.show();
+                        btnProceed.setEnabled(true);
+                    } else
+                        setOrder();
+                    break;
+                case 2:
+                    custName = editCusName.getText().toString();
+                    custNumber = editCusNumber.getText().toString();
+                    if (TextUtils.isEmpty(custName) || TextUtils.isEmpty(custNumber)) {
+                        Toast.makeText(this, "Please enter customer details", Toast.LENGTH_SHORT).show();
+                        showCustomer();
+                        dialogDetails.show();
+                        btnProceed.setEnabled(true);
+                    } else
+                        setOrder();
+                    break;
+
+                default:
+                    Toast.makeText(this, "Please enter details", Toast.LENGTH_SHORT).show();
+                    showIBOID();
+                    dialogDetails.show();
+                    btnProceed.setEnabled(true);
+                    break;
+            }
+
+        });
+        imgEdit.setOnClickListener(v -> {
+            dialogDetails.show();
+            if (TextUtils.isEmpty(iboid)) {
+                showCustomer();
+                editCusName.setText(custName);
+                editCusNumber.setText(custNumber);
+            } else {
+                showIBOID();
+                editIboID.setText(iboid);
+            }
+        });
+
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                sellInventoryAdapter.getFilter().filter(s.toString());
+
+            }
+        });
+    }
+
+    private void setOrder() {
+        if (sellList.size() > 0) {
+            String ids = "";
+            for (int i = 0; i < sellList.size(); i++) {
+                ids = ids + ": " + sellList.get(i).getProductId() + "(" + sellList.get(i).getPurchseQuantity() + ")";
+            }
+            String listdata = new Gson().toJson(sellList, new TypeToken<ArrayList<OrderInventoryModel.Datum>>() {
+            }.getType());
+            Intent intent = new Intent(this, ConfirmSellActivity.class);
+            intent.putExtra("list", listdata);
+            intent.putExtra("custname", custName);
+            intent.putExtra("custnumber", custNumber);
+            intent.putExtra("iboid", iboid);
+            intent.putExtra("iboname", iboname);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Please select product/s to sell", Toast.LENGTH_SHORT).show();
+        }
+        btnProceed.setEnabled(true);
+    }
+
+    String iboname = "";
+
+    private void getIBOname() {
+        iboname = "";
+        if (Utils.isNetworkAvailable(SellProductsActivity.this)) {
+            showFullDialog();
+            mProgressDialog.setVisibility(View.VISIBLE);
+            Call<IboModel> wsCallingEvents = mAPIInterfaceSpade.getIboname(iboid);
+            wsCallingEvents.enqueue(new Callback<IboModel>() {
+                @Override
+                public void onResponse(Call<IboModel> call, Response<IboModel> response) {
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            if (response.body().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                iboname = response.body().getData().getUserName();
+                                textInfo.setText("IBO : " + iboid + " (" + iboname + ")");
+                                custNumber = "";
+                                custName = "";
+                                showUser = 1;
+                                dialogDetails.dismiss();
+                            } else {
+                                Toast.makeText(SellProductsActivity.this, "IBO does not exist.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(SellProductsActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(SellProductsActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                    }
+                    mProgressDialog.setVisibility(View.GONE);
+                    hideFullDialog();
+
+                }
+
+                @Override
+                public void onFailure(Call<IboModel> call, Throwable t) {
+                    Toast.makeText(SellProductsActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.setVisibility(View.GONE);
+                    hideFullDialog();
+                }
+            });
+
+        } else {
+            new Utils().dialogueNoInternet(this);
+        }
+    }
+
+    private void getSellProductsList() {
+        if (Utils.isNetworkAvailable(SellProductsActivity.this)) {
+
+            mProgressDialog.setVisibility(View.VISIBLE);
+            Call<OrderInventoryModel> wsCallingEvents = mAPIInterface.getInventoryList(userId, iboId);
+            wsCallingEvents.enqueue(new Callback<OrderInventoryModel>() {
+                @Override
+                public void onResponse(Call<OrderInventoryModel> call, Response<OrderInventoryModel> response) {
+
+                    inventoryList.clear();
+                    sellList.clear();
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            OrderInventoryModel inventoryModel = response.body();
+                            if (inventoryModel.getResponse().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                llEmpty.setVisibility(View.GONE);
+                                inventoryList.addAll(inventoryModel.getResponse().getData());
+                                final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SellProductsActivity.this);
+                                recList.setLayoutManager(mLayoutManager);
+                                recList.setItemAnimator(new DefaultItemAnimator());
+                                sellInventoryAdapter = new SellInventoryAdapter(SellProductsActivity.this, inventoryList, SellProductsActivity.this);
+                                recList.setAdapter(sellInventoryAdapter);
+
+                                Log.e("ORDERListAPI", "ORDERListAPI: " + new Gson().toJson(response.body()));
+                            }
+                            if (inventoryList.size() > 0) {
+                                llEmpty.setVisibility(View.GONE);
+                                layData.setVisibility(View.VISIBLE);
+                                txtBadge.setVisibility(View.VISIBLE);
+                                btnProceed.setVisibility(View.VISIBLE);
+                                cardData.setVisibility(View.VISIBLE);
+                                relSearch.setVisibility(View.VISIBLE);
+                                showIBOID();
+                                dialogDetails.show();
+
+                            } else {
+                                noRecordsFound();
+                            }
+                        } else {
+                            noRecordsFound();
+                        }
+                    } else
+                        noRecordsFound();
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<OrderInventoryModel> call, Throwable t) {
+                    mProgressDialog.setVisibility(View.GONE);
+                    noRecordsFound();
+                }
+            });
+        } else {
+            noInternetAvailable();
+        }
+    }
+
+    void noRecordsFound() {
+        txtErrorTitle.setText("You have not any inventory yet.");
+        txtErrorContent.setText("Looks like you have no inventory in your inventory list.");
+        imgError.setImageResource(R.drawable.ic_shopping_bag);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        layData.setVisibility(View.GONE);
+        txtBadge.setVisibility(View.GONE);
+        btnProceed.setVisibility(View.GONE);
+        cardData.setVisibility(View.GONE);
+        relSearch.setVisibility(View.GONE);
+    }
+
+    private void noInternetAvailable() {
+        layData.setVisibility(View.GONE);
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        txtErrorTitle.setText(R.string.error_title);
+        txtErrorContent.setText(R.string.error_content);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        txtBadge.setVisibility(View.GONE);
+        btnProceed.setVisibility(View.GONE);
+        cardData.setVisibility(View.GONE);
+        relSearch.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onProductSelect(OrderInventoryModel.Datum datum, String q, int position) {
+        datum.setPurchseQuantity(q);
+        inventoryList.get(position).setPurchseQuantity(q);
+        sellInventoryAdapter.notifyDataSetChanged();
+
+        if (sellList.size() > 0) {
+            boolean exist = false;
+            int dataID = datum.getProductId();
+            int pos = 0;
+            for (int i = 0; i < sellList.size(); i++) {
+                int id = sellList.get(i).getProductId();
+                if (dataID == id) {
+                    exist = true;
+                    pos = i;
+                }
+            }
+            if (exist) {
+                sellList.remove(pos);
+            }
+        }
+        if (!q.equals("0")) {
+            sellList.add(datum);
+        }
+
+        int c = 0;
+        if (sellList.size() > 0) {
+            for (int i = 0; i < sellList.size(); i++) {
+                c = c + Integer.parseInt(sellList.get(i).getPurchseQuantity());
+            }
+        }
+        txtBadge.setText(String.valueOf(c));
+    }
+}

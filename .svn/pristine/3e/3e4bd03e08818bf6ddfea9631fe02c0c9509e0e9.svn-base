@@ -1,0 +1,107 @@
+package com.nebulacompanies.ibo.activities;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.TermsConditionModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class HomeStoreDetailsActivity extends AppCompatActivity {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+    Session session;
+    MyTextView tvPackageName, tvPackageAmt, tvCondition;
+    List<TermsConditionModel.TermsConditionData> termsConditionData = new ArrayList<>();
+    Dialog dialog;
+    APIInterface mAPIInterface;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_store_details);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        session = new Session(this);
+        mAPIInterface = APIClient.getShoppyClient(getApplicationContext()).create(APIInterface.class);
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        tvPackageName = findViewById(R.id.package_name);
+        tvPackageAmt = findViewById(R.id.package_amt);
+        tvCondition = findViewById(R.id.tv_condition);
+
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("HomeStore Details");
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+        tvPackageName.setText(session.getShoppyName());
+        tvPackageAmt.setText("Minimum Amount: ₹" + session.getShoppyamt());
+
+        callTermsCondition();
+    }
+
+
+    private void callTermsCondition() {
+        if (Utils.isNetworkAvailable(HomeStoreDetailsActivity.this)) {
+
+
+            Call<TermsConditionModel> wsCallingEvents = mAPIInterface.getTermsCondition();
+            wsCallingEvents.enqueue(new Callback<TermsConditionModel>() {
+                @Override
+                public void onResponse(Call<TermsConditionModel> call, @NotNull Response<TermsConditionModel> response) {
+
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            TermsConditionModel.Response termCondition = response.body().getResponse();
+                            termsConditionData = termCondition.getData();
+                            if (termCondition.getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                tvCondition.setText(termsConditionData.get(0).getContent());
+
+                            }
+
+                        } else {
+
+                        }
+                    } else {
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TermsConditionModel> call, Throwable t) {
+
+                }
+            });
+        } else {
+
+        }
+    }
+}

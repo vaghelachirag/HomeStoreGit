@@ -1,0 +1,78 @@
+package com.nebulacompanies.ibo.activities;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.nebulacompanies.ibo.ecom.adapter.OrderListAdapter;
+import com.nebulacompanies.ibo.ecom.adapter.SaleHistoryAdapter;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Session;
+
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+
+public class SalesHistoryActivity extends AppCompatActivity {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+    private RelativeLayout llEmpty;
+    private ImageView imgError;
+    private MyTextViewEcom txtErrorContent, txtRetry;
+    MyBoldTextViewEcom txtErrorTitle;
+    RecyclerView recList;
+    MaterialProgressBar mProgressDialog;
+    Session session;
+    String userId, iboId;
+    SaleHistoryAdapter saleHistoryAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sales_history);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        initUI();
+    }
+
+    private void initUI() {
+        session = new Session(this);
+        userId = session.getShoppyUserID();
+        iboId = session.getIboKeyId();
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        recList = findViewById(R.id.recycler_view);
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("Sales History");
+
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+
+        // Error View
+        llEmpty = (RelativeLayout) findViewById(R.id.llEmpty);
+        imgError = (ImageView) findViewById(R.id.imgError);
+        txtErrorTitle = (MyBoldTextViewEcom) findViewById(R.id.txtErrorTitle);
+        txtErrorContent = (MyTextViewEcom) findViewById(R.id.txt_error_content);
+        txtRetry = (MyTextViewEcom) findViewById(R.id.txtRetry);
+        recList = findViewById(R.id.recycler_view);
+
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SalesHistoryActivity.this);
+        recList.setLayoutManager(mLayoutManager);
+        recList.setItemAnimator(new DefaultItemAnimator());
+        saleHistoryAdapter = new SaleHistoryAdapter(SalesHistoryActivity.this);
+        recList.setAdapter(saleHistoryAdapter);
+    }
+
+
+}

@@ -1,0 +1,154 @@
+package com.nebulacompanies.ibo.activities;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.ecom.adapter.SaleHistoryAdapter;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.OrderHistoryModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Constants;
+import com.nebulacompanies.ibo.util.Session;
+
+import java.util.ArrayList;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class SalesHistoryActivity extends AppCompatActivity {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+    private RelativeLayout llEmpty;
+    private ImageView imgError;
+    private MyTextViewEcom txtErrorContent, txtRetry;
+    MyBoldTextViewEcom txtErrorTitle;
+    RecyclerView recList;
+    MaterialProgressBar mProgressDialog;
+    Session session;
+    String userId, iboId;
+    SaleHistoryAdapter saleHistoryAdapter;
+    APIInterface mAPIInterface;
+    ArrayList<OrderHistoryModel.Datum> inventoryList = new ArrayList<>();
+    LinearLayout layData;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sales_history);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        initUI();
+        getSellProductsList();
+    }
+
+    private void initUI() {
+        mAPIInterface = APIClient.getShoppyClient(getApplicationContext()).create(APIInterface.class);
+        mProgressDialog = findViewById(R.id.progresbar);
+
+        session = new Session(this);
+        userId = session.getShoppyUserID();
+        iboId = session.getIboKeyId();
+
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        recList = findViewById(R.id.recycler_view);
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("Sales History");
+
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+        // Error View
+        llEmpty = findViewById(R.id.llEmpty);
+        imgError = findViewById(R.id.imgError);
+        txtErrorTitle = findViewById(R.id.txtErrorTitle);
+        txtErrorContent = findViewById(R.id.txt_error_content);
+        txtRetry = findViewById(R.id.txtRetry);
+        recList = findViewById(R.id.recycler_view);
+        layData = findViewById(R.id.laydata);
+
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SalesHistoryActivity.this);
+        recList.setLayoutManager(mLayoutManager);
+        recList.setItemAnimator(new DefaultItemAnimator());
+
+    }
+
+    private void getSellProductsList() {
+        if (Utils.isNetworkAvailable(SalesHistoryActivity.this)) {
+
+            mProgressDialog.setVisibility(View.VISIBLE);
+            Call<OrderHistoryModel> wsCallingEvents = mAPIInterface.getSalesHistoryList(userId);
+            wsCallingEvents.enqueue(new Callback<OrderHistoryModel>() {
+                @Override
+                public void onResponse(Call<OrderHistoryModel> call, Response<OrderHistoryModel> response) {
+
+                    inventoryList.clear();
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+                            OrderHistoryModel inventoryModel = response.body();
+                            if (inventoryModel.getResponse().getStatusCode() == Constants.REQUEST_STATUS_CODE_SUCCESS) {
+                                llEmpty.setVisibility(View.GONE);
+                                inventoryList.addAll(inventoryModel.getResponse().getData());
+                                saleHistoryAdapter = new SaleHistoryAdapter(SalesHistoryActivity.this, inventoryList);
+                                recList.setAdapter(saleHistoryAdapter);
+                                Log.e("ORDERListAPI", "ORDERListAPI: " + new Gson().toJson(response.body()));
+                            }
+                        }
+                    }
+
+                    if (inventoryList.size() > 0) {
+                        llEmpty.setVisibility(View.GONE);
+                        layData.setVisibility(View.VISIBLE);
+                    } else {
+                        noRecordsFound();
+                    }
+                    mProgressDialog.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<OrderHistoryModel> call, Throwable t) {
+                    mProgressDialog.setVisibility(View.GONE);
+                    noRecordsFound();
+                }
+            });
+        } else {
+            noInternetAvailable();
+        }
+    }
+
+    void noRecordsFound() {
+        txtErrorTitle.setText("You have not any inventory yet.");
+        txtErrorContent.setText("Looks like you have no inventory in your inventory list.");
+        imgError.setImageResource(R.drawable.ic_shopping_bag);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        layData.setVisibility(View.GONE);
+    }
+
+    private void noInternetAvailable() {
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        txtErrorTitle.setText(R.string.error_title);
+        txtErrorContent.setText(R.string.error_content);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+        layData.setVisibility(View.GONE);
+    }
+}

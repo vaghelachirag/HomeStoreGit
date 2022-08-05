@@ -1,0 +1,98 @@
+package com.nebulacompanies.ibo.activities;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Session;
+
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+
+public class SellProductsActivity extends AppCompatActivity {
+
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+    //Error View
+    private RelativeLayout llEmpty;
+    private ImageView imgError;
+    private MyTextViewEcom txtErrorContent, txtRetry;
+    MyBoldTextViewEcom txtErrorTitle;
+    RecyclerView recList;
+    MaterialProgressBar mProgressDialog;
+    String userId;
+    Session session;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sell_products);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        initUI();
+    }
+
+    private void initUI() {
+        session = new Session(this);
+        userId = session.getShoppyUserID();
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        recList = findViewById(R.id.recycler_view);
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("Sell Products");
+
+        imgBack.setOnClickListener(v -> onBackPressed());
+
+        // Error View
+        llEmpty = (RelativeLayout) findViewById(R.id.llEmpty);
+        imgError = (ImageView) findViewById(R.id.imgError);
+        txtErrorTitle = (MyBoldTextViewEcom) findViewById(R.id.txtErrorTitle);
+        txtErrorContent = (MyTextViewEcom) findViewById(R.id.txt_error_content);
+        txtRetry = (MyTextViewEcom) findViewById(R.id.txtRetry);
+        mProgressDialog = findViewById(R.id.progresbar);
+        txtRetry.setOnClickListener(v -> {
+            getSellProductsList();
+        });
+
+        recList = findViewById(R.id.recycler_view);
+        getSellProductsList();
+    }
+
+    private void getSellProductsList() {
+        if(Utils.isNetworkAvailable(this)){
+            //apply api
+            noRecordsFound();
+        }else{
+            noInternetAvailable();
+        }
+    }
+
+
+    void noRecordsFound() {
+        txtErrorTitle.setText("You have not any inventory yet.");
+        txtErrorContent.setText("Looks like you have no inventory in your inventory list.");
+        imgError.setImageResource(R.drawable.ic_shopping_bag);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.GONE);
+        recList.setVisibility(View.GONE);
+    }
+
+    private void noInternetAvailable() {
+        recList.setVisibility(View.GONE);
+        mProgressDialog.setVisibility(View.GONE);
+        imgError.setImageResource(R.drawable.ic_cloud_off_black_24dp);
+        txtErrorTitle.setText(R.string.error_title);
+        txtErrorContent.setText(R.string.error_content);
+        llEmpty.setVisibility(View.VISIBLE);
+        txtRetry.setVisibility(View.VISIBLE);
+    }
+}

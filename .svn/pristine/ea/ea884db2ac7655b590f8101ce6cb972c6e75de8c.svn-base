@@ -1,0 +1,171 @@
+package com.nebulacompanies.ibo.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class MyShoppyModel {
+    @SerializedName("ok")
+    @Expose
+    private int ok;
+    @SerializedName("response")
+    @Expose
+    private Response response;
+
+    public int getOk() {
+        return ok;
+    }
+
+    public void setOk(int ok) {
+        this.ok = ok;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    public class Response {
+
+        @SerializedName("statusCode")
+        @Expose
+        private int statusCode;
+        @SerializedName("message")
+        @Expose
+        private String message;
+        @SerializedName("data")
+        @Expose
+        private Data data;
+
+        public int getStatusCode() {
+            return statusCode;
+        }
+
+        public void setStatusCode(int statusCode) {
+            this.statusCode = statusCode;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public Data getData() {
+            return data;
+        }
+
+        public void setData(Data data) {
+            this.data = data;
+        }
+
+
+    }
+    public class Data {
+
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("shoppyPackageId")
+        @Expose
+        private Integer shoppyPackageId;
+        @SerializedName("userId")
+        @Expose
+        private Object userId;
+        @SerializedName("orderNumber")
+        @Expose
+        private Object orderNumber;
+        @SerializedName("createdOn")
+        @Expose
+        private Object createdOn;
+        @SerializedName("createdBy")
+        @Expose
+        private Object createdBy;
+        @SerializedName("createdByNavigation")
+        @Expose
+        private Object createdByNavigation;
+        @SerializedName("shoppyPackage")
+        @Expose
+        private Object shoppyPackage;
+        @SerializedName("user")
+        @Expose
+        private Object user;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public Integer getShoppyPackageId() {
+            return shoppyPackageId;
+        }
+
+        public void setShoppyPackageId(Integer shoppyPackageId) {
+            this.shoppyPackageId = shoppyPackageId;
+        }
+
+        public Object getUserId() {
+            return userId;
+        }
+
+        public void setUserId(Object userId) {
+            this.userId = userId;
+        }
+
+        public Object getOrderNumber() {
+            return orderNumber;
+        }
+
+        public void setOrderNumber(Object orderNumber) {
+            this.orderNumber = orderNumber;
+        }
+
+        public Object getCreatedOn() {
+            return createdOn;
+        }
+
+        public void setCreatedOn(Object createdOn) {
+            this.createdOn = createdOn;
+        }
+
+        public Object getCreatedBy() {
+            return createdBy;
+        }
+
+        public void setCreatedBy(Object createdBy) {
+            this.createdBy = createdBy;
+        }
+
+        public Object getCreatedByNavigation() {
+            return createdByNavigation;
+        }
+
+        public void setCreatedByNavigation(Object createdByNavigation) {
+            this.createdByNavigation = createdByNavigation;
+        }
+
+        public Object getShoppyPackage() {
+            return shoppyPackage;
+        }
+
+        public void setShoppyPackage(Object shoppyPackage) {
+            this.shoppyPackage = shoppyPackage;
+        }
+
+        public Object getUser() {
+            return user;
+        }
+
+        public void setUser(Object user) {
+            this.user = user;
+        }
+
+    }
+}

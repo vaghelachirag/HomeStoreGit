@@ -1,0 +1,172 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nebulacompanies.ibo.ecom.model.OrderInventoryModel;
+import com.nebulacompanies.ibo.ecom.model.OrderListModel;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.model.OrderHistoryModel;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class ViewSaleHistoryAdapter extends RecyclerView.Adapter<ViewSaleHistoryAdapter.MyViewHolder> implements Filterable {
+
+    private Context context;
+    Typeface typeface;
+    ArrayList<OrderHistoryModel.SalesDetail> orderDetailsListModels;
+    ArrayList<OrderHistoryModel.SalesDetail> FullList;
+
+    public ViewSaleHistoryAdapter(Context context,    ArrayList<OrderHistoryModel.SalesDetail> orderDetailsListModels) {
+        this.orderDetailsListModels = orderDetailsListModels;
+        this.context = context;
+        FullList = new ArrayList<>(orderDetailsListModels);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return Searched_Filter;
+    }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        MyTextViewEcom name;
+
+        @BindView(R.id.tv_offer_price_value)
+        MyTextViewEcom tvPrice;
+
+        @BindView(R.id.tv_order_quantity)
+        MyTextViewEcom tvCount;
+
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.btn_remove_item)
+        MyButtonEcom btnRemoveItem;
+
+        @BindView(R.id.btn_add_item)
+        MyButtonEcom btnAddItem;
+
+
+        @BindView(R.id.btn_cancel)
+        MyButtonEcom btnOrderCancel;
+
+        @BindView(R.id.tv_cancel)
+        MyTextViewEcom tvCancel;
+
+        @Nullable
+        @BindView(R.id.tv_confirm_date)
+        MyTextViewEcom tvConfirmDate;
+
+
+        public MyViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/ember.ttf");
+        }
+    }
+
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_sale_order_list_item, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        //getOrderStatus(position);
+        //getting the product of the specified position
+
+        OrderHistoryModel.SalesDetail data=orderDetailsListModels.get(position);
+        int price= (int) data.getTotal();
+        int q=data.getQuantity();
+
+        holder.name.setText(data.getProductName());
+        holder.tvPrice.setText(String.valueOf(price));
+        holder.tvCount.setText(String.valueOf(q));
+
+
+        Glide.with(context)
+                .load(data.getImageURL()).fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(getRandomDrawbleColor())
+                .into(holder.thumbnail);
+    }
+
+
+    private final Filter Searched_Filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<OrderHistoryModel.SalesDetail> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(FullList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (OrderHistoryModel.SalesDetail item : FullList) {
+                    if (item.getProductName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            orderDetailsListModels.clear();
+            orderDetailsListModels.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
+    @Override
+    public int getItemCount() {
+        //return products.size();
+        return orderDetailsListModels.size();
+    }
+
+    private ColorDrawable[] vibrantLightColorList =
+            {
+                    new ColorDrawable(Color.parseColor("#9ACCCD")), new ColorDrawable(Color.parseColor("#8FD8A0")),
+                    new ColorDrawable(Color.parseColor("#CBD890")), new ColorDrawable(Color.parseColor("#DACC8F")),
+                    new ColorDrawable(Color.parseColor("#D9A790")), new ColorDrawable(Color.parseColor("#D18FD9")),
+                    new ColorDrawable(Color.parseColor("#FF6772")), new ColorDrawable(Color.parseColor("#DDFB5C"))
+            };
+
+
+    public ColorDrawable getRandomDrawbleColor() {
+        int idx = new Random().nextInt(vibrantLightColorList.length);
+        return vibrantLightColorList[idx];
+    }
+
+
+
+
+
+}

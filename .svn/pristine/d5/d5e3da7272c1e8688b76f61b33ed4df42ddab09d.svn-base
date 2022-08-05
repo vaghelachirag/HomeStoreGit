@@ -1,0 +1,305 @@
+package com.nebulacompanies.ibo.activities;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nebulacompanies.ibo.Network.APIClient;
+import com.nebulacompanies.ibo.Network.APIInterface;
+import com.nebulacompanies.ibo.adapter.ConfirmProductsAdapter;
+import com.nebulacompanies.ibo.ecom.model.OrderInventoryModel;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.Utils;
+import com.nebulacompanies.ibo.model.AddToConfirmModel;
+import com.nebulacompanies.ibo.model.ConfirmSellModel;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.sweetdialogue.SweetAlertDialog;
+import com.nebulacompanies.ibo.sweetdialogue.SweetAlertDialogCart;
+import com.nebulacompanies.ibo.util.Session;
+import com.nebulacompanies.ibo.view.MyButton;
+import com.nebulacompanies.ibo.view.MyTextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ConfirmSellActivity extends AppCompatActivity {
+    MyTextViewEcom txtTitle;
+    ImageView imgBack;
+    RelativeLayout laytoolbar;
+
+    MyBoldTextViewEcom txtErrorTitle;
+    RecyclerView recList;
+    MaterialProgressBar mProgressDialog;
+    Session session;
+    MyTextViewEcom textProducts, textPrice, textPV, textNV, textBV;
+    String userId;
+    LinearLayout layData;
+    ArrayList<OrderInventoryModel.Datum> sellList = new ArrayList<>();
+    ConfirmProductsAdapter sellInventoryAdapter;
+    APIInterface mAPIInterface;
+    MyButtonEcom btnProceed;
+    MyTextViewEcom txtSoldTitle, txtValue;
+    Utils utils;
+    Typeface typeface;
+    ProgressDialog mLoadProgressDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sell_confirmproducts);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        Utils.darkenStatusBar(this, R.color.colorNotification);
+        mAPIInterface = APIClient.getShoppyClient(getApplicationContext()).create(APIInterface.class);
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/ember.ttf");
+
+        initFullDialog();
+        initUI();
+        setData();
+    }
+
+    public void initFullDialog() {
+        mLoadProgressDialog = new ProgressDialog(ConfirmSellActivity.this, ProgressDialog.THEME_HOLO_LIGHT);
+        mLoadProgressDialog.setCancelable(false);
+        mLoadProgressDialog.setMessage("Loading...");
+    }
+
+    public void showFullDialog() {
+        if (mLoadProgressDialog != null && !mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.show();
+    }
+
+    public void hideFullDialog() {
+        if (mLoadProgressDialog != null && mLoadProgressDialog.isShowing())
+            mLoadProgressDialog.dismiss();
+    }
+
+    String custName, custNumber, iboid, iboname;
+    int total = 0;
+
+    private void setData() {
+        String listdata = getIntent().getStringExtra("list");
+        custName = getIntent().getStringExtra("custname");
+        custNumber = getIntent().getStringExtra("custnumber");
+        iboid = getIntent().getStringExtra("iboid");
+        iboname = getIntent().getStringExtra("iboname");
+
+        Gson gson = new Gson();
+        sellList = gson.fromJson(listdata, new TypeToken<ArrayList<OrderInventoryModel.Datum>>() {
+        }.getType());
+
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ConfirmSellActivity.this);
+        recList.setLayoutManager(mLayoutManager);
+        recList.setItemAnimator(new DefaultItemAnimator());
+        sellInventoryAdapter = new ConfirmProductsAdapter(ConfirmSellActivity.this, sellList);
+        recList.setAdapter(sellInventoryAdapter);
+
+        int qnty = 0;
+        total = 0;
+        int pv = 0;
+        int nv = 0;
+        int bv = 0;
+        for (int i = 0; i < sellList.size(); i++) {
+            OrderInventoryModel.Datum mdata = sellList.get(i);
+            int q = Integer.parseInt(mdata.getPurchseQuantity());
+            qnty = qnty + q;
+            total = (int) (total + (mdata.getIboPrice() * q));
+            pv = (int) (pv + (mdata.getPv() * q));
+            nv = (int) (nv + (mdata.getNv() * q));
+            bv = (int) mdata.getBv();
+        }
+        textBV.setText(bv + "%");
+        textNV.setText(String.valueOf(nv));
+        textPV.setText(String.valueOf(pv));
+        textPrice.setText(String.valueOf(total));
+        textProducts.setText(String.valueOf(qnty));
+        if (TextUtils.isEmpty(iboid)) {
+            txtSoldTitle.setText("Customer Detail");
+            txtValue.setText(custName + " (" + custNumber + ")");
+        } else {
+            txtSoldTitle.setText("IBO Detail");
+            txtValue.setText(iboid + " (" + iboname + ")");
+        }
+        txtSoldTitle.setVisibility(View.GONE);
+    }
+
+    private void initUI() {
+        session = new Session(this);
+        utils = new Utils();
+        userId = session.getShoppyUserID();
+        laytoolbar = findViewById(R.id.toolbarlay);
+        txtTitle = findViewById(R.id.toolbar_title1);
+        imgBack = findViewById(R.id.img_back);
+        recList = findViewById(R.id.recycler_view);
+        laytoolbar.setVisibility(View.VISIBLE);
+        txtTitle.setText("Confirm Order");
+
+        imgBack.setOnClickListener(v -> onBackPressed());
+        txtErrorTitle = findViewById(R.id.txtErrorTitle);
+        btnProceed = findViewById(R.id.proceed);
+        txtSoldTitle = findViewById(R.id.tv_user_title_detail);
+        txtValue = findViewById(R.id.tv_user_detail);
+
+        textProducts = findViewById(R.id.tv_total_products);
+        textPrice = findViewById(R.id.tv_mycart_retail_price);
+        textBV = findViewById(R.id.tv_bv_value);
+        textNV = findViewById(R.id.tv_nv_price);
+        textPV = findViewById(R.id.tv_pv_price);
+
+        mProgressDialog = findViewById(R.id.progresbar);
+        layData = findViewById(R.id.laydata);
+        recList = findViewById(R.id.recycler_view);
+
+        btnProceed.setOnClickListener(v -> {
+            btnProceed.setEnabled(false);
+            SweetAlertDialog loading = new SweetAlertDialog(ConfirmSellActivity.this, SweetAlertDialog.NORMAL_TYPE);
+            loading.setCancelable(true);
+            loading.setConfirmText("OK");
+            loading.setCancelText("Cancel");
+            loading.setOnShowListener(dialog -> {
+                SweetAlertDialog alertDialog = (SweetAlertDialog) dialog;
+                TextView textTitle = alertDialog.findViewById(R.id.title_text);
+                TextView textContent = alertDialog.findViewById(R.id.content_text);
+                Button btnConfirm = alertDialog.findViewById(R.id.confirm_button);
+                Button btnCancel = alertDialog.findViewById(R.id.cancel_button);
+                textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+
+                textContent.setTypeface(typeface);
+                textTitle.setTypeface(typeface);
+                btnConfirm.setTypeface(typeface);
+                btnCancel.setTypeface(typeface);
+                textTitle.setText("Confirm");
+                btnConfirm.setText("OK");
+                btnCancel.setText("Cancel");
+                textContent.setText("Are you sure you want to proceed?");
+                textContent.setGravity(Gravity.NO_GRAVITY);
+                btnConfirm.setOnClickListener(v1 -> {
+                    callSubmitAPI();
+                    loading.dismiss();
+
+                });
+                btnCancel.setOnClickListener(view -> {
+                    dialog.dismiss();
+                    btnProceed.setEnabled(true);
+                });
+            });
+            loading.show();
+
+        });
+    }
+
+    private void callSubmitAPI() {
+        if (Utils.isNetworkAvailable(ConfirmSellActivity.this)) {
+            showFullDialog();
+            ConfirmSellModel orderRequest = new ConfirmSellModel();
+
+            List<ConfirmSellModel.SaleDetailsModel> jarr = new ArrayList<>();
+            for (int i = 0; i < sellList.size(); i++) {
+                OrderInventoryModel.Datum datum = sellList.get(i);
+                ConfirmSellModel.SaleDetailsModel jobj = new ConfirmSellModel().new SaleDetailsModel();
+                jobj.setProductId(datum.getProductId());//long
+                jobj.setQuantity(Integer.parseInt(datum.getPurchseQuantity()));//int
+                jobj.setPrice(datum.getIboPrice());//double
+                jobj.setProductName(datum.getProductName());
+                jobj.setSku(datum.getSku());
+                jobj.setTax(datum.getTax());//double
+                jobj.setEcomProductID(datum.getEcomProductID());
+                jarr.add(jobj);
+            }
+            orderRequest.setSaleDetailsModel(jarr);
+            mProgressDialog.setVisibility(View.VISIBLE);
+            String shareIboid = TextUtils.isEmpty(iboid) ? session.getLoginID() : iboid;
+            Call<AddToConfirmModel> wsCallingEvents = mAPIInterface.confirmOrder(session.getShoppyUserID(),
+                    custName, custNumber, shareIboid, String.valueOf(total), orderRequest
+            );
+            wsCallingEvents.enqueue(new Callback<AddToConfirmModel>() {
+                @Override
+                public void onResponse(Call<AddToConfirmModel> call, Response<AddToConfirmModel> response) {
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200) {
+
+                            SweetAlertDialogCart loading = new SweetAlertDialogCart(ConfirmSellActivity.this, SweetAlertDialogCart.SUCCESS_TYPE);
+                            loading.setCancelable(true);
+                            loading.setConfirmText("OK");
+                            loading.setOnShowListener(dialog -> {
+                                SweetAlertDialogCart alertDialog = (SweetAlertDialogCart) dialog;
+                                MyTextView textTitle = (MyTextView) alertDialog.findViewById(R.id.title_text);
+                                MyTextView textContent = (MyTextView) alertDialog.findViewById(R.id.content_text);
+                                MyButton btnConfirm = (MyButton) alertDialog.findViewById(R.id.confirm_button);
+                                textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                                textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+                                textContent.setTypeface(typeface);
+                                textTitle.setTypeface(typeface);
+                                btnConfirm.setTypeface(typeface);
+                                alertDialog.setCancelable(false);
+
+                                textTitle.setText("Success");
+                                textContent.setText("Purchased products for ₹" + total);
+                                btnConfirm.setText("OK");
+                                Log.d("GrandTotal Decimal ", "GrandTotal Decimal: " + total);
+                                textContent.setGravity(Gravity.NO_GRAVITY);
+                                btnConfirm.setOnClickListener(v -> {
+                                    loading.dismiss();
+                                    gotoDashboard();
+                                });
+                            });
+                            loading.show();
+                        } else
+                            Toast.makeText(ConfirmSellActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+
+                    } else
+                        Toast.makeText(ConfirmSellActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+
+                    btnProceed.setEnabled(true);
+                    mProgressDialog.setVisibility(View.GONE);
+                    hideFullDialog();
+                }
+
+                @Override
+                public void onFailure(Call<AddToConfirmModel> call, Throwable t) {
+                    Toast.makeText(ConfirmSellActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.setVisibility(View.GONE);
+                    btnProceed.setEnabled(true);
+                    hideFullDialog();
+                }
+            });
+
+        } else {
+            utils.dialogueNoInternet(this);
+            btnProceed.setEnabled(true);
+        }
+    }
+
+    private void gotoDashboard() {
+        Intent registation = new Intent(ConfirmSellActivity.this, ShoppyHomeScreen.class);
+        registation.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(registation);
+        finish();
+    }
+}

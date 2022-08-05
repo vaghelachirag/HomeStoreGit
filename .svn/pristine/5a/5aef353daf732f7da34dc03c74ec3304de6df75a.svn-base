@@ -1,0 +1,316 @@
+package com.nebulacompanies.ibo.adapter;
+
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nebulacompanies.ibo.Interface.OnProductAdded;
+import com.nebulacompanies.ibo.ecom.model.OrderInventoryModel;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
+public class SellInventoryAdapter extends RecyclerView.Adapter<SellInventoryAdapter.MyViewHolder> {
+
+    private Context context;
+    ArrayList<OrderInventoryModel.Datum> detailsListModels;
+    AlertDialog dialogDetails;
+    AlertDialog.Builder builder;
+    ImageView imgClose;
+    EditText editTextQuantity;
+    RecyclerView recyclerView;
+    OnProductAdded onProductAdded;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_inventory_product_name)
+        MyTextViewEcom tvInventoryProName;
+
+        @BindView(R.id.tv_inventory_item_price)
+        MyTextViewEcom tvInventoryItemPrice;
+
+        @BindView(R.id.product_count)
+        MyTextViewEcom tvInventoryProductCount;
+
+        @BindView(R.id.tv_mycart_tablet)
+        MyTextViewEcom tvMyCartTablet;
+
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.img_my_cart_delete)
+        ImageView imgDelete;
+
+        @BindView(R.id.inventory_view)
+        CardView cardView;
+
+        @BindView(R.id.tv_pv_value)
+        MyTextViewEcom tvInventoryPV;
+
+        @BindView(R.id.tv_nv_value)
+        MyTextViewEcom tvInventoryNV;
+
+        @BindView(R.id.tv_bv_value)
+        MyTextViewEcom tvInventoryBV;
+
+        @BindView(R.id.tv_original_price_value)
+        MyTextViewEcom tvMRPPrice;
+
+        @BindView(R.id.txtreward)
+        MyTextViewEcom txtReward;
+
+        @BindView(R.id.product_size)
+        MyTextViewEcom textPurchaseQuantity;
+
+        @BindView(R.id.ln_size)
+        RelativeLayout relPurchase;
+
+        public MyViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    @SuppressLint("HardwareIds")
+    public SellInventoryAdapter(Context context, ArrayList<OrderInventoryModel.Datum> detailsListModels, OnProductAdded onProductAdded) {
+        this.context = context;
+        this.detailsListModels = detailsListModels;
+        this.onProductAdded = onProductAdded;
+        alertBoxTicketDetail();
+    }
+
+    public void alertBoxTicketDetail() {
+
+        builder = new AlertDialog.Builder(context);
+
+        // set the custom layout
+        final View customLayout = LayoutInflater.from(context).inflate(R.layout.dialog_product_quntity, null);
+        builder.setView(customLayout);
+        imgClose = customLayout.findViewById(R.id.img_ticket_close);
+        editTextQuantity = customLayout.findViewById(R.id.edit_quantity);
+        recyclerView = customLayout.findViewById(R.id.recycler_view_q);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        dialogDetails = builder.create();
+        dialogDetails.setCancelable(true);
+
+        imgClose.setOnClickListener(v -> dialogDetails.dismiss());
+
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_inventory_sell_list_item, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final OrderInventoryModel.Datum datum = detailsListModels.get(position);
+        int quantity = datum.getQuantity();
+        int pv = (int) datum.getPv();
+        int nv = (int) datum.getNv();
+        holder.tvInventoryProName.setText(datum.getProductName());
+        holder.tvMyCartTablet.setText(datum.getShortDescription());
+        //holder.tvMRPPrice.setVisibility(View.INVISIBLE);
+        holder.tvMRPPrice.setText("(" + (datum.getIboPrice()) + " × " + quantity + ") = " + (datum.getIboPrice() * quantity));
+        holder.tvInventoryItemPrice.setText(String.valueOf(datum.getIboPrice()));
+        //pv calc
+        holder.tvInventoryPV.setText(String.valueOf(pv));
+        holder.tvInventoryNV.setText(String.valueOf(nv));
+        //bv calculation
+        holder.tvInventoryBV.setText(datum.getBv() + "%");
+        holder.tvInventoryProductCount.setText(String.valueOf(quantity));
+        String purchase = datum.getPurchseQuantity();
+        holder.textPurchaseQuantity.setText(TextUtils.isEmpty(purchase) ? "0" : purchase);
+        Glide.with(context)
+                .load(datum.getImage()).fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(getRandomDrawbleColor())
+                .into(holder.thumbnail);
+        holder.relPurchase.setOnClickListener(v -> {
+            editTextQuantity.requestFocus();
+            ArrayList<String> datalistOrig = new ArrayList<>();
+            for (int i = 0; i <= quantity; i++) {
+                datalistOrig.add(String.valueOf(i));
+            }
+            ArrayList<String> datalist = new ArrayList<>();
+            datalist.addAll(datalistOrig);
+            editTextQuantity.setText("");
+            CustomAdapter customAdapter = new CustomAdapter(context, datalist, holder.textPurchaseQuantity, dialogDetails, position);
+            recyclerView.setAdapter(customAdapter);
+            editTextQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(quantity))});
+
+            editTextQuantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    datalist.clear();
+                    if (TextUtils.isEmpty(s.toString())) {
+
+                        datalist.addAll(datalistOrig);
+                    } else {
+                        int start = Integer.parseInt(s.toString());
+                        for (int i = start; i <= quantity; i++) {
+                            datalist.add(String.valueOf(i));
+                        }
+                    }
+                  /*  CustomAdapter customAdapter = new CustomAdapter(context, datalist, holder.textPurchaseQuantity, dialogDetails, position);
+                    recyclerView.setAdapter(customAdapter);*/
+                    customAdapter.notifyDataSetChanged();
+                }
+            });
+            dialogDetails.show();
+        });
+    }
+
+    private ColorDrawable[] vibrantLightColorList =
+            {
+                    new ColorDrawable(Color.parseColor("#9ACCCD")), new ColorDrawable(Color.parseColor("#8FD8A0")),
+                    new ColorDrawable(Color.parseColor("#CBD890")), new ColorDrawable(Color.parseColor("#DACC8F")),
+                    new ColorDrawable(Color.parseColor("#D9A790")), new ColorDrawable(Color.parseColor("#D18FD9")),
+                    new ColorDrawable(Color.parseColor("#FF6772")), new ColorDrawable(Color.parseColor("#DDFB5C"))
+            };
+
+
+    public ColorDrawable getRandomDrawbleColor() {
+        int idx = new Random().nextInt(vibrantLightColorList.length);
+        return vibrantLightColorList[idx];
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return detailsListModels.size();
+    }
+
+
+    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+
+        private LayoutInflater inflater;
+        private Context context;
+        ArrayList<String> mdatalist;
+        MyTextViewEcom textPurchaseQuantity;
+        AlertDialog dialogDetails;
+        int pos;
+
+        public CustomAdapter(Context context, ArrayList<String> mdatalist, MyTextViewEcom textPurchaseQuantity, AlertDialog dialogDetails, int pos) {
+            inflater = LayoutInflater.from(context);
+            this.context = context;
+            this.mdatalist = mdatalist;
+            this.textPurchaseQuantity = textPurchaseQuantity;
+            this.dialogDetails = dialogDetails;
+            this.pos = pos;
+        }
+
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = inflater.inflate(R.layout.custom_layout, parent, false);
+            MyViewHolder holder = new MyViewHolder(view);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, int position) {
+            String quantity = mdatalist.get(position);
+            holder.serial_number.setText(quantity);
+            holder.cardNumber.setOnClickListener(v -> {
+                Log.d("Purchase:: ", "Add q: " + quantity + " at " + pos);
+                //detailsListModels.get(pos).setPurchseQuantity(quantity);
+                onProductAdded.onProductSelect(detailsListModels.get(pos), quantity, pos);
+                //textPurchaseQuantity.setText(quantity);
+                dialogDetails.dismiss();
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return mdatalist.size();
+        }
+
+        class MyViewHolder extends RecyclerView.ViewHolder {
+            MyTextViewEcom serial_number;
+            CardView cardNumber;
+
+            public MyViewHolder(View itemView) {
+                super(itemView);
+                serial_number = itemView.findViewById(R.id.tv_subject);
+                cardNumber = itemView.findViewById(R.id.card_subject);
+            }
+        }
+    }
+
+    public class InputFilterMinMax implements InputFilter {
+
+        private int min, max;
+
+        public InputFilterMinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        public InputFilterMinMax(String min, String max) {
+            this.min = Integer.parseInt(min);
+            this.max = Integer.parseInt(max);
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            try {
+                int input = Integer.parseInt(dest.toString() + source.toString());
+                if (isInRange(min, max, input))
+                    return null;
+                else {
+                    Toast.makeText(context, "More than available quantity.", Toast.LENGTH_SHORT).show();
+                    return "";
+                }
+            } catch (NumberFormatException nfe) {
+                nfe.printStackTrace();
+            }
+            return "";
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
+    }
+}

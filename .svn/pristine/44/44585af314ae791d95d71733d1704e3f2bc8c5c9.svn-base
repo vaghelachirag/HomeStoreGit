@@ -1,0 +1,92 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.nebulacompanies.ibo.activities.MyInventoryActivity;
+import com.nebulacompanies.ibo.activities.ShoppyHomeScreen;
+import com.nebulacompanies.ibo.ecom.MyViewOrderActivity;
+import com.nebulacompanies.ibo.ecom.TrackOrderActivity;
+import com.nebulacompanies.ibo.ecom.ViewSaleHistoryActivity;
+import com.nebulacompanies.ibo.ecom.model.OrderListModel;
+import com.nebulacompanies.ibo.ecom.utils.MyBoldTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
+public class SaleHistoryAdapter extends RecyclerView.Adapter<SaleHistoryAdapter.ProductViewHolder> {
+
+    //this context we will use to inflate the layout
+    private final Context mCtx;
+
+
+    String jsonData;
+
+
+    public SaleHistoryAdapter(Context mCtx) {
+        this.mCtx = mCtx;
+
+    }
+
+    @Override
+    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //inflating and returning our view holder
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View view = inflater.inflate(R.layout.sale_history_items, null);
+        return new ProductViewHolder(view);
+    }
+
+    private long mLastClickTime = 0;
+
+    @Override
+    public void onBindViewHolder(ProductViewHolder holder, int position) {
+        holder.btnViewOrder.setOnClickListener(v -> {
+            Intent dash = new Intent(mCtx, ViewSaleHistoryActivity.class);
+            mCtx.startActivity(dash);
+        });
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return 3;
+    }
+
+
+    class ProductViewHolder extends RecyclerView.ViewHolder {
+
+        MyTextViewEcom tvOrderDate, tvOrderStatusSuccess, tvProductName;
+        MyBoldTextViewEcom tvOrderTitle;
+        MyButtonEcom btnTrackOrder, btnViewOrder;
+        CardView cvOrderItem;
+        //ImageView imgTrack;
+
+        public ProductViewHolder(View itemView) {
+            super(itemView);
+
+            cvOrderItem = itemView.findViewById(R.id.cv_order_item);
+            tvOrderTitle = itemView.findViewById(R.id.tv_order_title);
+            tvOrderStatusSuccess = itemView.findViewById(R.id.tv_order_status_success);
+            tvOrderDate = itemView.findViewById(R.id.tv_order_date);
+            tvProductName = itemView.findViewById(R.id.tv_product_details);
+            // imgTrack = itemView.findViewById(R.id.img_track);
+            btnTrackOrder = itemView.findViewById(R.id.btn_track_order);
+            btnViewOrder = itemView.findViewById(R.id.btn_view_order);
+
+        }
+    }
+}

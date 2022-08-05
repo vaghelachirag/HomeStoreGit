@@ -1,0 +1,127 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.nebulacompanies.ibo.ecom.model.OrderListModel;
+import com.nebulacompanies.ibo.ecom.utils.MyButtonEcom;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.ecom.utils.PrefUtils;
+import com.nebulacompanies.ibo.shoppy.R;
+import com.nebulacompanies.ibo.util.Session;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.MyViewHolder> {
+
+    private Context context;
+
+    ArrayList<OrderListModel> orderDetailsListModels = new ArrayList<>();
+    ArrayList<OrderListModel.OrderDetailsListModel> detailsListModels = new ArrayList<>();
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_mycart_name)
+        MyTextViewEcom tvMyCartName;
+
+        @BindView(R.id.tv_mycart_item_price)
+        MyTextViewEcom tvMyCartItemPrice;
+
+        @BindView(R.id.product_count)
+        MyTextViewEcom tvProductCount;
+
+        @BindView(R.id.tv_mycart_tablet)
+        MyTextViewEcom tvMyCartTablet;
+
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.img_my_cart_delete)
+        ImageView imgDelete;
+
+        @BindView(R.id.btn_remove_item)
+        MyButtonEcom btnRemoveItem;
+
+        @BindView(R.id.btn_add_item)
+        MyButtonEcom btnAddItem;
+
+        @BindView(R.id.card_view)
+        CardView cardView;
+
+        @BindView(R.id.tv_pv_value)
+        MyTextViewEcom tvCartPV;
+
+        @BindView(R.id.tv_nv_value)
+        MyTextViewEcom tvCartNV;
+
+        @BindView(R.id.tv_bv_value)
+        MyTextViewEcom tvCartBV;
+
+        @BindView(R.id.tv_original_price_value)
+        MyTextViewEcom tvMRPPrice;
+
+        @BindView(R.id.txtreward)
+        MyTextViewEcom txtReward;
+
+        @BindView(R.id.lv_free)
+        LinearLayout layfree;
+
+        public MyViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    @SuppressLint("HardwareIds")
+    public MyInventoryAdapter(Context context) {
+
+        this.context = context;
+
+
+    }
+
+    @Override
+    public MyInventoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_inventory_list_item, parent, false);
+
+        return new MyInventoryAdapter.MyViewHolder(itemView);
+    }
+
+
+    @Override
+    public void onBindViewHolder(MyInventoryAdapter.MyViewHolder holder, int position) {
+
+
+        holder.tvMyCartName.setText(
+                "ABC"
+        );
+
+    }
+
+
+    @Override
+    public int getItemCount() {
+        Log.d("myCartsModel.size()", "myCartsModel.size():" + orderDetailsListModels.size());
+        return 2;
+    }
+
+
+}

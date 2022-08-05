@@ -1,0 +1,472 @@
+package com.nebulacompanies.ibo.ecom.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class MyCart implements Serializable {
+    @SerializedName("bv")
+    @Expose
+    private int bv;
+    @SerializedName("cartQuantity")
+    @Expose
+    private int cartQuantity;
+
+    public int getSpinner() {
+        return spinner;
+    }
+
+    public void setSpinner(int spinner) {
+        this.spinner = spinner;
+    }
+
+    int spinner;
+    public int getPurchaseQuantity() {
+        return purchaseQuantity;
+    }
+
+    public void setPurchaseQuantity(int purchaseQuantity) {
+        this.purchaseQuantity = purchaseQuantity;
+    }
+
+    @SerializedName("homeStoreMinQty")
+    @Expose
+    private int purchaseQuantity;
+    @SerializedName("comboId")
+    @Expose
+    private int comboId;
+    @SerializedName("deviceId")
+    @Expose
+    private String deviceId;
+    @SerializedName("dimension")
+    @Expose
+    private String dimension;
+    @SerializedName("distributorPrice")
+    @Expose
+    private int distributorPrice;
+    @SerializedName("id")
+    @Expose
+    private int id;
+    @SerializedName("inStock")
+    @Expose
+    private boolean inStock;
+    @SerializedName("isComboProduct")
+    @Expose
+    private boolean isComboProduct;
+    @SerializedName("isFree")
+    @Expose
+    private boolean isFree;
+    @SerializedName("isOnePlusOnePromo")
+    @Expose
+    private boolean isOnePlusOnePromo;
+    @SerializedName("isPromo")
+    @Expose
+    private boolean isPromo;
+    @SerializedName("isRankRewardBronze")
+    @Expose
+    private boolean isRankRewardBronze;
+    @SerializedName("isRankRewardGold")
+    @Expose
+    private boolean isRankRewardGold;
+    @SerializedName("isRankRewardSilver")
+    @Expose
+    private boolean isRankRewardSilver;
+    @SerializedName("mainImage")
+    @Expose
+    private String mainImage;
+    @SerializedName("manufacturer")
+    @Expose
+    private String manufacturer;
+    @SerializedName("maxSaleQuantity")
+    @Expose
+    private int maxSaleQuantity;
+    @SerializedName("mrpPrice")
+    @Expose
+    private int mrpPrice;
+    @SerializedName("nv")
+    @Expose
+    private int nv;
+    @SerializedName("pricePerPiece")
+    @Expose
+    private int pricePerPiece;
+    @SerializedName("productId")
+    @Expose
+    private int productId;
+    @SerializedName("productName")
+    @Expose
+    private String productName;
+    @SerializedName("pv")
+    @Expose
+    private int pv;
+    @SerializedName("quantity")
+    @Expose
+    private int quantity;
+    @SerializedName("rankRewardBronzeText")
+    @Expose
+    private String rankRewardBronzeText;
+    @SerializedName("rankRewardGoldText")
+    @Expose
+    private String rankRewardGoldText;
+    @SerializedName("rankRewardSilverText")
+    @Expose
+    private String rankRewardSilverText;
+    @SerializedName("saving")
+    @Expose
+    private int saving;
+    @SerializedName("sku")
+    @Expose
+    private String sku;
+    @SerializedName("stockQuantity")
+    @Expose
+    private int stockQuantity;
+    @SerializedName("taxRate")
+    @Expose
+    private int taxRate;
+    @SerializedName("totalPrice")
+    @Expose
+    private int totalPrice;
+    @SerializedName("userId")
+    @Expose
+    private String userId;
+    @SerializedName("userName")
+    @Expose
+    private Object userName;
+    @SerializedName("volWt")
+    @Expose
+    private String volWt;
+
+    public Long getVariants() {
+        return Variants;
+    }
+
+    public void setVariants(Long variants) {
+        Variants = variants;
+    }
+
+    @SerializedName("variants")
+    @Expose
+    private Long Variants;
+    public boolean isMandatory() {
+        return isMandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        isMandatory = mandatory;
+    }
+
+    @SerializedName("isMandatory")
+    @Expose
+    private boolean isMandatory;
+    public int  getHomeStorePrice() {
+        return homeStorePrice;
+    }
+
+    public void setHomeStorePrice(int  homeStorePrice) {
+        this.homeStorePrice = homeStorePrice;
+    }
+
+    public double  getHomeStorePercent() {
+        return homeStorePercent;
+    }
+
+    public void setHomeStorePercent(double  homeStorePercent) {
+        this.homeStorePercent = homeStorePercent;
+    }
+
+    @SerializedName("homeStorePrice")
+    @Expose
+    private int  homeStorePrice ;
+
+    @SerializedName("homeStorePercent")
+    @Expose
+    private double  homeStorePercent;
+    public int getBv() {
+        return bv;
+    }
+
+    public void setBv(int bv) {
+        this.bv = bv;
+    }
+
+    public int getCartQuantity() {
+        return cartQuantity;
+    }
+
+    public void setCartQuantity(int cartQuantity) {
+        this.cartQuantity = cartQuantity;
+    }
+
+    public int getComboId() {
+        return comboId;
+    }
+
+    public void setComboId(int comboId) {
+        this.comboId = comboId;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public int getDistributorPrice() {
+        return distributorPrice;
+    }
+
+    public void setDistributorPrice(int distributorPrice) {
+        this.distributorPrice = distributorPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
+    public boolean isIsComboProduct() {
+        return isComboProduct;
+    }
+
+    public void setIsComboProduct(boolean isComboProduct) {
+        this.isComboProduct = isComboProduct;
+    }
+
+    public boolean isIsFree() {
+        return isFree;
+    }
+
+    public void setIsFree(boolean isFree) {
+        this.isFree = isFree;
+    }
+
+    public boolean isIsOnePlusOnePromo() {
+        return isOnePlusOnePromo;
+    }
+
+    public void setIsOnePlusOnePromo(boolean isOnePlusOnePromo) {
+        this.isOnePlusOnePromo = isOnePlusOnePromo;
+    }
+
+    public boolean isIsPromo() {
+        return isPromo;
+    }
+
+    public void setIsPromo(boolean isPromo) {
+        this.isPromo = isPromo;
+    }
+
+    public boolean isIsRankRewardBronze() {
+        return isRankRewardBronze;
+    }
+
+    public void setIsRankRewardBronze(boolean isRankRewardBronze) {
+        this.isRankRewardBronze = isRankRewardBronze;
+    }
+
+    public boolean isIsRankRewardGold() {
+        return isRankRewardGold;
+    }
+
+    public void setIsRankRewardGold(boolean isRankRewardGold) {
+        this.isRankRewardGold = isRankRewardGold;
+    }
+
+    public boolean isIsRankRewardSilver() {
+        return isRankRewardSilver;
+    }
+
+    public void setIsRankRewardSilver(boolean isRankRewardSilver) {
+        this.isRankRewardSilver = isRankRewardSilver;
+    }
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public int getMaxSaleQuantity() {
+        return maxSaleQuantity;
+    }
+
+    public void setMaxSaleQuantity(int maxSaleQuantity) {
+        this.maxSaleQuantity = maxSaleQuantity;
+    }
+
+    public int getMrpPrice() {
+        return mrpPrice;
+    }
+
+    public void setMrpPrice(int mrpPrice) {
+        this.mrpPrice = mrpPrice;
+    }
+
+    public int getNv() {
+        return nv;
+    }
+
+    public void setNv(int nv) {
+        this.nv = nv;
+    }
+
+    public int getPricePerPiece() {
+        return pricePerPiece;
+    }
+
+    public void setPricePerPiece(int pricePerPiece) {
+        this.pricePerPiece = pricePerPiece;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getRankRewardBronzeText() {
+        return rankRewardBronzeText;
+    }
+
+    public void setRankRewardBronzeText(String rankRewardBronzeText) {
+        this.rankRewardBronzeText = rankRewardBronzeText;
+    }
+
+    public String getRankRewardGoldText() {
+        return rankRewardGoldText;
+    }
+
+    public void setRankRewardGoldText(String rankRewardGoldText) {
+        this.rankRewardGoldText = rankRewardGoldText;
+    }
+
+    public String getRankRewardSilverText() {
+        return rankRewardSilverText;
+    }
+
+    public void setRankRewardSilverText(String rankRewardSilverText) {
+        this.rankRewardSilverText = rankRewardSilverText;
+    }
+
+    public int getSaving() {
+        return saving;
+    }
+
+    public void setSaving(int saving) {
+        this.saving = saving;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public int getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(int taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Object getUserName() {
+        return userName;
+    }
+
+    public void setUserName(Object userName) {
+        this.userName = userName;
+    }
+
+    public String getVolWt() {
+        return volWt;
+    }
+
+    public void setVolWt(String volWt) {
+        this.volWt = volWt;
+    }
+
+}

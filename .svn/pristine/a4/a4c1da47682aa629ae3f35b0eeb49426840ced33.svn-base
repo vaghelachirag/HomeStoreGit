@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/proceed"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context="com.nebulacompanies.ibo.activities.MyInventoryActivity">
+
+        <include layout="@layout/toolbarweb" />
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/progresbar"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="-5dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:mpb_indeterminateTint="@color/colorRadio"
+            app:mpb_progressStyle="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/laydata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_eight_dp"
+                android:clickable="true"
+                android:elevation="3dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:visibility="gone"
+                app:cardBackgroundColor="@android:color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_toLeftOf="@+id/id_edit"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+                            android:id="@+id/text_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:padding="@dimen/dimen_eight_dp"
+                            android:text=""
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/dimen_sixteen_sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/id_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/dimen_fourteen_dp"
+                        android:paddingRight="@dimen/dimen_fourteen_dp"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        app:tint="@color/black" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_four_dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/layout_empty_view_ecom"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.nebulacompanies.ibo.ecom.utils.MyButtonEcom
+        android:id="@+id/proceed"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_button_dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/dimen_eight_dp"
+        android:background="@drawable/nebula_button_login_eftct_login_ecom"
+        android:padding="8dp"
+        android:text="Add Products"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/dimen_sixteen_sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dimen_four_dp"
+        android:layout_marginTop="@dimen/dimen_four_dp"
+        android:visibility="gone" />
+</RelativeLayout>

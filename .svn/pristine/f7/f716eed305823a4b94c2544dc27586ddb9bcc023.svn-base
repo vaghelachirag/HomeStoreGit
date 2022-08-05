@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.cyanogenmod:platform.sdk:4.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.cyanogenmod/platform.sdk/4.0.1/a3cc131737a120af3c4a45359c374b8bb6c28afe/platform.sdk-4.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.cyanogenmod/platform.sdk/4.0.1/4a9dd10f0141b3051d512d6f92da27eab60a966b/platform.sdk-4.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.cyanogenmod/platform.sdk/4.0.1/a9e036731bf2fe635af17256131bfb693c49e6bc/platform.sdk-4.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

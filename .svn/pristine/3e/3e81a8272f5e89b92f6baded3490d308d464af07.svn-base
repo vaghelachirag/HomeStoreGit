@@ -1,0 +1,157 @@
+package com.nebulacompanies.ibo.ecom.adapter;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Paint;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nebulacompanies.ibo.ecom.model.FreeProductListModel;
+import com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom;
+import com.nebulacompanies.ibo.model.AddVariantModel;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class SkuAdapter  extends RecyclerView.Adapter<SkuAdapter.MyViewHolder> {
+
+    private final Context context;
+    ArrayList<AddVariantModel.Datum> myCartsModel;
+
+    int alreadysel = -1;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_mycart_name)
+        MyTextViewEcom tvMyCartName;
+
+        @BindView(R.id.tv_mycart_tablet)
+        MyTextViewEcom tvQuntyDesc;
+
+        MyTextViewEcom tvMyCartItemPrice;
+
+        @BindView(R.id.product_count)
+        MyTextViewEcom tvProductCount;
+
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.tv_pv_value)
+        MyTextViewEcom tvCartPV;
+
+        @BindView(R.id.tv_nv_value)
+        MyTextViewEcom tvCartNV;
+
+        @BindView(R.id.tv_bv_value)
+        MyTextViewEcom tvCartBV;
+
+        @BindView(R.id.tv_original_price_value)
+        MyTextViewEcom tvMRP;
+
+        @BindView(R.id.tv_mrp_price_value)
+        MyTextViewEcom tvOrig;
+
+        @BindView(R.id.tv_mycart_item_price)
+        MyTextViewEcom tvDiscountedPrice;
+
+        @BindView(R.id.card_view)
+        CardView cardView;
+
+        @BindView(R.id.rd_selected)
+        RadioButton rdSelect;
+        @BindView(R.id.lv_free)
+        LinearLayout layFree;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+    public SkuAdapter(Context context, ArrayList<AddVariantModel.Datum> myCartsModel) {
+        this.context = context;
+        this.myCartsModel = myCartsModel;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_free_products_list, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onBindViewHolder(@NonNull SkuAdapter.MyViewHolder holder, int position) {
+
+        AddVariantModel.Datum myCart = myCartsModel.get(position);
+
+        holder.layFree.setVisibility(View.GONE);
+
+
+        holder.tvMRP.setText(String.valueOf(myCart.getDistributorPrice()));
+        holder.tvMRP.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.tvOrig.setText(String.valueOf(myCart.getMrpPrice()));
+        holder.tvOrig.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.tvProductCount.setText(String.valueOf(myCart.getCartQuantity()));
+        holder.tvDiscountedPrice.setText(String.valueOf(myCart.getHomestorePrice()));
+
+        //Log.d("getMrpPrice","getMrpPrice=="+myCart.getMrpPrice()+" : "+myCart.getDistributorPrice());
+       // Toast.makeText(context, "getMrpPrice: "+myCart.getMrpPrice(), Toast.LENGTH_SHORT).show();
+        holder.tvMyCartName.setText(myCart.getProductName());
+        holder.tvQuntyDesc.setText(myCart.getVolWt());
+        holder.tvCartPV.setText(String.valueOf(myCart.getPv()));
+        holder.tvCartBV.setText(String.valueOf(myCart.getBv()));
+        holder.tvCartNV.setText(String.valueOf(myCart.getNv()));
+
+        holder.rdSelect.setOnCheckedChangeListener(null);
+        boolean checkFree = myCart.isIsselected();
+        holder.rdSelect.setChecked(checkFree);
+        if (checkFree) {
+            alreadysel = position;
+        }
+
+        Glide.with(context)
+                .load(myCart.getMainImage()).fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_shopping_cart)
+                .into(holder.thumbnail);
+
+        holder.cardView.setOnClickListener
+                (v -> {
+                    if(alreadysel==-1){
+                        //myCartsModel.get(position).setIsselected(true);
+                        myCart.setIsselected(true);
+                        notifyDataSetChanged();
+                    }
+
+                    else if (alreadysel != position) {
+                        myCartsModel.get(alreadysel).setIsselected(false);
+                        myCart.setIsselected(true);
+                        notifyDataSetChanged();
+                    }
+                });
+    }
+
+    @Override
+    public int getItemCount() {
+        return myCartsModel.size();
+    }
+}

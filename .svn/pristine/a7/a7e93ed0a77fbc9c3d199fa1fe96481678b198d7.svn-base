@@ -1,0 +1,232 @@
+package com.nebulacompanies.ibo.ecom.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import retrofit2.Response;
+
+public class OrderInventoryModel
+{
+    @SerializedName("ok")
+    @Expose
+    private Integer ok;
+    @SerializedName("response")
+    @Expose
+    private Response response;
+
+    public Integer getOk() {
+        return ok;
+    }
+
+    public void setOk(Integer ok) {
+        this.ok = ok;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+
+    public class Response {
+
+        @SerializedName("statusCode")
+        @Expose
+        private Integer statusCode;
+        @SerializedName("message")
+        @Expose
+        private String message;
+        @SerializedName("data")
+        @Expose
+        private List<Datum> data = null;
+
+        public Integer getStatusCode() {
+            return statusCode;
+        }
+
+        public void setStatusCode(Integer statusCode) {
+            this.statusCode = statusCode;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public List<Datum> getData() {
+            return data;
+        }
+
+        public void setData(List<Datum> data) {
+            this.data = data;
+        }
+
+    }
+
+
+    public class Datum {
+
+        @SerializedName("productId")
+        @Expose
+        private Integer productId;
+        @SerializedName("ecomProductID")
+        @Expose
+        private Integer ecomProductID;
+        @SerializedName("image")
+        @Expose
+        private String image;
+        @SerializedName("productName")
+        @Expose
+        private String productName;
+        @SerializedName("shortDescription")
+        @Expose
+        private String shortDescription;
+        @SerializedName("iboPrice")
+        @Expose
+        private Integer iboPrice;
+        @SerializedName("iboPriceWithOutTaxt")
+        @Expose
+        private Integer iboPriceWithOutTaxt;
+        @SerializedName("mrp")
+        @Expose
+        private Integer mrp;
+        @SerializedName("quantity")
+        @Expose
+        private Integer quantity;
+        @SerializedName("pv")
+        @Expose
+        private Integer pv;
+        @SerializedName("nv")
+        @Expose
+        private Integer nv;
+        @SerializedName("bv")
+        @Expose
+        private Integer bv;
+        @SerializedName("sku")
+        @Expose
+        private String sku;
+
+        public String getPurchseQuantity() {
+            return purchseQuantity;
+        }
+
+        public void setPurchseQuantity(String purchseQuantity) {
+            this.purchseQuantity = purchseQuantity;
+        }
+
+        private String purchseQuantity;
+
+        public Integer getProductId() {
+            return productId;
+        }
+
+        public void setProductId(Integer productId) {
+            this.productId = productId;
+        }
+
+        public Integer getEcomProductID() {
+            return ecomProductID;
+        }
+
+        public void setEcomProductID(Integer ecomProductID) {
+            this.ecomProductID = ecomProductID;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public void setProductName(String productName) {
+            this.productName = productName;
+        }
+
+        public String getShortDescription() {
+            return shortDescription;
+        }
+
+        public void setShortDescription(String shortDescription) {
+            this.shortDescription = shortDescription;
+        }
+
+        public Integer getIboPrice() {
+            return iboPrice;
+        }
+
+        public void setIboPrice(Integer iboPrice) {
+            this.iboPrice = iboPrice;
+        }
+
+        public Integer getIboPriceWithOutTaxt() {
+            return iboPriceWithOutTaxt;
+        }
+
+        public void setIboPriceWithOutTaxt(Integer iboPriceWithOutTaxt) {
+            this.iboPriceWithOutTaxt = iboPriceWithOutTaxt;
+        }
+
+        public Integer getMrp() {
+            return mrp;
+        }
+
+        public void setMrp(Integer mrp) {
+            this.mrp = mrp;
+        }
+
+        public Integer getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(Integer quantity) {
+            this.quantity = quantity;
+        }
+
+        public Integer getPv() {
+            return pv;
+        }
+
+        public void setPv(Integer pv) {
+            this.pv = pv;
+        }
+
+        public Integer getNv() {
+            return nv;
+        }
+
+        public void setNv(Integer nv) {
+            this.nv = nv;
+        }
+
+        public Integer getBv() {
+            return bv;
+        }
+
+        public void setBv(Integer bv) {
+            this.bv = bv;
+        }
+
+        public String getSku() {
+            return sku;
+        }
+
+        public void setSku(String sku) {
+            this.sku = sku;
+        }
+
+    }
+}

@@ -1,0 +1,101 @@
+package com.nebulacompanies.ibo.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class ConfirmSellModel {
+    @SerializedName("SaleDetailsModel")
+    @Expose
+    private List<SaleDetailsModel> saleDetailsModel = null;
+
+    public List<SaleDetailsModel> getSaleDetailsModel() {
+        return saleDetailsModel;
+    }
+
+    public void setSaleDetailsModel(List<SaleDetailsModel> saleDetailsModel) {
+        this.saleDetailsModel = saleDetailsModel;
+    }
+
+    public class SaleDetailsModel {
+
+        @SerializedName("ProductId")
+        @Expose
+        private int productId;
+        @SerializedName("EcomProductId")
+        @Expose
+        private int ecomProductID;
+        @SerializedName("Quantity")
+        @Expose
+        private int quantity;
+        @SerializedName("Price")
+        @Expose
+        private double price;
+        @SerializedName("ProductName")
+        @Expose
+        private String productName;
+        @SerializedName("SKU")
+        @Expose
+        private String sku;
+        @SerializedName("Tax")
+        @Expose
+        private double tax;
+
+        public int getProductId() {
+            return productId;
+        }
+
+        public void setProductId(int productId) {
+            this.productId = productId;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public void setProductName(String productName) {
+            this.productName = productName;
+        }
+
+        public String getSku() {
+            return sku;
+        }
+
+        public void setSku(String sku) {
+            this.sku = sku;
+        }
+
+        public double getTax() {
+            return tax;
+        }
+
+        public void setTax(double tax) {
+            this.tax = tax;
+        }
+
+        public int getEcomProductID() {
+            return ecomProductID;
+        }
+
+        public void setEcomProductID(int ecomProductID) {
+            this.ecomProductID = ecomProductID;
+        }
+    }
+}

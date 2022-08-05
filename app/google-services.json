@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245930859271",
+    "project_id": "nebulacare-shoppe",
+    "storage_bucket": "nebulacare-shoppe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245930859271:android:7c39c2b4677b77e510c3a2",
+        "android_client_info": {
+          "package_name": "com.nebulacompanies.ibo.shoppy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245930859271-tjrjscgmv3nvakecfl45shjmkmnmj39d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHXWaB4Du-Xu_nC1p1VU5fW4GCMlwlQX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245930859271-tjrjscgmv3nvakecfl45shjmkmnmj39d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

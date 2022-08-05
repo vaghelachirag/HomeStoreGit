@@ -1,0 +1,98 @@
+package com.nebulacompanies.ibo.adapter;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nebulacompanies.ibo.Interface.OnItemSelect;
+import com.nebulacompanies.ibo.Interface.OnProductClick;
+import com.nebulacompanies.ibo.ecom.model.OtherProducts;
+import com.nebulacompanies.ibo.model.ChooseShoppyModel;
+import com.nebulacompanies.ibo.shoppy.R;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
+public class ChooseShoppyAdapter extends RecyclerView.Adapter<ChooseShoppyAdapter.ViewHolder> {
+    Context context;
+    List<ChooseShoppyModel.Datum> shoppyModel;
+    int mCheckedPostion = 0;
+    OnItemSelect mCallback;
+
+    public ChooseShoppyAdapter(Context context, List<ChooseShoppyModel.Datum> shoppyModel, OnItemSelect mCallback) {
+        this.context = context;
+        this.shoppyModel = shoppyModel;
+        this.mCallback = mCallback;
+    }
+
+    @NonNull
+    @NotNull
+    @Override
+    public ChooseShoppyAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_choose_shoppy, parent, false);
+        return new ChooseShoppyAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull @NotNull ChooseShoppyAdapter.ViewHolder holder, int position) {
+        ChooseShoppyModel.Datum datum = shoppyModel.get(position);
+        Glide.with(context)
+                .load(datum.getImagePath())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.drawable.placeholder)
+                .into(holder.imgChoosy);
+        Log.d("holder==", position + " : " + mCheckedPostion);
+        holder.txtName.setText(datum.getName() + " (₹" + datum.getMinAmount() + ")");
+        // holder.rbBox.setChecked(position == mCheckedPostion);
+        if (position == mCheckedPostion)
+            mCallback.onItemSelect(position);
+        holder.card_shoppy.setOnClickListener(v -> {
+            Log.d("holder== click", position + " : " + mCheckedPostion);
+            if (position != mCheckedPostion) {
+                mCheckedPostion = position;
+                notifyDataSetChanged();
+            }
+        });
+       /* holder.rbBox.setOnClickListener(v -> {
+            Log.d("holder== click rb", position + " : " + mCheckedPostion);
+            if (position != mCheckedPostion) {
+                mCheckedPostion = position;
+                notifyDataSetChanged();
+            }
+        });*/
+    }
+
+    @Override
+    public int getItemCount() {
+        return shoppyModel.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        CardView card_shoppy;
+        // RadioButton rbBox;
+        ImageView imgChoosy;
+        TextView txtName;
+
+        public ViewHolder(View view) {
+            super(view);
+            card_shoppy = view.findViewById(R.id.card_shoppy1);
+            // rbBox = view.findViewById(R.id.plan1);
+            imgChoosy = view.findViewById(R.id.imgshoppy);
+            txtName = view.findViewById(R.id.text_name);
+        }
+    }
+}

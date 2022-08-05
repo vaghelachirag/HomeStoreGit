@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorNotification">
+
+        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+            android:id="@+id/txt_headerchoose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dimen_eight_dp"
+            android:text="Choose Quantity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_fourteen_dp" />
+
+
+        <ImageView
+            android:id="@+id/img_ticket_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dimen_five_dp"
+            android:background="@drawable/nebula_effect"
+            android:contentDescription="@null"
+            android:padding="@dimen/dimen_five_dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_close_new_white" />
+
+    </RelativeLayout>
+
+    <com.nebulacompanies.ibo.view.NebulaEditText
+        android:id="@+id/edit_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_eight_dp"
+        android:padding="@dimen/dimen_ten_dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_fourteen_sp"
+        android:focusable="true"
+        android:inputType="number"
+        android:textColorHint="@color/text_color"
+        android:hint="@string/enter_q"
+        android:background="@drawable/rounded_border_shape"/>
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/card_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/dimen_two_dp"
+        card_view:cardElevation="@dimen/dimen_two_dp"
+        android:layout_marginRight="@dimen/dimen_four_dp"
+        android:layout_marginLeft="@dimen/dimen_four_dp"
+        android:layout_marginTop="@dimen/dimen_four_dp"
+        android:layout_marginBottom="-4dp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.nebulacompanies.ibo.view.NebulaEditText
+                android:id="@+id/edit_quantity_more"
+                android:layout_alignParentLeft="true"
+                android:layout_width="match_parent"
+                android:layout_toLeftOf="@+id/btn_update"
+                android:layout_height="wrap_content"
+                android:hint="10+"
+                android:focusedByDefault="true"
+                android:maxLength="3"
+                android:inputType="number"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_fourteen_sp" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_twenty_dp"
+                android:text="Update"
+                android:layout_marginRight="@dimen/dimen_four_dp"
+                android:layout_centerVertical="true"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/theme_color"
+                android:background="@drawable/button_border"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/recycler_view_q"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_four_dp"
+        android:layout_marginTop="@dimen/dimen_four_dp"
+        android:layout_marginEnd="@dimen/dimen_four_dp"
+        android:visibility="visible" />
+
+   <!-- <com.nebulacompanies.ibo.ecom.utils.MyButtonEcom
+        android:id="@+id/proceed"
+        android:layout_below="@+id/recycler_view_q"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_eight_dp"
+        android:background="@drawable/nebula_button_login_eftct_login_ecom"
+        android:padding="10dp"
+        android:text="Add quantity"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/dimen_sixteen_sp"
+        android:textStyle="bold"
+       />-->
+
+   <!-- <com.nebulacompanies.ibo.view.NebulaEditText
+        android:id="@+id/edit_quantity_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_eight_dp"
+        android:layout_marginRight="@dimen/dimen_eight_dp"
+        android:layout_marginBottom="@dimen/dimen_eight_dp"
+        android:padding="@dimen/dimen_eight_dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_fourteen_sp"
+        android:focusable="true"
+        android:inputType="number"
+        android:textColorHint="@color/text_color"
+        android:hint="10+"
+        android:visibility="gone"
+        android:background="@drawable/rounded_border_shape"/>-->
+</LinearLayout>

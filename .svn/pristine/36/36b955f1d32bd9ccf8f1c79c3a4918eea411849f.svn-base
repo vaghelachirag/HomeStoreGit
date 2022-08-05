@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorNotification">
+
+        <com.nebulacompanies.ibo.ecom.utils.MyTextViewEcom
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dimen_eight_dp"
+            android:text="Choose Quantity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_fourteen_dp" />
+
+
+        <ImageView
+            android:id="@+id/img_ticket_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dimen_five_dp"
+            android:background="@drawable/nebula_effect"
+            android:contentDescription="@null"
+            android:padding="@dimen/dimen_five_dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_close_new_white" />
+
+    </RelativeLayout>
+
+    <com.nebulacompanies.ibo.view.NebulaEditText
+        android:id="@+id/edit_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_eight_dp"
+        android:padding="@dimen/dimen_eight_dp"
+        android:textColor="@color/black"
+        android:focusable="true"
+        android:inputType="number"
+        android:textColorHint="@color/text_color"
+        android:hint="@string/enter_q"
+        android:background="@drawable/rounded_border_shape"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/recycler_view_q"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_four_dp"
+        android:layout_marginTop="@dimen/dimen_four_dp"
+        android:layout_marginEnd="@dimen/dimen_four_dp"
+        android:layout_marginBottom="@dimen/dimen_five_dp"
+        android:visibility="visible" />
+
+   <!-- <com.nebulacompanies.ibo.ecom.utils.MyButtonEcom
+        android:id="@+id/proceed"
+        android:layout_below="@+id/recycler_view_q"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_eight_dp"
+        android:background="@drawable/nebula_button_login_eftct_login_ecom"
+        android:padding="10dp"
+        android:text="Add quantity"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/dimen_sixteen_sp"
+        android:textStyle="bold"
+       />-->
+    </RelativeLayout>
+</LinearLayout>

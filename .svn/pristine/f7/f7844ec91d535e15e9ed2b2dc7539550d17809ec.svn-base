@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "MERGED_MANIFESTS",
+    "kind": "Directory"
+  },
+  "applicationId": "com.nebulacompanies.ibo.shoppy",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 16,
+      "versionName": "1.1.16",
+      "outputFile": "AndroidManifest.xml"
+    }
+  ]
+}

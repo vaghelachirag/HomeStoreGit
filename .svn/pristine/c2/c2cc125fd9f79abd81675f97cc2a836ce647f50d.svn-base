@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.scottyab:showhidepasswordedittext:0.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/40897ac0e6af4eb48fd75bdcdeb07b7c/jetified-showhidepasswordedittext-0.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/40897ac0e6af4eb48fd75bdcdeb07b7c/jetified-showhidepasswordedittext-0.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/40897ac0e6af4eb48fd75bdcdeb07b7c/jetified-showhidepasswordedittext-0.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.scottyab/showhidepasswordedittext/0.6/a7ebcb38c37ad4bd9cf9ddd800655063feb7fbcf/showhidepasswordedittext-0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
